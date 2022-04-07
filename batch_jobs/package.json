@@ -1,0 +1,16 @@
+{
+  "name": "crystal-clash-batch_jobs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "jobCompressImages.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "fs-readdir-recursive": "^1.1.0",
+    "sharp": "^0.29.3",
+    "tga2png": "^0.1.3"
+  }
+}

@@ -1,8 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {Template} from "./template";
 import {createTheme, ThemeOptions, ThemeProvider} from "@mui/material/styles";
+import {BrowserRouter} from 'react-router-dom';
+import {toast} from "react-toastify";
 
 
 export const themeOptions: ThemeOptions = {
@@ -44,8 +45,13 @@ export const themeOptions: ThemeOptions = {
 const myTheme = createTheme(themeOptions);
 
 function App() {
+  toast.configure();
   return (<ThemeProvider theme={myTheme}>
-    <Template/></ThemeProvider>);
+
+    <BrowserRouter>
+    <Template/>
+    </BrowserRouter>
+    </ThemeProvider>);
 }
 
 export default App;

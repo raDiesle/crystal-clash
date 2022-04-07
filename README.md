@@ -9,6 +9,11 @@ https://mattmazzola.github.io/slate-mention-editor/
 
 
 
+# convert images
+
+magick BlackFreeze.tga  -crop 237x237+10+10 BlackFreeze.webp
+
+magick mogrify -format webp -crop 237x237+10+10 -flip *.tga
 
 
 
