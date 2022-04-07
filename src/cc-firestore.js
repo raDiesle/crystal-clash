@@ -1,8 +1,9 @@
 import "firebase/compat/analytics";
-import { initializeApp } from 'firebase/app';
+
 import firebase from 'firebase/compat/app';
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import "firebase/compat/storage";
 import { toast } from "react-toastify";
 
 export const FIREBASE_API_CONFIG = {
@@ -19,6 +20,9 @@ const firebaseApp = firebase.initializeApp(FIREBASE_API_CONFIG);
 const db = firebaseApp.firestore();
 const auth = firebase.auth();
 
+
+const storage = firebaseApp.storage();//("gs://crystal-clash-manager.appspot.com");
+
 const dbErrorHandlerPromise = (error) => {
   console.error(error);
   const errorMessage = "Some error occured. You may need to be logged in to edit data.";
@@ -26,4 +30,6 @@ const dbErrorHandlerPromise = (error) => {
   return Promise.reject();
 };
 
-export { db, auth, firebaseApp, dbErrorHandlerPromise };
+const storageInstance = storage;
+
+export { db, auth, firebaseApp, storageInstance, dbErrorHandlerPromise };

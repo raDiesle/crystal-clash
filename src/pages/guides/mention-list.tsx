@@ -1,3 +1,8 @@
+
+export const characterFileName = (filename: string)=> filename.substring(filename.lastIndexOf("\\") + 1, filename.lastIndexOf("."));
+
+export const mentionImageUrlPath = (filename: string) =>"/generated/img/" + filename;
+
 export const mentionList =
     [
             "AbilityIcons\\Ammo.png",

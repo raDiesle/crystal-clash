@@ -6,8 +6,14 @@ https://uiwjs.github.io/react-md-editor/
 https://mattmazzola.github.io/slate-mention-editor/
 
 
+https://codesandbox.io/s/9svcyx?file=/src/App.js:1042-2021
+https://codesandbox.io/s/8kwnd
 
 
+
+game files available on windows:
+
+C:\Program Files (x86)\Steam\steamapps\common\
 
 # convert images
 
