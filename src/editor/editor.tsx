@@ -30,20 +30,26 @@ import {
 } from '@udecode/plate'
 import {BaseEditor, Descendant} from "slate";
 import * as React from "react";
-import {useEffect, useState} from "react";
+import {useEffect, useMemo, useState} from "react";
 import {HistoryEditor} from "slate-history";
 import Container from "@mui/material/Container";
 import CardHeader from "@mui/material/CardHeader";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import {Alert, Button, Snackbar} from "@mui/material";
+import {Alert, Button, Fab, IconButton, Snackbar, Stack} from "@mui/material";
 import {characterFileName, mentionImageUrlPath, mentionList} from "../pages/guides/mention-list";
 import {auth, db, dbErrorHandlerPromise, storageInstance} from "../cc-firestore";
 import firebase from "firebase/compat/app";
 import {toast} from "react-toastify";
+import EditIcon from '@mui/icons-material/Edit';
+
+import { v4 as uuidv4 } from 'uuid';
+
 import {MentionCombobox} from "./MentionCombobox";
 import {CcHeaderToolbar} from "./cc-header-toolbar";
 
+import css from "./css-global.module.scss";
+import {LoginModal} from "../topbar/login-modal";
 
 const initialValue: Descendant[] = [
     {
@@ -62,13 +68,13 @@ declare module 'slate' {
     }
 }
 
-
-export function Editor() {
+export function Editor({pageTitle, categoryPath, editorPath}) {
 
     const [editorValue, setEditorValue] = useState(initialValue);
 
     const [open, setOpen] = React.useState(false);
 
+    const dbRef = useMemo(()=>db.collection(categoryPath).doc(String(editorPath)).collection("history"), [categoryPath, editorPath]);
 
     function listenUserAuth(setCurrentUsername) {
         return auth.onAuthStateChanged((user) => {
@@ -89,7 +95,6 @@ export function Editor() {
         if (isInEditMode) {
             return;
         }
-        const dbRef = db.collection("wiki").doc(String("howToPlay")).collection("history");
         dbRef
             .orderBy("createdAt", "desc")
             .get()
@@ -121,7 +126,7 @@ export function Editor() {
     }, [isInEditMode]);
 
     const onSave = () => {
-        const dbRef = db.collection("wiki").doc(String("howToPlay")).collection("history");
+
         dbRef
             .add({
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -142,7 +147,7 @@ export function Editor() {
             padding: '15px',
         },
 
-        readOnly: false
+        readOnly: !isInEditMode
     };
 
     const plugins = createPlugins([
@@ -178,7 +183,6 @@ export function Editor() {
                 props: (editor) => {
                     const onMentionClicked = () => {
                         let url = editor.element.url;
-                        console.log("Opening url", url);
                         window.open(url, "_blank");
                     };
 
@@ -217,9 +221,12 @@ export function Editor() {
                     uploadImage: async (
                         dataUrl: string | ArrayBuffer
                     ) => {
-
-                    const ref = storageInstance.ref().child("image3.png");
-                    const response = await ref.putString(dataUrl, "data_url")
+                        const ref = storageInstance.ref("user_images").child(categoryPath).child(editorPath).child(uuidv4());
+                        const response = await ref.putString(dataUrl, "data_url",  {
+                            customMetadata : {
+                                uploadedBy : currentUsername
+                            }
+                        })
                       const downloadUrl = await response.ref.getDownloadURL();
                      return downloadUrl;
                     }
@@ -231,17 +238,11 @@ export function Editor() {
             components: createPlateUI(),
         });
 
-
+    const [isLoginModalShown, setIsLoginModalShown] = useState(false);
     return (<Container sx={{pt: 8, pb: 1}}>
         <Card>
             <CardHeader
-                title={"A Guide"}
-                subheader={"Edit contents below"}
-                titleTypographyProps={{align: 'center'}}
-                subheaderTypographyProps={{
-                    align: 'center',
-                }}
-                sx={{}}
+                title={pageTitle}
             />
 
             <Snackbar
@@ -250,7 +251,7 @@ export function Editor() {
                 onClose={() => {
                     setOpen(false);
                 }}
-                message="Note archived"
+                message="Saved"
                 anchorOrigin={{vertical: "top", horizontal: "right"}}
             >
                 <Alert onClose={() => setOpen(false)} severity="success" sx={{width: '100%'}}>
@@ -260,8 +261,8 @@ export function Editor() {
 
             <CardContent>
                 {isLoaded && (
+                    <div className={css.ccPlateEditor}>
                     <Plate initialValue={editorValue}
-
                            key={1}
                            id={"1"}
                            editableProps={editableProps}
@@ -270,17 +271,32 @@ export function Editor() {
                            }}
                            plugins={plugins}
                     >
-                       <CcHeaderToolbar/>
+                        {isInEditMode ? <CcHeaderToolbar/>  :
+                            <Fab color="primary" aria-label="edit" size={"medium"} onClick={() => {
+                                if(!currentUsername){
+                                    setIsLoginModalShown(true);
+                                    return;
+                                }
+                                setIsInEditMode(true);
+                            }}>
+                                <EditIcon />
+                            </Fab>}
 
                         <MentionCombobox items={mentionList.map((filename, index) => ({
                             key: index,
                             text: filename,
                             data: {filename}
                         }))} pluginKey="@"/>
+                    </Plate>
+                    </div>
+                        )}
 
-                    </Plate>)}
-                <Button variant="contained" onClick={onSave}>Save</Button>
+                {isInEditMode && <Stack spacing={2} direction="row" pt={2}>
+                    <Button variant="contained" onClick={onSave}>Save</Button>
+                    <Button variant="outlined" onClick={() => setIsInEditMode(false)}>Cancel</Button>
+                </Stack> }
             </CardContent>
         </Card>
+        <LoginModal {...{isLoginModalShown, setIsLoginModalShown}}/>
     </Container>);
 }
