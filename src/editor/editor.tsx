@@ -2,29 +2,11 @@
 import {ReactEditor} from "slate-react";
 import {EditableProps} from 'slate-react/dist/components/editable';
 import {
-    createAlignPlugin,
-    createBlockquotePlugin,
-    createBoldPlugin,
-    createCodeBlockPlugin,
-    createCodePlugin,
     createComboboxPlugin,
-    createFontBackgroundColorPlugin,
-    createFontColorPlugin,
-    createHeadingPlugin,
     createImagePlugin,
-    createIndentListPlugin,
-    createIndentPlugin,
-    createItalicPlugin,
-    createLineHeightPlugin,
-    createListPlugin,
-    createMediaEmbedPlugin,
     createMentionPlugin,
-    createParagraphPlugin,
     createPlateUI,
     createPlugins,
-    createStrikethroughPlugin,
-    createTablePlugin,
-    createUnderlinePlugin,
     MentionElement,
     Plate
 } from '@udecode/plate'
@@ -32,29 +14,31 @@ import {BaseEditor, Descendant} from "slate";
 import * as React from "react";
 import {useEffect, useMemo, useState} from "react";
 import {HistoryEditor} from "slate-history";
-import Container from "@mui/material/Container";
 import CardHeader from "@mui/material/CardHeader";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import {Alert, Button, Fab, IconButton, Snackbar, Stack} from "@mui/material";
+import {Alert, Box, Button, Fab, Snackbar, Stack} from "@mui/material";
 import {characterFileName, mentionImageUrlPath, mentionList} from "../pages/guides/mention-list";
 import {auth, db, dbErrorHandlerPromise, storageInstance} from "../cc-firestore";
 import firebase from "firebase/compat/app";
 import {toast} from "react-toastify";
 import EditIcon from '@mui/icons-material/Edit';
 
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 
 import {MentionCombobox} from "./MentionCombobox";
 import {CcHeaderToolbar} from "./cc-header-toolbar";
 
 import css from "./css-global.module.scss";
 import {LoginModal} from "../topbar/login-modal";
+import {boringPlatePlugins} from "./boring-plate-plugins";
+import {useTimer} from "react-timer-hook";
+import {calculateExpiryTimestamp, TimerLeft} from "./timer-left";
 
-const initialValue: Descendant[] = [
+const initialEditorValue: Descendant[] = [
     {
         type: 'paragraph',
-        children: [{text: "Type here to edit. Start typing @ and start letter of Crystal-Clash terms you want to reference. ( e.g. AbilityIcons or CardIcons"}],
+        children: [{text: "Type here to edit."}],
     },
 ];
 
@@ -68,13 +52,41 @@ declare module 'slate' {
     }
 }
 
+
+/* dbRef
+    .orderBy("createdAt", "desc")
+    .get()
+    .then((documentSnapshots) => {
+        const docs = documentSnapshots.docs.map((doc) => {
+            return {
+                id: doc.id,
+                ...doc.data(),
+            };
+        });
+        const normalizedHistory = docs.map(({createdAt, id, val, createdAtVersion}) => {
+            return {
+                id,
+                createdAt: createdAt.toDate(),
+                createdAtVersion: createdAtVersion,
+                val: val,
+            };
+        });*/
+
 export function Editor({pageTitle, categoryPath, editorPath}) {
 
-    const [editorValue, setEditorValue] = useState(initialValue);
+    const [editorValue, setEditorValue] = useState(initialEditorValue);
+    const [currentEditingUser, setCurrentEditingUser] = useState("");
+    const [userStartedCurrentEditingSince, setUserStartedCurrentEditingUserSince] = useState("");
+
+    const [isInEditMode, setIsInEditMode] = useState(false);
+    const [history, setHistory] = useState([]);
+    const [isLoadedFromServer, setIsLoadedFromServer] = useState(false);
+
 
     const [open, setOpen] = React.useState(false);
 
-    const dbRef = useMemo(()=>db.collection(categoryPath).doc(String(editorPath)).collection("history"), [categoryPath, editorPath]);
+    const dbRefHistory = useMemo(() => db.collection(categoryPath).doc(String(editorPath)).collection("history"), [categoryPath, editorPath]);
+    const dbRefLatest = useMemo(() => db.collection(categoryPath).doc(String(editorPath)), [categoryPath, editorPath]);
 
     function listenUserAuth(setCurrentUsername) {
         return auth.onAuthStateChanged((user) => {
@@ -88,57 +100,63 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
         return () => listen();
     }, []);
 
-    const [isInEditMode, setIsInEditMode] = useState(false);
-    const [history, setHistory] = useState([]);
-    const [isLoaded, setIsLoaded] = useState(false);
+
     useEffect(() => {
         if (isInEditMode) {
             return;
         }
-        dbRef
-            .orderBy("createdAt", "desc")
-            .get()
-            .then((documentSnapshots) => {
-                const docs = documentSnapshots.docs.map((doc) => {
-                    return {
-                        id: doc.id,
-                        ...doc.data(),
-                    };
-                });
-                const normalizedHistory = docs.map(({createdAt, id, val, createdAtVersion}) => {
-                    return {
-                        id,
-                        createdAt: createdAt.toDate(),
-                        createdAtVersion: createdAtVersion,
-                        val: val,
-                    };
-                });
-                setHistory(normalizedHistory);
+        const unsubscribe = dbRefLatest.onSnapshot((doc) => {
+            setIsLoadedFromServer(true);
+            if (doc.exists) {
+                const data = doc.data();
+                setCurrentEditingUser(data.currentEditingUser);
+                setEditorValue(data);
 
-                if (normalizedHistory.length > 0) {
-                    const lastWikiState = JSON.parse(normalizedHistory[0].val);
-                    setEditorValue(lastWikiState);
-                }
-                setIsLoaded(true);
+                setUserStartedCurrentEditingUserSince(data.userStartedCurrentEditingSince.toDate());
 
-            })
-            .catch(dbErrorHandlerPromise);
+                return;
+            }
+
+            setUserStartedCurrentEditingUserSince("");
+            setCurrentEditingUser("");
+        }, (error) => {
+            toast(error);
+        })
+        //.catch(dbErrorHandlerPromise);
+        return unsubscribe;
     }, [isInEditMode]);
+
 
     const onSave = () => {
 
-        dbRef
-            .add({
-                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-                createdBy: currentUsername,
-                val: JSON.stringify(editorValue),
-            })
+        const editorDataToSave = {
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            createdBy: currentUsername,
+            val: JSON.stringify(editorValue),
+        };
+
+        const historyPromise = dbRefHistory
+            .add(editorDataToSave)
             .then(() => {
                 setIsInEditMode(false);
                 setOpen(true);
                 toast("saved successful");
             })
             .catch(dbErrorHandlerPromise);
+
+
+        const latestPromise = dbRefLatest.set({
+            ...editorDataToSave,
+            ...{
+                currentEditingUser: "",
+                userStartedCurrentEditingSince: ""
+            }
+        })
+            .catch(dbErrorHandlerPromise);
+
+        Promise.all([historyPromise, latestPromise]).then(() => {
+            toast("Successful saved");
+        });
     }
 
     const editableProps: EditableProps = {
@@ -147,35 +165,12 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
             padding: '15px',
         },
 
-        readOnly: !isInEditMode
+        readOnly: !isInEditMode && (currentUsername !== currentEditingUser)
     };
 
+
     const plugins = createPlugins([
-            // elements
-            createParagraphPlugin(),      // paragraph element
-            createBlockquotePlugin(),     // blockquote element
-            createCodeBlockPlugin(),      // code block element
-            createHeadingPlugin(),        // heading elements
-
-            createListPlugin(),
-            createIndentPlugin(),
-            createIndentListPlugin(),
-
-            createFontColorPlugin(),
-            createFontBackgroundColorPlugin(),
-            createLineHeightPlugin(),
-
-            createAlignPlugin(),
-            createTablePlugin(),
-
-            createMediaEmbedPlugin(),
-
-            // marks
-            createBoldPlugin(),           // bold mark
-            createItalicPlugin(),         // italic mark
-            createUnderlinePlugin(),      // underline mark
-            createStrikethroughPlugin(),  // strikethrough mark
-            createCodePlugin(),           // code mark
+            ...boringPlatePlugins,
 
             createMentionPlugin({
                 key: "@",
@@ -191,7 +186,14 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
                         return (
                             <div
                                 title={element.url}
-                                style={{display: "flex", alignContent: "center", cursor: "pointer", color: "black", lineHeight: "25px", paddingLeft: "5px"}}
+                                style={{
+                                    display: "flex",
+                                    alignContent: "center",
+                                    cursor: "pointer",
+                                    color: "black",
+                                    lineHeight: "25px",
+                                    paddingLeft: "5px"
+                                }}
                             >
                                 <img src={mentionImageUrlPath(filename)} style={{width: "25px"}}/>
                                 <span>{characterFileName(filename)}</span>
@@ -222,81 +224,126 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
                         dataUrl: string | ArrayBuffer
                     ) => {
                         const ref = storageInstance.ref("user_images").child(categoryPath).child(editorPath).child(uuidv4());
-                        const response = await ref.putString(dataUrl, "data_url",  {
-                            customMetadata : {
-                                uploadedBy : currentUsername
+                        const response = await ref.putString(dataUrl, "data_url", {
+                            customMetadata: {
+                                uploadedBy: currentUsername
                             }
                         })
-                      const downloadUrl = await response.ref.getDownloadURL();
-                     return downloadUrl;
+                        const downloadUrl = await response.ref.getDownloadURL();
+                        return downloadUrl;
                     }
                 }
             })
-            // createMentionPlugin({ key: '@', component: MentionElement, options: { trigger: '@', inputCreation: {key: 'creationId', value: 'main'} } }),
         ],
         {
             components: createPlateUI(),
         });
 
     const [isLoginModalShown, setIsLoginModalShown] = useState(false);
-    return (<Container sx={{pt: 8, pb: 1}}>
-        <Card>
-            <CardHeader
-                title={pageTitle}
-            />
 
-            <Snackbar
-                open={open}
-                autoHideDuration={5000}
-                onClose={() => {
-                    setOpen(false);
-                }}
-                message="Saved"
-                anchorOrigin={{vertical: "top", horizontal: "right"}}
-            >
-                <Alert onClose={() => setOpen(false)} severity="success" sx={{width: '100%'}}>
-                    Successful saved
-                </Alert>
-            </Snackbar>
 
-            <CardContent>
-                {isLoaded && (
-                    <div className={css.ccPlateEditor}>
-                    <Plate initialValue={editorValue}
-                           key={1}
-                           id={"1"}
-                           editableProps={editableProps}
-                           onChange={(newValue) => {
-                               setEditorValue(newValue);
-                           }}
-                           plugins={plugins}
-                    >
-                        {isInEditMode ? <CcHeaderToolbar/>  :
-                            <Fab color="primary" aria-label="edit" size={"medium"} onClick={() => {
-                                if(!currentUsername){
-                                    setIsLoginModalShown(true);
-                                    return;
+    return (<>
+        <Box sx={{pt: 1, pb: 1}}>
+            <Card>
+                <CardHeader title={pageTitle}/>
+
+                <CardContent>
+                    {(!!currentEditingUser && currentEditingUser !== currentUsername) &&
+                        <Box py={2}><Alert severity="info">{currentEditingUser} is just editing this page, therefore
+                            page editing is blocked for: {isLoadedFromServer &&
+                                <TimerLeft expiryDate={userStartedCurrentEditingSince}/>}</Alert></Box>}
+
+                    {isLoadedFromServer && (
+                        <div className={css.ccPlateEditor}>
+                            <Plate initialValue={editorValue}
+                                   key={1}
+                                   id={"1"}
+                                   editableProps={editableProps}
+                                   onChange={(newValue) => {
+                                       setEditorValue(newValue);
+                                   }}
+                                   plugins={plugins}
+                            >
+                                {
+                                    (isInEditMode || currentEditingUser === currentUsername) ? <>
+                                            <Box py={2}>
+                                                <Alert severity="info">You can start typing @ to reference Crystal
+                                                    Clash terms with a picture. You can drag and drop images to the editor,
+                                                    which will be uploaded automatically.
+                                                    Only one person can edit a page at the same time.
+                                                    {isLoadedFromServer &&
+                                                        <TimerLeft expiryDate={userStartedCurrentEditingSince}/>}
+                                                </Alert>
+                                            </Box>
+                                            <CcHeaderToolbar/>
+                                        </> :
+
+                                        (!currentEditingUser || currentEditingUser !== currentUsername) &&
+                                        <Fab color="primary" aria-label="edit" size="medium" onClick={() => {
+                                            if (!currentUsername) {
+                                                setIsLoginModalShown(true);
+                                                return;
+                                            }
+                                            setIsInEditMode(true);
+
+                                            dbRefLatest.set({
+                                                currentEditingUser: currentUsername,
+                                                userStartedCurrentEditingSince: calculateExpiryTimestamp()
+                                            }, {merge: true}).then(() => {
+                                                toast("You entered edit mode.");
+                                            })
+                                                .catch(dbErrorHandlerPromise);
+                                        }}>
+                                            <EditIcon/>
+                                        </Fab>
+
                                 }
-                                setIsInEditMode(true);
-                            }}>
-                                <EditIcon />
-                            </Fab>}
 
-                        <MentionCombobox items={mentionList.map((filename, index) => ({
-                            key: index,
-                            text: filename,
-                            data: {filename}
-                        }))} pluginKey="@"/>
-                    </Plate>
-                    </div>
-                        )}
+                                <MentionCombobox items={mentionList.map((filename, index) => ({
+                                    key: index,
+                                    text: filename,
+                                    data: {filename}
+                                }))} pluginKey="@"/>
+                            </Plate>
+                        </div>
+                    )}
 
-                {isInEditMode && <Stack spacing={2} direction="row" pt={2}>
-                    <Button variant="contained" onClick={onSave}>Save</Button>
-                    <Button variant="outlined" onClick={() => setIsInEditMode(false)}>Cancel</Button>
-                </Stack> }
-            </CardContent>
-        </Card>
+                    {(isInEditMode || currentUsername === currentEditingUser) &&
+                        <Stack spacing={2} direction="row" pt={2}>
+                            <Button variant="contained" onClick={onSave}>Save</Button>
+                            <Button variant="outlined" onClick={() => {
+
+                                setIsInEditMode(false);
+
+                                dbRefLatest.set({
+                                    currentEditingUser: "",
+                                    userStartedCurrentEditingSince: ""
+                                }, {merge: true}).then(() => {
+                                })
+                                    .catch(dbErrorHandlerPromise);
+
+                            }}>Cancel</Button>
+                        </Stack>}
+                </CardContent>
+            </Card>
+
+
+        </Box>
+
+        <Snackbar
+            open={open}
+            autoHideDuration={5000}
+            onClose={() => {
+                setOpen(false);
+            }}
+            message="Saved"
+            anchorOrigin={{vertical: "top", horizontal: "right"}}
+        >
+            <Alert onClose={() => setOpen(false)} severity="success" sx={{width: '100%'}}>
+                Successful saved
+            </Alert>
+        </Snackbar>
         <LoginModal {...{isLoginModalShown, setIsLoginModalShown}}/>
-    </Container>);
+
+    </>);
 }

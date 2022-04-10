@@ -33,6 +33,12 @@ export function MenuCommunity(){
                                 <ListItemButton onClick={() => navigate("/game-menu")}>
                                     <ListItemText primary="Redeem Codes"/>
                                 </ListItemButton>
+                                <ListItemButton onClick={() => navigate("/game-menu")}>
+                                    <ListItemText primary="Youtube & Twitch"/>
+                                </ListItemButton>
+                                <ListItemButton onClick={() => window.location.href= "https://www.reddit.com/r/CrystalClashOfficial/"}>
+                                    <ListItemText primary="Discussions"/>
+                                </ListItemButton>
                             </List>
 
                         </List>
