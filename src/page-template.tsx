@@ -23,10 +23,7 @@ export function PageTemplate() {
             <CssBaseline/>
             <CcAppBar />
 
-
-
             <CcRoutesConfig />
-
 
             {/* Footer */}
             <Container

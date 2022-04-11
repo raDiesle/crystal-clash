@@ -21,7 +21,7 @@ import {
 
 export const boringPlatePlugins = [
     // elements
-    createParagraphPlugin(),      // paragraph element
+    createParagraphPlugin({isInline: false}),      // paragraph element
     createBlockquotePlugin(),     // blockquote element
     createCodeBlockPlugin(),      // code block element
     createHeadingPlugin(),        // heading elements

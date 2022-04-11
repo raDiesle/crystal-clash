@@ -17,7 +17,7 @@ import {HistoryEditor} from "slate-history";
 import CardHeader from "@mui/material/CardHeader";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import {Alert, Box, Button, Fab, Snackbar, Stack} from "@mui/material";
+import {Alert, Box, Button, Fab, Snackbar, Stack, Typography} from "@mui/material";
 import {characterFileName, mentionImageUrlPath, mentionList} from "../pages/guides/mention-list";
 import {auth, db, dbErrorHandlerPromise, storageInstance} from "../cc-firestore";
 import firebase from "firebase/compat/app";
@@ -32,8 +32,8 @@ import {CcHeaderToolbar} from "./cc-header-toolbar";
 import css from "./css-global.module.scss";
 import {LoginModal} from "../topbar/login-modal";
 import {boringPlatePlugins} from "./boring-plate-plugins";
-import {useTimer} from "react-timer-hook";
-import {calculateExpiryTimestamp, TimerLeft} from "./timer-left";
+import {calculateExpiryTimestamp, MINUTES_TO_EXPIRE_EDITING_SESSION, TimerLeft} from "./timer-left";
+import {DateTime} from "luxon";
 
 const initialEditorValue: Descendant[] = [
     {
@@ -83,16 +83,25 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
     const [isLoadedFromServer, setIsLoadedFromServer] = useState(false);
 
 
-    const [open, setOpen] = React.useState(false);
+    const [open, setShowSuccessful] = React.useState(false);
 
     const dbRefHistory = useMemo(() => db.collection(categoryPath).doc(String(editorPath)).collection("history"), [categoryPath, editorPath]);
     const dbRefLatest = useMemo(() => db.collection(categoryPath).doc(String(editorPath)), [categoryPath, editorPath]);
 
-    function listenUserAuth(setCurrentUsername) {
+
+    const unregisterAnyoneIsEditing = () => {
+         dbRefLatest.set({
+            currentEditingUser: "",
+            userStartedCurrentEditingSince: ""
+        }, {merge: true}).then(() => {
+        }).catch(dbErrorHandlerPromise);
+    }
+
+    const listenUserAuth = (setCurrentUsername) => {
         return auth.onAuthStateChanged((user) => {
             setCurrentUsername(auth.currentUser?.displayName);
         });
-    }
+    };
 
     const [currentUsername, setCurrentUsername] = useState("");
     useEffect(() => {
@@ -106,19 +115,29 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
             return;
         }
         const unsubscribe = dbRefLatest.onSnapshot((doc) => {
-            setIsLoadedFromServer(true);
-            if (doc.exists) {
+
+            if  (doc.exists) {
                 const data = doc.data();
                 setCurrentEditingUser(data.currentEditingUser);
-                setEditorValue(data);
+                setEditorValue(JSON.parse(data.val));
 
-                setUserStartedCurrentEditingUserSince(data.userStartedCurrentEditingSince.toDate());
+                const currentEditingSinceDate = data.userStartedCurrentEditingSince === "" ? "" : data.userStartedCurrentEditingSince.toDate();
 
+               // const sessionExpireLimit = -1 * MINUTES_TO_EXPIRE_EDITING_SESSION;
+                const minutesFromSessionOfAnyUserExpired = DateTime.now().diff(DateTime.fromJSDate(currentEditingSinceDate), ['minutes']).toObject().minutes;
+                if(minutesFromSessionOfAnyUserExpired >  0){
+                     unregisterAnyoneIsEditing();
+                     return;
+                }
+
+                setUserStartedCurrentEditingUserSince(currentEditingSinceDate);
+                setIsLoadedFromServer(true);
                 return;
             }
 
             setUserStartedCurrentEditingUserSince("");
             setCurrentEditingUser("");
+            setIsLoadedFromServer(true);
         }, (error) => {
             toast(error);
         })
@@ -139,8 +158,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
             .add(editorDataToSave)
             .then(() => {
                 setIsInEditMode(false);
-                setOpen(true);
-                toast("saved successful");
+                setShowSuccessful(true);
             })
             .catch(dbErrorHandlerPromise);
 
@@ -152,10 +170,10 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
                 userStartedCurrentEditingSince: ""
             }
         })
-            .catch(dbErrorHandlerPromise);
+        .catch(dbErrorHandlerPromise);
 
         Promise.all([historyPromise, latestPromise]).then(() => {
-            toast("Successful saved");
+            setShowSuccessful(true);
         });
     }
 
@@ -249,7 +267,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
 
                 <CardContent>
                     {(!!currentEditingUser && currentEditingUser !== currentUsername) &&
-                        <Box py={2}><Alert severity="info">{currentEditingUser} is just editing this page, therefore
+                        <Box py={2}><Alert severity="info"><strong>{currentEditingUser}</strong> is just editing this page, therefore
                             page editing is blocked for: {isLoadedFromServer &&
                                 <TimerLeft expiryDate={userStartedCurrentEditingSince}/>}</Alert></Box>}
 
@@ -271,8 +289,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
                                                     Clash terms with a picture. You can drag and drop images to the editor,
                                                     which will be uploaded automatically.
                                                     Only one person can edit a page at the same time.
-                                                    {isLoadedFromServer &&
-                                                        <TimerLeft expiryDate={userStartedCurrentEditingSince}/>}
+                                                    {isLoadedFromServer && <span>Save before timer will perform automatic logout: <TimerLeft expiryDate={userStartedCurrentEditingSince}/>  or press "Cancel"</span>}
                                                 </Alert>
                                             </Box>
                                             <CcHeaderToolbar/>
@@ -290,7 +307,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
                                                 currentEditingUser: currentUsername,
                                                 userStartedCurrentEditingSince: calculateExpiryTimestamp()
                                             }, {merge: true}).then(() => {
-                                                toast("You entered edit mode.");
+
                                             })
                                                 .catch(dbErrorHandlerPromise);
                                         }}>
@@ -315,12 +332,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
 
                                 setIsInEditMode(false);
 
-                                dbRefLatest.set({
-                                    currentEditingUser: "",
-                                    userStartedCurrentEditingSince: ""
-                                }, {merge: true}).then(() => {
-                                })
-                                    .catch(dbErrorHandlerPromise);
+                                unregisterAnyoneIsEditing();
 
                             }}>Cancel</Button>
                         </Stack>}
@@ -334,12 +346,12 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
             open={open}
             autoHideDuration={5000}
             onClose={() => {
-                setOpen(false);
+                setShowSuccessful(false);
             }}
             message="Saved"
             anchorOrigin={{vertical: "top", horizontal: "right"}}
         >
-            <Alert onClose={() => setOpen(false)} severity="success" sx={{width: '100%'}}>
+            <Alert onClose={() => setShowSuccessful(false)} severity="success" sx={{width: '100%'}}>
                 Successful saved
             </Alert>
         </Snackbar>

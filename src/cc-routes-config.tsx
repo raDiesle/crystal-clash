@@ -23,7 +23,9 @@ export function CcRoutesConfig(){
         <Route path={ROUTES["/"]} element={<Home />} />
 
         <Route path={ROUTES["/game-menu"]} element={<GameMenu />} />
+
         <Route path={ROUTES["/game-menu/gamemodes"]} element={ <GameModesPage/>} />
+
         <Route path={ROUTES["/game-menu/shop"]} element={ <ShopPage/>} />
         <Route path={ROUTES["/game-menu/user-menu"]} element={ <UserMenuPage/>} />
 

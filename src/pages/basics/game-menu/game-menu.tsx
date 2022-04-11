@@ -13,7 +13,7 @@ import {ShopPage} from "./shop/shop-page";
 
 export function GameMenu() {
     const [value, setValue] = React.useState(0);
-    const navigate = useNavigate();
+
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };

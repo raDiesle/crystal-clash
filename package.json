@@ -33,6 +33,7 @@
     "@udecode/plate-ui-toolbar": "^10.5.3",
     "firebase": "^9.6.1",
     "install": "^0.13.0",
+    "luxon": "^2.3.1",
     "npm": "^8.3.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -76,6 +77,7 @@
     ]
   },
   "devDependencies": {
+    "@types/luxon": "^2.3.1",
     "@types/react": "^17.0.43",
     "sass": "^1.46.0"
   }

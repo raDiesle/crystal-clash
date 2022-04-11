@@ -38,7 +38,7 @@ export function TabPanel(props: TabPanelProps) {
                     pt: 1,
                 }}>
                     <Box sx={{ p: 3 }}>
-                        <Typography>{children}</Typography>
+                        {children}
                     </Box>
                 </Container>
             )}
