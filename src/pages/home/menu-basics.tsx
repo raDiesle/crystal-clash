@@ -16,7 +16,7 @@ export function MenuBasics(){
         >
         <Card>
             <CardHeader
-                title={"Game UI Basics"}
+                title={"Game Basics"}
                 titleTypographyProps={{align: 'center'}}
             />
             <CardContent>

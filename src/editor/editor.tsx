@@ -119,7 +119,10 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
             if  (doc.exists) {
                 const data = doc.data();
                 setCurrentEditingUser(data.currentEditingUser);
-                setEditorValue(JSON.parse(data.val));
+
+                if(data.val){
+                    setEditorValue(JSON.parse(data.val));
+                }
 
                 const currentEditingSinceDate = data.userStartedCurrentEditingSince === "" ? "" : data.userStartedCurrentEditingSince.toDate();
 

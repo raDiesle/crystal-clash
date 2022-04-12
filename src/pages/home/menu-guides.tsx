@@ -5,8 +5,8 @@ import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
 import * as React from "react";
 import {List, ListItemButton, ListItemText} from "@mui/material";
-import {CcListWithParent} from "./cc-list-with-parent";
 import {useNavigate} from "react-router-dom";
+import {ROUTES} from "../../cc-routes-config";
 
 export function MenuGuides() {
     const navigate = useNavigate();
@@ -36,39 +36,29 @@ export function MenuGuides() {
                         >
 
                             <List component="div" disablePadding>
-                                <ListItemButton onClick={() => navigate("/game-menu")}>
+                                <ListItemButton onClick={() =>{navigate((ROUTES["/guides/getting-started"]))}}>
                                     <ListItemText primary="Getting started"/>
                                 </ListItemButton>
                             </List>
 
                             <List component="div" disablePadding>
-                                <ListItemButton onClick={() => navigate("/game-menu")}>
+                                <ListItemButton onClick={() => {navigate(ROUTES["/guides/how-to-build-deck"])}}>
                                     <ListItemText primary="How to build a deck"/>
                                 </ListItemButton>
                             </List>
 
                             <List component="div" disablePadding>
-                                <ListItemButton onClick={() => navigate("/game-menu")}>
+                                <ListItemButton onClick={() => {navigate(ROUTES["/guides/spend-resources"])}}>
                                     <ListItemText primary="How to spend resources"/>
                                 </ListItemButton>
                             </List>
 
-                            <CcListWithParent parentText="How to play the game">
-                                <List component="div" disablePadding>
-                                    <ListItemButton onClick={() => navigate("/guide-2v2")}>
-                                        <ListItemText primary="2v2"/>
-                                    </ListItemButton>
-                                    <ListItemButton onClick={() => navigate("/guide-golem-challenge")}>
-                                        <ListItemText primary="Co-Op Challenge"/>
-                                    </ListItemButton>
-                                    <ListItemButton onClick={() => navigate("/guide-coop-challenge")}>
-                                        <ListItemText primary="Golem Challenge"/>
-                                    </ListItemButton>
-                                    <ListItemButton onClick={() => navigate("/guide-coop-challenge")}>
-                                        <ListItemText primary="Custom Game"/>
-                                    </ListItemButton>
-                                </List>
-                            </CcListWithParent>
+                            <List component="div" disablePadding>
+                                <ListItemButton onClick={() => {navigate(ROUTES["/guides/how-to-play"])}}>
+                                    <ListItemText primary="How to play the game"/>
+                                </ListItemButton>
+                            </List>
+
                         </List>
                     </Box>
 

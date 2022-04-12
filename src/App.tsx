@@ -46,7 +46,21 @@ export const themeOptions: ThemeOptions = {
                 }
             }
         },
+        MuiTabs : {
+            defaultProps : {
+                sx : {
+                  //  height: "100px"
+                }
+            },
+
+        },
         MuiTab : {
+            defaultProps : {
+              sx : {
+                  lineHeight: "2.0",
+                  fontSize: "16px"
+              }
+            },
             styleOverrides: {
                 "root": {
                     "&.Mui-selected": {
