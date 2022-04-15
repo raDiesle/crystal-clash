@@ -7,27 +7,27 @@ import {PlayGolemChallenge} from "./play-golem-challenge";
 import {PlayCoopChallenge} from "./play-coop-challenge";
 import {PlayCustom} from "./play-custom";
 
-export function HowToPlay(){
+export function HowToPlay() {
 
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
-    return           <Box sx={{width: '100%'}}>
+    return <Box sx={{width: '100%'}}>
         <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                <Tab label="Play 2v2" {...a11yProps(0)}/>
+                <Tab label="General Play & 2v2" {...a11yProps(0)}/>
                 <Tab label="Coop Challenge" {...a11yProps(1)}/>
                 <Tab label="Golem Challenge" {...a11yProps(2)}/>
                 <Tab label="Custom Game" {...a11yProps(3)}/>
             </Tabs>
         </Box>
 
-        <CcBreadcrumbs />
+        <CcBreadcrumbs/>
 
         <TabPanel value={value} index={0}>
-            <Play2v2 />
+            <Play2v2/>
         </TabPanel>
         <TabPanel value={value} index={1}>
             <PlayCoopChallenge/>
@@ -36,7 +36,7 @@ export function HowToPlay(){
             <PlayGolemChallenge/>
         </TabPanel>
         <TabPanel value={value} index={3}>
-            <PlayCustom />
+            <PlayCustom/>
         </TabPanel>
     </Box>
 

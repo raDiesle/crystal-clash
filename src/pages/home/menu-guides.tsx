@@ -42,8 +42,20 @@ export function MenuGuides() {
                             </List>
 
                             <List component="div" disablePadding>
+                                <ListItemButton onClick={() => {navigate(ROUTES["/guides/legions"])}}>
+                                    <ListItemText primary="Legions"/>
+                                </ListItemButton>
+                            </List>
+
+                            <List component="div" disablePadding>
                                 <ListItemButton onClick={() => {navigate(ROUTES["/guides/how-to-build-deck"])}}>
                                     <ListItemText primary="How to build a deck"/>
+                                </ListItemButton>
+                            </List>
+
+                            <List component="div" disablePadding>
+                                <ListItemButton onClick={() => {navigate(ROUTES["/guides/unit-types"])}}>
+                                    <ListItemText primary="Types of Units"/>
                                 </ListItemButton>
                             </List>
 
