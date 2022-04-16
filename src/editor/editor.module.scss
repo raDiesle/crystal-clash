@@ -1,0 +1,39 @@
+.ccPlateEditor {
+
+  :global {
+
+    div[role="textbox"] {
+        border: 2px dotted black;
+
+        &:hover {
+          border-color: #a0a0a0;
+       }
+    }
+
+    .slate-p, .slate-li, [data-slate-node="text"] {
+      font-size: 14px;
+    }
+
+    .slate-h1 {
+      margin: 15px 0 0 0;
+      font-size: 20px;
+      font-weight: normal;
+      color: #fbe629;
+    }
+
+    .slate-h3 {
+      font-size: 16px;
+      color: #fbe629
+    }
+
+    .slate-h3 {
+      font-size: 14px;
+      color: #fbe629
+    }
+
+    .slate-a, .slate-a:visited {
+      color: #70b7b7;
+      text-decoration: underline;
+    }
+  }
+}

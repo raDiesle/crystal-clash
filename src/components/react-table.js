@@ -2,6 +2,7 @@ import React from "react";
 import css from "./table.module.scss";
 import { useTable, useBlockLayout, useSortBy } from "react-table";
 import { FixedSizeList } from "react-window";
+import classNames from "classnames";
 
 const scrollbarWidth = () => {
   // thanks too https://davidwalsh.name/detect-scrollbar-width
@@ -15,7 +16,7 @@ const scrollbarWidth = () => {
 
 export default scrollbarWidth;
 
-export function ReactTable({ columns, data, sortBy, minTableHeight, hiddenColumns = []  }) {
+export function ReactTable({ columns, data, sortBy, minTableHeight, hiddenColumns = [] , onRowClick = () => {} }) {
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -45,6 +46,13 @@ export function ReactTable({ columns, data, sortBy, minTableHeight, hiddenColumn
   );
 
 
+  const generateCellProps = (cell) => {
+    const {style, ...cellProps} = cell.getCellProps({
+      className: cell.column.collapse ? 'collapse' : '',
+    });
+    return {...cellProps, style: {width: style.width}};
+  }
+
   return <div className={css.tableContainer}>
     <div {...getTableProps()} className={css.table}>
       <div>
@@ -70,13 +78,12 @@ export function ReactTable({ columns, data, sortBy, minTableHeight, hiddenColumn
         {rows.map((row, i) => {
             prepareRow(row)
             return (
-                <tr {...row.getRowProps()}>
+                <tr {...row.getRowProps()} onClick={() => onRowClick(row.original)} className={css.tr}>
                     {row.cells.map(cell => {
                         return (
                             <td
-                                {...cell.getCellProps({
-                                    className: cell.column.collapse ? 'collapse' : '',
-                                })}
+                                className={css.td}
+                                {...generateCellProps(cell)}
                             >
                                 {cell.render('Cell')}
                             </td>

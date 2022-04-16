@@ -23,6 +23,13 @@
     }
 
     .tr {
+
+      &:hover {
+        cursor: pointer;
+        background-color: #70b7b7;
+      }
+
+
       :last-child {
         .td {
           border-bottom: 0;
@@ -41,9 +48,16 @@
     .td{
       text-align: right;
 
+
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       //div[role="cell"] {
       //  height: 80px;
       //}
+
     }
 
     .th,

@@ -10,7 +10,7 @@ import {
     createIndentListPlugin,
     createIndentPlugin,
     createItalicPlugin,
-    createLineHeightPlugin,
+    createLineHeightPlugin, createLinkPlugin,
     createListPlugin,
     createMediaEmbedPlugin,
     createParagraphPlugin,
@@ -24,7 +24,9 @@ export const boringPlatePlugins = [
     createParagraphPlugin({isInline: false}),      // paragraph element
     createBlockquotePlugin(),     // blockquote element
     createCodeBlockPlugin(),      // code block element
-    createHeadingPlugin(),        // heading elements
+    createHeadingPlugin({
+
+    }),        // heading elements
 
     createListPlugin(),
     createIndentPlugin(),
@@ -38,6 +40,8 @@ export const boringPlatePlugins = [
     createTablePlugin(),
 
     createMediaEmbedPlugin(),
+
+    createLinkPlugin(),
 
     // marks
     createBoldPlugin(),           // bold mark

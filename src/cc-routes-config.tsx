@@ -18,7 +18,9 @@ import {Community} from "./pages/community/community";
 import {Replays} from "./pages/community/replays";
 import {UnitTypes} from "./pages/guides/unit-types";
 import {Legions} from "./pages/guides/legions";
-import {CardsPage} from "./pages/basics/cards/cards-page";
+import {CardsPageTable} from "./pages/basics/cards/cards-page-table";
+import {CardDetails} from "./pages/basics/cards/card-details";
+import {TutorialVideos} from "./pages/community/tutorial-videos";
 
 export enum ROUTES {
     "/"= "/",
@@ -28,6 +30,7 @@ export enum ROUTES {
     "/game-menu/shop" = "/game-menu/shop",
     "/game-menu/user-menu" = "/game-menu/user-menu",
     "/cards" ="/cards",
+    "/card-details/" = "/card-details/",
     "/guides" ="/guides",
     "/guides/how-to-play" = "/guides/how-to-play",
     "/guides/getting-started" = "/guides/getting-started",
@@ -40,6 +43,7 @@ export enum ROUTES {
     "/guides/play-golem-challenge" = "/guides/play-golem-challenge",
     "/guides/play-custom" = "/guides/play-custom",
     "/community/general" = "/community/general",
+    "/community/tutorials" = "/community/tutorials",
     "/community/replays" = "/community/replays",
 };
 
@@ -49,7 +53,9 @@ export function CcRoutesConfig(){
 
         <Route path={ROUTES["/game-menu"]} element={<GameMenu />} />
 
-        <Route path={ROUTES["/cards"]} element={ <CardsPage/>} />
+        <Route path={ROUTES["/cards"]} element={ <CardsPageTable/>} />
+
+        <Route path={`${ROUTES["/card-details/"]}:cardName`} element={ <CardDetails/>} />
 
         <Route path={ROUTES["/game-menu/gamemodes"]} element={ <GameModesPage/>} />
 
@@ -71,6 +77,8 @@ export function CcRoutesConfig(){
         <Route path={ROUTES["/guides/play-custom"]} element={<PlayCustom />} />
 
         <Route path={ROUTES["/community/general"]} element={<Community />} />
+        <Route path={ROUTES["/community/tutorials"]} element={<TutorialVideos />} />
+
         <Route path={ROUTES["/community/replays"]} element={<Replays />} />
 
     </Routes>

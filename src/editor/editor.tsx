@@ -29,7 +29,7 @@ import {v4 as uuidv4} from 'uuid';
 import {MentionCombobox} from "./MentionCombobox";
 import {CcHeaderToolbar} from "./cc-header-toolbar";
 
-import css from "./css-global.module.scss";
+import css from "./editor.module.scss";
 import {LoginModal} from "../topbar/login-modal";
 import {boringPlatePlugins} from "./boring-plate-plugins";
 import {calculateExpiryTimestamp, MINUTES_TO_EXPIRE_EDITING_SESSION, TimerLeft} from "./timer-left";
@@ -90,7 +90,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
 
 
     const unregisterAnyoneIsEditing = () => {
-         dbRefLatest.set({
+        dbRefLatest.set({
             currentEditingUser: "",
             userStartedCurrentEditingSince: ""
         }, {merge: true}).then(() => {
@@ -116,21 +116,21 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
         }
         const unsubscribe = dbRefLatest.onSnapshot((doc) => {
 
-            if  (doc.exists) {
+            if (doc.exists) {
                 const data = doc.data();
                 setCurrentEditingUser(data.currentEditingUser);
 
-                if(data.val){
+                if (data.val) {
                     setEditorValue(JSON.parse(data.val));
                 }
 
                 const currentEditingSinceDate = data.userStartedCurrentEditingSince === "" ? "" : data.userStartedCurrentEditingSince.toDate();
 
-               // const sessionExpireLimit = -1 * MINUTES_TO_EXPIRE_EDITING_SESSION;
+                // const sessionExpireLimit = -1 * MINUTES_TO_EXPIRE_EDITING_SESSION;
                 const minutesFromSessionOfAnyUserExpired = DateTime.now().diff(DateTime.fromJSDate(currentEditingSinceDate), ['minutes']).toObject().minutes;
-                if(minutesFromSessionOfAnyUserExpired >  0){
-                     unregisterAnyoneIsEditing();
-                     return;
+                if (minutesFromSessionOfAnyUserExpired > 0) {
+                    unregisterAnyoneIsEditing();
+                    return;
                 }
 
                 setUserStartedCurrentEditingUserSince(currentEditingSinceDate);
@@ -173,7 +173,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
                 userStartedCurrentEditingSince: ""
             }
         })
-        .catch(dbErrorHandlerPromise);
+            .catch(dbErrorHandlerPromise);
 
         Promise.all([historyPromise, latestPromise]).then(() => {
             setShowSuccessful(true);
@@ -183,7 +183,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
     const editableProps: EditableProps = {
         placeholder: 'Type…',
         style: {
-            padding: '15px',
+            padding: '0',
         },
 
         readOnly: !isInEditMode && (currentUsername !== currentEditingUser)
@@ -266,19 +266,40 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
     return (<>
         <Box sx={{pt: 1, pb: 1}}>
             <Card>
-                <CardHeader title={pageTitle}/>
+                <CardHeader title={
+                    <Box justifyContent={"space-between"} display={"flex"} alignItems={"center"}>
+                        <div>{pageTitle}</div>
+                        {!(isInEditMode || currentEditingUser === currentUsername) && (!currentEditingUser || currentEditingUser !== currentUsername) &&
+                            <Fab color="primary" aria-label="edit" size="small" onClick={() => {
+                                if (!currentUsername) {
+                                    setIsLoginModalShown(true);
+                                    return;
+                                }
+                                setIsInEditMode(true);
+
+                                dbRefLatest.set({
+                                    currentEditingUser: currentUsername,
+                                    userStartedCurrentEditingSince: calculateExpiryTimestamp()
+                                }, {merge: true}).then(() => {
+
+                                })
+                                    .catch(dbErrorHandlerPromise);
+                            }}>
+                                <EditIcon/>
+                            </Fab>}</Box>}>
+                </CardHeader>
 
                 <CardContent>
                     {(!!currentEditingUser && currentEditingUser !== currentUsername) &&
-                        <Box py={2}><Alert severity="info"><strong>{currentEditingUser}</strong> is just editing this page, therefore
+                        <Box py={2}><Alert severity="info"><strong>{currentEditingUser}</strong> is just editing this
+                            page, therefore
                             page editing is blocked for: {isLoadedFromServer &&
                                 <TimerLeft expiryDate={userStartedCurrentEditingSince}/>}</Alert></Box>}
 
                     {isLoadedFromServer && (
                         <div className={css.ccPlateEditor}>
                             <Plate initialValue={editorValue}
-                                   key={1}
-                                   id={"1"}
+                                   id={categoryPath + editorPath}
                                    editableProps={editableProps}
                                    onChange={(newValue) => {
                                        setEditorValue(newValue);
@@ -286,37 +307,19 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
                                    plugins={plugins}
                             >
                                 {
-                                    (isInEditMode || currentEditingUser === currentUsername) ? <>
-                                            <Box py={2}>
-                                                <Alert severity="info">You can start typing @ to reference Crystal
-                                                    Clash terms with a picture. You can drag and drop images to the editor,
-                                                    which will be uploaded automatically.
-                                                    Only one person can edit a page at the same time.
-                                                    {isLoadedFromServer && <span>Save before timer will perform automatic logout: <TimerLeft expiryDate={userStartedCurrentEditingSince}/>  or press "Cancel"</span>}
-                                                </Alert>
-                                            </Box>
-                                            <CcHeaderToolbar/>
-                                        </> :
-
-                                        (!currentEditingUser || currentEditingUser !== currentUsername) &&
-                                        <Fab color="primary" aria-label="edit" size="medium" onClick={() => {
-                                            if (!currentUsername) {
-                                                setIsLoginModalShown(true);
-                                                return;
-                                            }
-                                            setIsInEditMode(true);
-
-                                            dbRefLatest.set({
-                                                currentEditingUser: currentUsername,
-                                                userStartedCurrentEditingSince: calculateExpiryTimestamp()
-                                            }, {merge: true}).then(() => {
-
-                                            })
-                                                .catch(dbErrorHandlerPromise);
-                                        }}>
-                                            <EditIcon/>
-                                        </Fab>
-
+                                    (isInEditMode || currentEditingUser === currentUsername) && <>
+                                        <Box py={2}>
+                                            <Alert severity="info">You can start typing @ to reference Crystal
+                                                Clash terms with a picture. You can drag and drop images to the editor,
+                                                which will be uploaded automatically.
+                                                Only one person can edit a page at the same time.
+                                                {isLoadedFromServer &&
+                                                    <span>Save before timer will perform automatic logout: <TimerLeft
+                                                        expiryDate={userStartedCurrentEditingSince}/>  or press "Cancel"</span>}
+                                            </Alert>
+                                        </Box>
+                                        <CcHeaderToolbar/>
+                                    </>
                                 }
 
                                 <MentionCombobox items={mentionList.map((filename, index) => ({

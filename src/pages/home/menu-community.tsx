@@ -34,6 +34,9 @@ export function MenuCommunity(){
                                 <ListItemButton onClick={() => {navigate(ROUTES["/community/general"])}}>
                                     <ListItemText primary="Community"/>
                                 </ListItemButton>
+                                <ListItemButton onClick={() => {navigate(ROUTES["/community/tutorials"])}}>
+                                    <ListItemText primary="Tutorial Videos"/>
+                                </ListItemButton>
                                 <ListItemButton onClick={() => {navigate(ROUTES["/community/replays"])}}>
                                     <ListItemText primary="Replays"/>
                                 </ListItemButton>

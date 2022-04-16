@@ -6,7 +6,7 @@ import * as React from "react";
 import {Grid, List, ListItemButton, ListItemText} from "@mui/material";
 import {CcListWithParent} from "./cc-list-with-parent";
 import {useNavigate} from "react-router-dom";
-import {CardsPage} from "../basics/cards/cards-page";
+import {CardsPageTable} from "../basics/cards/cards-page-table";
 
 export function MenuBasics(){
     const navigate = useNavigate();

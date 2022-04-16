@@ -33,13 +33,13 @@ interface Card extends Partial<Unit> {
     type : CardType,
     tier : CardTier,
 
-    charges: number, // gold 5
-    cooldown: number // gold 5
-    manaCost: number,
+    charges?: number, // gold 5
+    cooldown?: number // gold 5
+    manaCost?: number,
+    abilities?: Array<Abilities>
 
 
     spellRadius?: number, // > 1 = aoe
-    abilities: Array<Abilities>
 
     /* calculated by raDi */
     //

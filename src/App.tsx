@@ -28,10 +28,32 @@ export const themeOptions: ThemeOptions = {
         divider: "#70b7b7"
     },
     components: {
+        // MuiFormLabel : {
+        //     root : {
+        //         MuiFormLabel: {
+        //             root : {
+        //                 MuiInputLabel : {
+        //                     sx : {color: "red"}
+        //                 }
+        //             }
+        //         }
+        //     }
+        // },
+        MuiInputLabel : {
+            styleOverrides : {
+                root : {
+                    "&.Mui-focused": {
+                        color: "#5a8484"
+                    }
+                }
+            }
+        },
         MuiCardHeader: {
             styleOverrides: {
                 root: {
-                    backgroundColor: "#3c5b5e"
+                    backgroundColor: "#3c5b5e",
+                    padding: "6px 16px",
+                    fontWeight: "bold"
                 },
                 title: {
                     color: "rgba(233, 254, 255, 0.937)", // #5a8484
