@@ -36,37 +36,49 @@ export function MenuGuides() {
                         >
 
                             <List component="div" disablePadding>
-                                <ListItemButton onClick={() =>{navigate((ROUTES["/guides/getting-started"]))}}>
+                                <ListItemButton onClick={() => {
+                                    navigate((ROUTES["/guides/getting-started"]))
+                                }}>
                                     <ListItemText primary="Getting started"/>
                                 </ListItemButton>
                             </List>
 
                             <List component="div" disablePadding>
-                                <ListItemButton onClick={() => {navigate(ROUTES["/guides/legions"])}}>
+                                <ListItemButton onClick={() => {
+                                    navigate(ROUTES["/guides/legions"])
+                                }}>
                                     <ListItemText primary="Legions"/>
                                 </ListItemButton>
                             </List>
 
                             <List component="div" disablePadding>
-                                <ListItemButton onClick={() => {navigate(ROUTES["/guides/how-to-build-deck"])}}>
+                                <ListItemButton onClick={() => {
+                                    navigate(ROUTES["/guides/how-to-build-deck"])
+                                }}>
                                     <ListItemText primary="How to build a deck"/>
                                 </ListItemButton>
                             </List>
 
                             <List component="div" disablePadding>
-                                <ListItemButton onClick={() => {navigate(ROUTES["/guides/unit-types"])}}>
+                                <ListItemButton onClick={() => {
+                                    navigate(ROUTES["/guides/unit-types"])
+                                }}>
                                     <ListItemText primary="Types of Units"/>
                                 </ListItemButton>
                             </List>
 
                             <List component="div" disablePadding>
-                                <ListItemButton onClick={() => {navigate(ROUTES["/guides/spend-resources"])}}>
+                                <ListItemButton onClick={() => {
+                                    navigate(ROUTES["/guides/spend-resources"])
+                                }}>
                                     <ListItemText primary="How to spend resources"/>
                                 </ListItemButton>
                             </List>
 
                             <List component="div" disablePadding>
-                                <ListItemButton onClick={() => {navigate(ROUTES["/guides/how-to-play"])}}>
+                                <ListItemButton onClick={() => {
+                                    navigate(ROUTES["/guides/how-to-play"])
+                                }}>
                                     <ListItemText primary="How to play the game"/>
                                 </ListItemButton>
                             </List>

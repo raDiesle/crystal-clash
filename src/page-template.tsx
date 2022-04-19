@@ -21,9 +21,9 @@ export function PageTemplate() {
         <React.Fragment>
             <GlobalStyles styles={{ul: {margin: 0, padding: 0, listStyle: 'none'}}}/>
             <CssBaseline/>
-            <CcAppBar />
+            <CcAppBar/>
 
-            <CcRoutesConfig />
+            <CcRoutesConfig/>
 
             {/* Footer */}
             <Container

@@ -3,11 +3,11 @@
   :global {
 
     div[role="textbox"] {
-        border: 2px dotted black;
+      border: 2px dotted black;
 
-        &:hover {
-          border-color: #a0a0a0;
-       }
+      &:hover {
+        border-color: #a0a0a0;
+      }
     }
 
     .slate-p, .slate-li, [data-slate-node="text"] {

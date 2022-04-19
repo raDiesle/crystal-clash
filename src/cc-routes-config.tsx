@@ -21,17 +21,19 @@ import {Legions} from "./pages/guides/legions";
 import {CardsPageTable} from "./pages/basics/cards/cards-page-table";
 import {CardDetails} from "./pages/basics/cards/card-details";
 import {TutorialVideos} from "./pages/community/tutorial-videos";
+import {Artgallery} from "./pages/community/artgallery";
+import {Meme} from "./pages/community/meme";
 
 export enum ROUTES {
-    "/"= "/",
+    "/" = "/",
     "/game-menu" = "/game-menu",
     "/game-menu/gamemodes" = "/game-menu/gamemodes",
     "/gameplay-hud" = "/gameplay-hud",
     "/game-menu/shop" = "/game-menu/shop",
     "/game-menu/user-menu" = "/game-menu/user-menu",
-    "/cards" ="/cards",
+    "/cards" = "/cards",
     "/card-details/" = "/card-details/",
-    "/guides" ="/guides",
+    "/guides" = "/guides",
     "/guides/how-to-play" = "/guides/how-to-play",
     "/guides/getting-started" = "/guides/getting-started",
     "/guides/legions" = "/guides/legions",
@@ -45,41 +47,47 @@ export enum ROUTES {
     "/community/general" = "/community/general",
     "/community/tutorials" = "/community/tutorials",
     "/community/replays" = "/community/replays",
+    "/community/artgallery" = "/community/artgallery",
+    "/community/meme" = "/community/meme"
 };
 
-export function CcRoutesConfig(){
-    return   <Routes>
-        <Route path={ROUTES["/"]} element={<Home />} />
+export function CcRoutesConfig() {
+    return <Routes>
+        <Route path={ROUTES["/"]} element={<Home/>}/>
 
-        <Route path={ROUTES["/game-menu"]} element={<GameMenu />} />
+        <Route path={ROUTES["/game-menu"]} element={<GameMenu/>}/>
 
-        <Route path={ROUTES["/cards"]} element={ <CardsPageTable/>} />
+        <Route path={ROUTES["/cards"]} element={<CardsPageTable/>}/>
 
-        <Route path={`${ROUTES["/card-details/"]}:cardName`} element={ <CardDetails/>} />
+        <Route path={`${ROUTES["/card-details/"]}:cardName`} element={<CardDetails/>}/>
 
-        <Route path={ROUTES["/game-menu/gamemodes"]} element={ <GameModesPage/>} />
+        <Route path={ROUTES["/game-menu/gamemodes"]} element={<GameModesPage/>}/>
 
-        <Route path={ROUTES["/game-menu/shop"]} element={ <ShopPage/>} />
-        <Route path={ROUTES["/game-menu/user-menu"]} element={ <UserMenuPage/>} />
+        <Route path={ROUTES["/game-menu/shop"]} element={<ShopPage/>}/>
+        <Route path={ROUTES["/game-menu/user-menu"]} element={<UserMenuPage/>}/>
 
-        <Route path={ROUTES["/gameplay-hud"]} element={<GameplayHud />} />
+        <Route path={ROUTES["/gameplay-hud"]} element={<GameplayHud/>}/>
 
-        <Route path={ROUTES["/guides"]} element={<HowToPlay />} />
-        <Route path={ROUTES["/guides/how-to-play"]} element={<HowToPlay />} />
-        <Route path={ROUTES["/guides/getting-started"]} element={<GettingStarted />} />
-        <Route path={ROUTES["/guides/legions"]} element={<Legions />} />
-        <Route path={ROUTES["/guides/how-to-build-deck"]} element={<HowToBuildDeck />} />
-        <Route path={ROUTES["/guides/unit-types"]} element={<UnitTypes />} />
-        <Route path={ROUTES["/guides/spend-resources"]} element={<SpendResources />} />
-        <Route path={ROUTES["/guides/play-2v2"]} element={<Play2v2 />} />
-        <Route path={ROUTES["/guides/play-coop-challenge"]} element={<PlayCoopChallenge />} />
-        <Route path={ROUTES["/guides/play-golem-challenge"]} element={<PlayGolemChallenge />} />
-        <Route path={ROUTES["/guides/play-custom"]} element={<PlayCustom />} />
+        <Route path={ROUTES["/guides"]} element={<HowToPlay/>}/>
+        <Route path={ROUTES["/guides/how-to-play"]} element={<HowToPlay/>}/>
+        <Route path={ROUTES["/guides/getting-started"]} element={<GettingStarted/>}/>
+        <Route path={ROUTES["/guides/legions"]} element={<Legions/>}/>
+        <Route path={ROUTES["/guides/how-to-build-deck"]} element={<HowToBuildDeck/>}/>
+        <Route path={ROUTES["/guides/unit-types"]} element={<UnitTypes/>}/>
+        <Route path={ROUTES["/guides/spend-resources"]} element={<SpendResources/>}/>
+        <Route path={ROUTES["/guides/play-2v2"]} element={<Play2v2/>}/>
+        <Route path={ROUTES["/guides/play-coop-challenge"]} element={<PlayCoopChallenge/>}/>
+        <Route path={ROUTES["/guides/play-golem-challenge"]} element={<PlayGolemChallenge/>}/>
+        <Route path={ROUTES["/guides/play-custom"]} element={<PlayCustom/>}/>
 
-        <Route path={ROUTES["/community/general"]} element={<Community />} />
-        <Route path={ROUTES["/community/tutorials"]} element={<TutorialVideos />} />
+        <Route path={ROUTES["/community/general"]} element={<Community/>}/>
+        <Route path={ROUTES["/community/tutorials"]} element={<TutorialVideos/>}/>
 
-        <Route path={ROUTES["/community/replays"]} element={<Replays />} />
+        <Route path={ROUTES["/community/replays"]} element={<Replays/>}/>
+
+        <Route path={ROUTES["/community/artgallery"]} element={<Artgallery/>}/>
+        <Route path={ROUTES["/community/meme"]} element={<Meme/>}/>
+
 
     </Routes>
 }

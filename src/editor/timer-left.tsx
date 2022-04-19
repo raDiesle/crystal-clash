@@ -9,10 +9,10 @@ export const calculateExpiryTimestamp = () => {
 }
 
 interface ITimerLeft {
-    expiryDate : Date;
+    expiryDate: Date;
 }
 
-export function TimerLeft({expiryDate } : ITimerLeft){
+export function TimerLeft({expiryDate}: ITimerLeft) {
 
     // @ts-ignore
     const expiryToDisplay = expiryDate === "" ? calculateExpiryTimestamp() : expiryDate;
@@ -21,7 +21,7 @@ export function TimerLeft({expiryDate } : ITimerLeft){
     const {
         seconds,
         minutes,
-    } = useTimer({ expiryTimestamp: expiryToDisplay, onExpire: () => console.warn('onExpire called') });
+    } = useTimer({expiryTimestamp: expiryToDisplay, onExpire: () => console.warn('onExpire called')});
 
     return <span><span>{("00" + minutes).slice(-2)}</span>:<span>{("00" + seconds).slice(-2)}</span></span>;
 }

@@ -9,13 +9,8 @@ import {MenuCommunity} from "./menu-community";
 export function Home() {
     return (
         <>
-            <Container sx={{pt: 2, pb: 1}}>
-                the Rise of Legions guide for Legions, Leagues, Stages and more written and maintained by the players.
-                Please feel free to contribute by creating new articles or expanding existing ones.
-
-                About Rise of Legions
-                Rise of Legions is a free-to-play castle siege RTS set in a rich fantasy world. It is the first game by
-                Broken Games UG.
+            <Container sx={{pt: 2, pb: 1, justifyContent: "center", display: "flex"}}>
+                Crystal Clash is a hybrid of MOBA, Tower Defense and Deckbuilding game
             </Container>
             <Container disableGutters maxWidth="sm" component="main" sx={{pt: 1, pb: 2}}>
                 <Typography
@@ -34,9 +29,9 @@ export function Home() {
 
                     <MenuBasics/>
 
-                    <MenuGuides />
+                    <MenuGuides/>
 
-                    <MenuCommunity />
+                    <MenuCommunity/>
 
                 </Grid>
             </Container>

@@ -17,7 +17,7 @@ import * as React from "react";
 import {TopMenuCenter} from "./top-menu-center";
 import {CcBreadcrumbs} from "../header/cc-breadcrumbs";
 
-export function CcAppBar(){
+export function CcAppBar() {
     return (
         <AppBar
             position="static"
@@ -42,45 +42,47 @@ export function CcAppBar(){
                             </div>
                             <div>
                                 <Grid component={"ul"} container>
-                                    <LoginLogout />
+                                    <LoginLogout/>
 
                                     <li className="icon steam"><a
                                         href="https://store.steampowered.com/app/1839660/Crystal_Clash/"
-                                        target="_blank">
+                                        target="_blank" rel="noreferrer">
                                         <IconButton aria-label="upload picture" component="span">
                                             <FontAwesomeScalableIcon icon={faSteam}/>
                                         </IconButton>
                                     </a></li>
-                                    <li className="icon"><a href="https://discord.gg/crystalclash" target="_blank">
+                                    <li className="icon"><a href="https://discord.gg/crystalclash" target="_blank"
+                                                            rel="noreferrer">
                                         <IconButton aria-label="upload picture" component="span">
                                             <FontAwesomeScalableIcon icon={faDiscord}/>
                                         </IconButton>
                                     </a></li>
                                     <li className="icon"><a href="https://www.facebook.com/CrunchyLeafGames"
-                                                            target="_blank">
+                                                            target="_blank" rel="noreferrer">
                                         <IconButton aria-label="upload picture" component="span">
                                             <FontAwesomeScalableIcon icon={faFacebook}/>
                                         </IconButton>
                                     </a></li>
                                     <li className="icon"><a href="https://twitter.com/CrunchyLeafGame"
-                                                            target="_blank">
+                                                            target="_blank" rel="noreferrer">
                                         <IconButton aria-label="upload picture" component="span">
                                             <FontAwesomeScalableIcon icon={faTwitter}/>
                                         </IconButton>
                                     </a></li>
                                     <li className="icon"><a href="https://www.youtube.com/c/crystalclashgame"
-                                                            target="_blank">
+                                                            target="_blank" rel="noreferrer">
                                         <IconButton aria-label="upload picture" component="span">
                                             <FontAwesomeScalableIcon icon={faYoutube}/>
                                         </IconButton>
                                     </a></li>
-                                    <li className="icon"><a href="mailto:info@crunchylg.com" target="_blank">
+                                    <li className="icon"><a href="mailto:info@crunchylg.com" target="_blank"
+                                                            rel="noreferrer">
                                         <IconButton aria-label="upload picture" component="span">
                                             <FontAwesomeScalableIcon icon={faMailBulk}/>
                                         </IconButton>
                                     </a></li>
-                                    <li className="icon"><a href="https://github.com/BrokenGamesUG/rise-of-legions"
-                                                            target="_blank">
+                                    <li className="icon"><a href="https://github.com/raDiesle/crystal-clash"
+                                                            target="_blank" rel="noreferrer">
                                         <IconButton aria-label="upload picture" component="span">
                                             <FontAwesomeScalableIcon icon={faGithub}/>
                                         </IconButton>

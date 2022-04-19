@@ -17,11 +17,8 @@ export function a11yProps(index: number) {
 }
 
 
-
-
-
 export function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
+    const {children, value, index, ...other} = props;
 
     return (
         <div
@@ -37,7 +34,7 @@ export function TabPanel(props: TabPanelProps) {
                 <Container sx={{
                     pt: 1,
                 }}>
-                    <Box sx={{ p: 3 }}>
+                    <Box sx={{p: 3}}>
                         {children}
                     </Box>
                 </Container>

@@ -1,15 +1,13 @@
 import React from "react";
 import {SvgIcon} from "@mui/material";
 import {IconDefinition} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 export type FontAwesomeScalableIconProps = {
     icon: IconDefinition;
 };
 
-class FontAwesomeScalableIcon extends React.PureComponent<
-    FontAwesomeScalableIconProps
-    > {
+class FontAwesomeScalableIcon extends React.PureComponent<FontAwesomeScalableIconProps> {
     render(): JSX.Element {
         return (
             // the className is required!!!

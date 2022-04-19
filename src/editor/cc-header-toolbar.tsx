@@ -213,27 +213,27 @@ export const BasicToolbarButtons = () => {
 };
 
 
-export function CcHeaderToolbar(){
+export function CcHeaderToolbar() {
     return <HeadingToolbar>
-            <BasicToolbarButtons/>
-            <ListToolbarButtons/>
-            <IndentToolbarButtons/>
-            <BasicMarkToolbarButtons/>
-            <ColorPickerToolbarDropdown
-                pluginKey={MARK_COLOR}
-                icon={<FormatColorText/>}
-                selectedIcon={<Check/>}
-            />
-            <ColorPickerToolbarDropdown
-                pluginKey={MARK_BG_COLOR}
-                icon={<FontDownload/>}
-                selectedIcon={<Check/>}
-            />
-            <AlignToolbarButtons/>
-            <LineHeightToolbarDropdown icon={<LineWeight/>}/>
-            <LinkToolbarButton icon={<Link/>}/>
-            <ImageToolbarButton icon={<Image/>}/>
-            <MediaEmbedToolbarButton icon={<OndemandVideo/>}/>
-            <TableToolbarButtons/>
-        </HeadingToolbar>;
+        <BasicToolbarButtons/>
+        <ListToolbarButtons/>
+        <IndentToolbarButtons/>
+        <BasicMarkToolbarButtons/>
+        <ColorPickerToolbarDropdown
+            pluginKey={MARK_COLOR}
+            icon={<FormatColorText/>}
+            selectedIcon={<Check/>}
+        />
+        <ColorPickerToolbarDropdown
+            pluginKey={MARK_BG_COLOR}
+            icon={<FontDownload/>}
+            selectedIcon={<Check/>}
+        />
+        <AlignToolbarButtons/>
+        <LineHeightToolbarDropdown icon={<LineWeight/>}/>
+        <LinkToolbarButton icon={<Link/>}/>
+        <ImageToolbarButton icon={<Image/>}/>
+        <MediaEmbedToolbarButton icon={<OndemandVideo/>}/>
+        <TableToolbarButtons/>
+    </HeadingToolbar>;
 }

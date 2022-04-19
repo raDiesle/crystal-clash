@@ -16,29 +16,29 @@ export function GameplayHud() {
     };
 
     return (<>
-        <Box sx={{width: '100%'}}>
-            <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
-                <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                    <Tab label="Ingame HUD" {...a11yProps(0)}/>
-                    <Tab label="Endgame Summary" {...a11yProps(1)}/>
-                </Tabs>
+            <Box sx={{width: '100%'}}>
+                <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
+                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                        <Tab label="Ingame HUD" {...a11yProps(0)}/>
+                        <Tab label="Endgame Summary" {...a11yProps(1)}/>
+                    </Tabs>
+                </Box>
+
+                <CcBreadcrumbs/>
+
+
+                <TabPanel value={value} index={0}>
+                    <Editor pageTitle="Ingame HUD" categoryPath="wiki" editorPath="ingame-hud"/>
+                </TabPanel>
+                <TabPanel value={value} index={1}>
+                    <Editor pageTitle="Endgame Summary" categoryPath="wiki" editorPath="endgame-summary"/>
+                </TabPanel>
+
+
+                <Box px={3}>
+                    <img src={gameplayHudScreenshot} style={{width: "100%"}}/>
+                </Box>
             </Box>
-
-            <CcBreadcrumbs/>
-
-
-            <TabPanel value={value} index={0}>
-                <Editor pageTitle="Ingame HUD" categoryPath="wiki" editorPath="ingame-hud"/>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <Editor pageTitle="Endgame Summary" categoryPath="wiki" editorPath="endgame-summary"/>
-            </TabPanel>
-
-
-            <Box px={3}>
-                <img src={gameplayHudScreenshot} style={{width: "100%"}}/>
-            </Box>
-        </Box>
         </>
     )
 }

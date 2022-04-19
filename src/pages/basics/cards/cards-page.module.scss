@@ -1,13 +1,15 @@
-.imageFactionIcon {
-  width: 25px;
-}
 
-.imageCardIcon{
-  width: 40px;
-}
-
-.cellWrapper {
+.cellWrapperCenter {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+}
+
+.cellWrapperLeft {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
 }

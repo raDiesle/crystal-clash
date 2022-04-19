@@ -2,19 +2,19 @@ import {CcBreadcrumbs} from "../../../header/cc-breadcrumbs";
 import {Card, CardContent, Container} from "@mui/material";
 import {Editor} from "../../../editor/editor";
 import {useParams} from "react-router-dom";
-import { Cards } from "../../../components/cards-data-simple";
-import {imgPathCardFn} from "../../../components/img-utils";
+import {Cards} from "../../../components/cards-game-data";
+import {imgPathCardFn} from "../../../components/img-wrappers/img-utils";
 
-export function CardDetails(){
-    const {cardName = "" } = useParams();
+export function CardDetails() {
+    const {cardName = ""} = useParams();
 
     const nameAsKey = cardName.replace(" ", "").replace(",", "").toLowerCase();
 
     // @ts-ignore
-    const image : string = Cards.find(({name}) => name === cardName).image;
+    const image: string = Cards.find(({name}) => name === cardName).image;
     return <>
         <CcBreadcrumbs/>
-        {/* @ts-ignore */ }
+        {/* @ts-ignore */}
         <Container>
 
             <Card>
@@ -23,6 +23,6 @@ export function CardDetails(){
                 </CardContent>
             </Card>
 
-            <Editor pageTitle={cardName} categoryPath="card-details" editorPath={nameAsKey} />
+            <Editor pageTitle={cardName} categoryPath="card-details" editorPath={nameAsKey}/>
         </Container></>
 }

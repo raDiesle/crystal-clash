@@ -8,44 +8,44 @@ import {CcListWithParent} from "./cc-list-with-parent";
 import {useNavigate} from "react-router-dom";
 import {CardsPageTable} from "../basics/cards/cards-page-table";
 
-export function MenuBasics(){
+export function MenuBasics() {
     const navigate = useNavigate();
-    return(
+    return (
         <Grid
             item
             xs={3}
         >
-        <Card>
-            <CardHeader
-                title={"Game Basics"}
-                titleTypographyProps={{align: 'center'}}
-            />
-            <CardContent>
-                <Box
-                    sx={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'baseline',
-                    }}
-                >
-                </Box>
-                <List
-                    sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-                    component="nav"
-                >
-                    <ListItemButton>
-                        <ListItemText primary="Cards" onClick={() => navigate("/cards") } />
-                    </ListItemButton>
-                    <ListItemButton onClick={() => navigate("/game-menu") }>
-                        <ListItemText primary="Game Menu" />
-                    </ListItemButton>
-                    <ListItemButton>
-                        <ListItemText primary="Gameplay HUD" onClick={() => navigate("/gameplay-hud") } />
-                    </ListItemButton>
+            <Card>
+                <CardHeader
+                    title={"Game Basics"}
+                    titleTypographyProps={{align: 'center'}}
+                />
+                <CardContent>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'baseline',
+                        }}
+                    >
+                    </Box>
+                    <List
+                        sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}
+                        component="nav"
+                    >
+                        <ListItemButton>
+                            <ListItemText primary="Cards" onClick={() => navigate("/cards")}/>
+                        </ListItemButton>
+                        <ListItemButton onClick={() => navigate("/game-menu")}>
+                            <ListItemText primary="Game Menu"/>
+                        </ListItemButton>
+                        <ListItemButton>
+                            <ListItemText primary="Gameplay HUD" onClick={() => navigate("/gameplay-hud")}/>
+                        </ListItemButton>
 
-                </List>
-            </CardContent>
-        </Card>
+                    </List>
+                </CardContent>
+            </Card>
         </Grid>
     );
 }

@@ -14,8 +14,7 @@ import {
 import {characterFileName, mentionImageUrlPath} from "../pages/guides/mention-list";
 
 /** @jsxImportSource @emotion/react */
-import { jsx, css, Global, keyframes } from '@emotion/react/macro'
-
+import {jsx, css, Global, keyframes} from '@emotion/react/macro'
 
 
 export const MentionCombobox = ({
@@ -36,19 +35,20 @@ export const MentionCombobox = ({
             controlled
             items={items}
             component={component}
-            onRenderItem={(data)=> {
-                {/* @ts-ignore */}
+            onRenderItem={(data) => {
+                {/* @ts-ignore */
+                }
                 return <div style={{display: "flex", justifyContent: "center"}} css={css``}>
-                    <img src={mentionImageUrlPath(data.item.text)} style={{width:"25px"}}/>
+                    <img src={mentionImageUrlPath(data.item.text)} style={{width: "25px"}}/>
                     {/* @ts-ignore */}
-                    <span css={css`paddingLeft: 5px; color: #5a8484;`} >{characterFileName(data.item.text)}</span>
+                    <span css={css`paddingLeft: 5px; color: #5a8484;`}>{characterFileName(data.item.text)}</span>
                 </div>
             }}
             onSelectItem={getMentionOnSelectItem({
                 key: pluginKey,
             })}
             styles={{
-                root: {width:"300px", backgroundColor: "#282e39"},
-        }}></Combobox>
+                root: {width: "300px", backgroundColor: "#282e39"},
+            }}></Combobox>
     );
 };

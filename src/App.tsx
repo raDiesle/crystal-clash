@@ -39,9 +39,9 @@ export const themeOptions: ThemeOptions = {
         //         }
         //     }
         // },
-        MuiInputLabel : {
-            styleOverrides : {
-                root : {
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
                     "&.Mui-focused": {
                         color: "#5a8484"
                     }
@@ -60,36 +60,36 @@ export const themeOptions: ThemeOptions = {
                 }
             }
         },
-        MuiLink : {
-            styleOverrides : {
-                underlineAlways :true,
-                root : {
+        MuiLink: {
+            styleOverrides: {
+                underlineAlways: true,
+                root: {
                     color: "#fff"
                 }
             }
         },
-        MuiTabs : {
-            defaultProps : {
-                sx : {
-                  //  height: "100px"
+        MuiTabs: {
+            defaultProps: {
+                sx: {
+                    //  height: "100px"
                 }
             },
 
         },
-        MuiTab : {
-            defaultProps : {
-              sx : {
-                  lineHeight: "2.0",
-                  fontSize: "16px"
-              }
+        MuiTab: {
+            defaultProps: {
+                sx: {
+                    lineHeight: "2.0",
+                    fontSize: "16px"
+                }
             },
             styleOverrides: {
                 "root": {
                     "&.Mui-selected": {
                         "color": "#282e39",
-                        "fontWeight" : "bold",
+                        "fontWeight": "bold",
                         "background": "#70b7b7",
-                       // "transform": "scale(1.2)"
+                        // "transform": "scale(1.2)"
                     }
                 }
             }
@@ -115,6 +115,18 @@ export const themeOptions: ThemeOptions = {
                 }
             }
         },
+        MuiToggleButton: {
+            styleOverrides: {
+
+                root: { // MuiToggleButton-root.Mui-selected
+                    padding: 2,
+                    "&.Mui-selected, &.Mui-selected:hover": {
+                        color: "white",
+                        backgroundColor: "#70b7b7"
+                    }
+                }
+            }
+        },
         MuiListItemButton: {
             styleOverrides: {
 
@@ -126,6 +138,13 @@ export const themeOptions: ThemeOptions = {
                     "&:hover": {
                         //  backgroundColor: "#3c5b5e",
                     }
+                }
+            }
+        },
+        MuiSvgIcon: {
+            defaultProps: {
+                sx: {
+                    color: "#70b7b7"
                 }
             }
         },

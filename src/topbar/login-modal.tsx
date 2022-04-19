@@ -8,10 +8,10 @@ import React, {Dispatch, SetStateAction} from "react";
 
 type ILoginModalProps = {
     isLoginModalShown: boolean,
-    setIsLoginModalShown:  Dispatch<SetStateAction<boolean>>
+    setIsLoginModalShown: Dispatch<SetStateAction<boolean>>
 }
 
-export function LoginModal  ({isLoginModalShown, setIsLoginModalShown} : ILoginModalProps) {
+export function LoginModal({isLoginModalShown, setIsLoginModalShown}: ILoginModalProps) {
 
     const uiConfig = {
         // Popup signin flow rather than redirect flow.
@@ -32,13 +32,13 @@ export function LoginModal  ({isLoginModalShown, setIsLoginModalShown} : ILoginM
 
 
     return (<Modal
-                open={isLoginModalShown}
-                onClose={() => {
-                    setIsLoginModalShown(false);
-                }}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
+        open={isLoginModalShown}
+        onClose={() => {
+            setIsLoginModalShown(false);
+        }}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+    >
         <div>
             <div className={css.ModalCloseStyle}>
                 <FontAwesomeIcon
@@ -47,7 +47,7 @@ export function LoginModal  ({isLoginModalShown, setIsLoginModalShown} : ILoginM
                     onClick={() => setIsLoginModalShown(false)}
                 />
             </div>
-            <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={authInstance} />
+            <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={authInstance}/>
         </div>
     </Modal>)
 }

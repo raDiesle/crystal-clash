@@ -4,9 +4,9 @@ import {Box, Card, CardContent, Grid, List, ListItemButton, ListItemText} from "
 import {useNavigate} from "react-router-dom";
 import {ROUTES} from "../../cc-routes-config";
 
-export function MenuCommunity(){
+export function MenuCommunity() {
     const navigate = useNavigate();
-    return(
+    return (
         <Grid
             item
             xs={3}
@@ -27,18 +27,34 @@ export function MenuCommunity(){
                     >
 
                         <List
-                            sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                            sx={{width: '100%', maxWidth: 360, bgcolor: 'background.paper'}}
                             component="nav"
                         >
                             <List component="div" disablePadding>
-                                <ListItemButton onClick={() => {navigate(ROUTES["/community/general"])}}>
+                                <ListItemButton onClick={() => {
+                                    navigate(ROUTES["/community/general"])
+                                }}>
                                     <ListItemText primary="Community"/>
                                 </ListItemButton>
-                                <ListItemButton onClick={() => {navigate(ROUTES["/community/tutorials"])}}>
+                                <ListItemButton onClick={() => {
+                                    navigate(ROUTES["/community/tutorials"])
+                                }}>
                                     <ListItemText primary="Tutorial Videos"/>
                                 </ListItemButton>
-                                <ListItemButton onClick={() => {navigate(ROUTES["/community/replays"])}}>
+                                <ListItemButton onClick={() => {
+                                    navigate(ROUTES["/community/replays"])
+                                }}>
                                     <ListItemText primary="Replays"/>
+                                </ListItemButton>
+                                <ListItemButton onClick={() => {
+                                    navigate(ROUTES["/community/artgallery"])
+                                }}>
+                                    <ListItemText primary="Art Gallery"/>
+                                </ListItemButton>
+                                <ListItemButton onClick={() => {
+                                    navigate(ROUTES["/community/meme"])
+                                }}>
+                                    <ListItemText primary="Meme"/>
                                 </ListItemButton>
                             </List>
 

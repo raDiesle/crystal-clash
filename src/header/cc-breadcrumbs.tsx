@@ -28,20 +28,20 @@ export function CcBreadcrumbs() {
 
         <Box py={1} px={1}>
 
-        <Link  underline="hover" color="inherit" onClick={() => navigate("/")} href={"#"} display={"flex"}
-        >
-            <ArrowBack/> <span>Back</span>
-        </Link>
+            <Link underline="hover" color="inherit" onClick={() => navigate(-1)} href={"#"} display={"flex"}
+            >
+                <ArrowBack/> <span>Back</span>
+            </Link>
         </Box>
-            // <div role="presentation" onClick={handleClick}>
-            //     <Box py={1}>
-            //     <Breadcrumbs aria-label="breadcrumb" sx={{fontSize: "12px"}}>
-            //         {allButLastLocation.map(path => <Link  key={path} underline="hover" color="inherit" onClick={() => navigate(path === "/" ? path : "/"+path)} href={"#"}>
-            //             {path === "/" ? "< Home" : path}
-            //         </Link>)}
-            //         <Typography color="text.primary" fontSize={"12px"} >{lastLocation}</Typography>
-            //     </Breadcrumbs>
-            //     </Box>
-            // </div>
+        // <div role="presentation" onClick={handleClick}>
+        //     <Box py={1}>
+        //     <Breadcrumbs aria-label="breadcrumb" sx={{fontSize: "12px"}}>
+        //         {allButLastLocation.map(path => <Link  key={path} underline="hover" color="inherit" onClick={() => navigate(path === "/" ? path : "/"+path)} href={"#"}>
+        //             {path === "/" ? "< Home" : path}
+        //         </Link>)}
+        //         <Typography color="text.primary" fontSize={"12px"} >{lastLocation}</Typography>
+        //     </Breadcrumbs>
+        //     </Box>
+        // </div>
     );
 }
