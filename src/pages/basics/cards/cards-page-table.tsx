@@ -18,9 +18,17 @@ import {AttackTypeImg} from "../../../components/img-wrappers/attack-type-img";
 import {DoubleshotImg} from "../../../components/img-wrappers/doubleshot-img";
 import {FlyingImg} from "../../../components/img-wrappers/flying-img";
 import {SplashDamageImg} from "../../../components/img-wrappers/splash-damage-img";
-import {LegendaryImg} from "../../../components/img-wrappers/legendary-img";
+import {DivineImg} from "../../../components/img-wrappers/divine-img";
 import {SiegeImg} from "../../../components/img-wrappers/siege-img";
 import {SubmitHandler} from "react-hook-form";
+import {DivergenceIcon} from "../../../components/icons/divergence-icon";
+import {LimitedGadgetIcon} from "../../../components/icons/limited-gadget-icon";
+import {DismantlementIcon} from "../../../components/icons/dismantlement-icon";
+import {EnergyFlowIcon} from "../../../components/icons/energy-flow-icon";
+import {FlatFiringAngleIcon} from "../../../components/icons/flat-fireing-angle";
+import {SurefireIcon} from "../../../components/icons/surefire-icon";
+import {LegendaryImg} from "../../../components/img-wrappers/legendary-img";
+import {MonumentalIcon} from "../../../components/icons/monumental-icon";
 
 
 export function CardsPageTable() {
@@ -64,8 +72,6 @@ export function CardsPageTable() {
     return <>
         <Card>
             <CardContent>
-
-
                 <CardFilterForm onSubmit={onSubmit}/>
 
                 <div>
@@ -86,210 +92,255 @@ export function CardsPageTable() {
             }}
             columns={[
                 {
-                    Header: "",
-                    accessor: "image",
-                    width: "80",
-                    Cell: ({value}: CellProps<Array<ICard>>) => <div className={css.cellWrapperCenter}
-                                                                     style={{margin: "-7px 0"}}>
-                        <CardImg name={value}/>
-                    </div>
-                },
-                {
-                    Header: "Name",
-                    accessor: "name",
-                    width: "220",
-                    Cell: ({value}: CellProps<Array<ICard>>) => <div className={css.cellWrapperLeft}>
-                        <div>{value}</div>
-                    </div>
-                },
-                {
-                    Header: "Faction",
-                    accessor: "faction",
-                    width: "60",
-                    Cell: ({value}: CellProps<Array<ICard>>) => <div className={css.cellWrapperCenter}>
-                        <FactionImg faction={value}/>
-                    </div>
-                },
-                {
-                    Header: "Type",
-                    accessor: "type",
-                    width: "50",
-                    Cell: ({value}: CellProps<Array<ICard>>) => {
-                        const config = new Map<CardType, ReactElement>([
-                            ["Building", <BuildingIcon/>],
-                            ["Spell", <SpellIcon/>],
-                            ["Unit", <UnitIcon/>]
-                        ]);
-                        return <div className={css.cellWrapperCenter} title={value}>{config.get(value)}</div>;
-                    }
-                },
-                {
-                    Header: "Tier",
-                    accessor: "tier",
-                    width: "50",
-                    Cell: ({value}: CellProps<Array<ICard>>) => <div className={css.cellWrapperCenter}>{value}</div>
-                },
-                {
-                    Header: "Charges",
-                    accessor: "charges",
-                    width: "50",
-                },
-                {
-                    Header: "Charge Cooldown",
-                    accessor: "chargeCooldown",
-                    width: "60",
-                },
-                {
-                    Header: "Mana cost",
-                    accessor: "manaCost",
-                    width: "60",
-                },
-                {
-                    Header: "Divine",
-                    // @ts-ignore
-                    accessor: ({isdivine}) => isdivine ? 1 : 0,
-                    width: "40",
-                    // @ts-ignore
-                    Cell: ({value}: CellProps<Array<ICard>>) => (value ? "X" : "")
-                },
-
-                {
-                    Header: "Squad Size",
-                    accessor: "squadSize",
-                    width: "35",
-                },
-
-                {
-                    Header: "Health per Unit",
-                    accessor: "healthPerUnit",
-                    width: "45",
-                },
-
-                {
-                    Header: "Total Health",
-                    accessor: "totalHealth",
-                    width: "50",
-                    // @ts-ignore
-                    Cell: ({value}: CellProps<Array<ICard>>) => (isNaN(value) ? "" : Math.round(value))
-                },
-
-                {
-                    Header: "Energy",
-                    accessor: "energy",
-                    width: "40",
-                },
-
-                {
-                    Header: "Max Energy",
-                    accessor: "maxEnergy",
-                    width: "40",
-                },
-
-                {
-                    Header: "Armor",
-                    accessor: "armorType",
-                    width: "40",
-                    // @ts-ignore
-                    Cell: ({value}: CellProps<Array<ICard>>) => {
-                        if (typeof value === "undefined") {
-                            return null;
-                        }
-                        return <div className={css.cellWrapperCenter}>
-                            <ArmorImg armor={value}/>
-                        </div>
-                    }
-                },
-                {
-                    Header: "Damage per Hit",
-                    accessor: "damagePerHit",
-                    width: "40",
-                },
-
-                {
-                    Header: "Attack Speed",
-                    accessor: "attackSpeed",
-                    width: "40",
-                },
-
-                {
-                    Header: "Total Damage",
-                    accessor: "totalDamage",
-                    width: "50",
-                    // @ts-ignore
-                    Cell: ({value}: CellProps<Array<ICard>>) => (isNaN(value) ? "" : Math.round(value))
-                },
-
-                {
-                    Header: "Total Dps",
-                    accessor: "totalDps",
-                    width: "50",
-                    // @ts-ignore
-                    Cell: ({value}: CellProps<Array<ICard>>) => (isNaN(value) ? "" : Math.round(value))
-                },
+                    Header: 'General',
+                    columns: [
 
 
-                {
-                    Header: "Ranged",
-                    // @ts-ignore
-                    accessor: ({attackType}) => attackType === "Ranged" ? 1 : 0,
-                    width: "40",
-                    // @ts-ignore
-                    Cell: ({value}: CellProps<Array<ICard>>) => {
-                        const displayValue: EAttackType = (value ? EAttackType.Ranged : EAttackType.Melee);
-                        return <div className={css.cellWrapperCenter}>
-                            <AttackTypeImg attackType={displayValue}/>
-                        </div>
-                    }
-                },
-
-                {
-                    Header: "Attack Range",
-                    accessor: "attackRange",
-                    width: "40",
-                },
-
-                {
-                    Header: "Collision Radius",
-                    accessor: "collisionRadius",
-                    width: "50",
-                },
-
-                {
-                    Header: "Abilities",
-                    accessor: "abilities",
-                    width: "550",
-                    Cell: ({value = []}: CellProps<Array<ICard>>) => {
-                        const elements = value.map((value: TAbilities): ReactElement => {
-
-                            if (value === "Siege") {
-                                return <><SiegeImg/></>;
+                        {
+                            Header: "",
+                            accessor: "image",
+                            width: "80",
+                            Cell: ({value}: CellProps<Array<ICard>>) => <div className={css.cellWrapperCenter}
+                                                                             style={{margin: "-7px 0"}}>
+                                <CardImg name={value}/>
+                            </div>
+                        },
+                        {
+                            Header: "Name",
+                            accessor: "name",
+                            width: "220",
+                            Cell: ({value}: CellProps<Array<ICard>>) => <div className={css.cellWrapperLeft}>
+                                <div>{value}</div>
+                            </div>
+                        },
+                        {
+                            Header: "Faction",
+                            accessor: "faction",
+                            width: "60",
+                            Cell: ({value}: CellProps<Array<ICard>>) => <div className={css.cellWrapperCenter}>
+                                <FactionImg faction={value}/>
+                            </div>
+                        },
+                        {
+                            Header: "Type",
+                            accessor: "type",
+                            width: "50",
+                            Cell: ({value}: CellProps<Array<ICard>>) => {
+                                const config = new Map<CardType, ReactElement>([
+                                    ["Building", <BuildingIcon/>],
+                                    ["Spell", <SpellIcon/>],
+                                    ["Unit", <UnitIcon/>]
+                                ]);
+                                return <div className={css.cellWrapperCenter} title={value}>{config.get(value)}</div>;
                             }
-                            if (value === "Legendary") {
-                                return <><LegendaryImg/></>
+                        },
+                        {
+                            Header: "Tier",
+                            accessor: "tier",
+                            width: "50",
+                            Cell: ({value}: CellProps<Array<ICard>>) => <div
+                                className={css.cellWrapperCenter}>{value}</div>
+                        },
+                        {
+                            Header: "Charges",
+                            accessor: "charges",
+                            width: "50",
+                        },
+                        {
+                            Header: "Charge Cooldown",
+                            accessor: "chargeCooldown",
+                            width: "60",
+                        },
+                        {
+                            Header: "Mana cost",
+                            accessor: "manaCost",
+                            width: "60",
+                        },
+                        {
+                            Header: "Abilities",
+                            accessor: "abilities",
+                            width: "550",
+                            Cell: ({value = []}: CellProps<Array<ICard>>) => {
+                                const elements = value.map((value: TAbilities): {type: string, element : ReactElement } => {
+
+                                    const iconMappingConfig = {
+
+                                        "Siege"  : <><SiegeImg/></> ,
+                                        "Legendary"  : <><LegendaryImg/></>
+                                     ,
+                                        "Divine"  : <><DivineImg/></>
+                                     ,
+                                        "Splash Damage"  : <><SplashDamageImg/></>
+                                     ,
+
+                                        "Doubleshot"  : <><DoubleshotImg/></>
+                                     ,
+
+                                        "Flying"  : <><FlyingImg/></>
+                                     ,
+
+                                        "Tripleshot"  : <DivergenceIcon/> ,
+
+                                        "Limited: Gadget"  : <LimitedGadgetIcon/>
+                                     ,
+
+                                        "Dismantlement"  : <DismantlementIcon/> ,
+
+                                        "Energy Flow"  : <EnergyFlowIcon/> ,
+
+                                        "Flat Firing Angle"  : <FlatFiringAngleIcon/> ,
+
+                                        "Surefire"  : <SurefireIcon/>
+                                     ,
+                                  "Monumental"  : <MonumentalIcon/> ,
+                                    };
+
+                                    const mappedImage = Object.entries(iconMappingConfig).find(([key, image])=> (key === value));
+
+                                    if(typeof mappedImage !== "undefined"){
+                                        return {
+                                            type : "IMAGE",
+                                            element : mappedImage[1]
+                                        };
+                                    }
+
+                                    return {
+                                        type : "TEXT",
+                                        element : <span>{value}</span>
+                                    };
+                                }).reduce((previous: {type: string, element : ReactElement}, current: {type: string, element : ReactElement}, currentIndex: number, original : Array<{type: string, element : ReactElement}>) => {
+                                    const prevType = currentIndex === 0 ? "TEXT" : original[currentIndex].type;
+                                    const nextType = currentIndex === original.length -1 ? "IMAGE" : original[currentIndex+1].type;
+                                    const renderCommaByPositionRule = (currentIndex !== (value.length - 1));
+                                    const renderCommaByTypeRule = prevType === "TEXT" && current.type === "TEXT" && (nextType === "TEXT");
+
+                                    return <>
+                                        <>{previous} {current.element}</>
+                                        <>{renderCommaByPositionRule  && renderCommaByTypeRule? <span>,&nbsp;</span> : <>&nbsp;</>} </>
+                                    </>;
+                                }, <></>)
+
+
+                                return <div className={css.cellWrapperLeft}>{elements}</div>
                             }
-                            if (value === "Splash Damage") {
-                                return <><SplashDamageImg/></>
+                        },
+
+                    ]
+                },
+                {
+                    Header: 'Unit',
+                    columns: [
+
+
+                        {
+                            Header: "Squad Size",
+                            accessor: "squadSize",
+                            width: "35",
+                        },
+
+                        {
+                            Header: "Health per Unit",
+                            accessor: "healthPerUnit",
+                            width: "45",
+                        },
+
+                        {
+                            Header: "Total Health",
+                            accessor: "totalHealth",
+                            width: "50",
+                            // @ts-ignore
+                            Cell: ({value}: CellProps<Array<ICard>>) => (isNaN(value) ? "" : Math.round(value))
+                        },
+
+                        {
+                            Header: "Energy",
+                            accessor: "energy",
+                            width: "40",
+                        },
+
+                        {
+                            Header: "Max Energy",
+                            accessor: "maxEnergy",
+                            width: "40",
+                        },
+
+                        {
+                            Header: "Armor",
+                            accessor: "armorType",
+                            width: "40",
+                            // @ts-ignore
+                            Cell: ({value}: CellProps<Array<ICard>>) => {
+                                if (typeof value === "undefined") {
+                                    return null;
+                                }
+                                return <div className={css.cellWrapperCenter}>
+                                    <ArmorImg armor={value}/>
+                                </div>
                             }
+                        },
+                        {
+                            Header: "Damage per Hit",
+                            accessor: "damagePerHit",
+                            width: "40",
+                        },
 
-                            if (value === "Doubleshot") {
-                                return <><DoubleshotImg/></>
+                        {
+                            Header: "Attack Speed",
+                            accessor: "attackSpeed",
+                            width: "40",
+                        },
+
+                        {
+                            Header: "Total Damage",
+                            accessor: "totalDamage",
+                            width: "50",
+                            // @ts-ignore
+                            Cell: ({value}: CellProps<Array<ICard>>) => (isNaN(value) ? "" : Math.round(value))
+                        },
+
+                        {
+                            Header: "Total Dps",
+                            accessor: "totalDps",
+                            width: "50",
+                            // @ts-ignore
+                            Cell: ({value}: CellProps<Array<ICard>>) => (isNaN(value) ? "" : Math.round(value))
+                        },
+
+
+                        {
+                            Header: "Ranged",
+                            // @ts-ignore
+                            accessor: ({attackType}) => {
+                                if (typeof attackType === "undefined") {
+                                    return 2;
+                                }
+                                return attackType === "Ranged" ? 1 : 0;
+                            },
+                            width: "40",
+                            // @ts-ignore
+                            Cell: ({value}: CellProps<Array<ICard>>) => {
+                                if(value === 2) {
+                                    return null;
+                                }
+                                const displayValue: EAttackType = (value ? EAttackType.Ranged : EAttackType.Melee);
+                                return <div className={css.cellWrapperCenter}>
+                                    <AttackTypeImg attackType={displayValue}/>
+                                </div>
                             }
+                        },
 
-                            if (value === "Flying") {
-                                return <><FlyingImg/></>
-                            }
+                        {
+                            Header: "Attack Range",
+                            accessor: "attackRange",
+                            width: "40",
+                        },
 
-                            return <span>{value}</span>;
-                        }).reduce((previous: ReactElement, current: ReactElement, currentIndex: number) => {
-                            return <>
-                                <>{previous} {current}</>
-                                <>{currentIndex !== (value.length - 1) ? <span>,&nbsp;</span> : null} </>
-                            </>;
-                        }, <></>)
-
-
-                        return <div className={css.cellWrapperLeft}>{elements}</div>
-                    }
+                        {
+                            Header: "Collision Radius",
+                            accessor: "collisionRadius",
+                            width: "50",
+                        },
+                    ]
                 },
 
 

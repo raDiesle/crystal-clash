@@ -174,7 +174,6 @@ export interface ICard extends Partial<Unit> {
     charges: number, // gold 5
     chargeCooldown: number, // gold 5
     manaCost: number,
-    islegendary: boolean,
 
     //spells interface
 
@@ -183,8 +182,6 @@ export interface ICard extends Partial<Unit> {
     statusApplied?: Array<Status>,
     domain?: boolean,
     description?: string,
-
-
 }
 
 const WhiteCards: Array<ICard> = [
@@ -198,8 +195,6 @@ const WhiteCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
-
 
         squadSize: 4,
         healthPerUnit: 32,
@@ -223,7 +218,7 @@ const WhiteCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 70,
-        islegendary: false,
+    
 
     },
     {
@@ -235,7 +230,7 @@ const WhiteCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 80,
-        islegendary: false,
+    
 
     },
     {
@@ -247,7 +242,7 @@ const WhiteCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 2,
@@ -271,7 +266,7 @@ const WhiteCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -295,7 +290,7 @@ const WhiteCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -319,7 +314,7 @@ const WhiteCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 90,
-        islegendary: false,
+    
 
     },
     {
@@ -327,12 +322,11 @@ const WhiteCards: Array<ICard> = [
         image: "WhiteHailOfArrows",
         faction: ECardFaction.White,
         type: "Unit",
-        tier: "I",
+        tier: "II",
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 130,
-        islegendary: false,
-
+    
     },
     {
         name: "Ballista",
@@ -343,7 +337,7 @@ const WhiteCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -367,7 +361,7 @@ const WhiteCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -390,7 +384,7 @@ const WhiteCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-        islegendary: false,
+    
 
 
         squadSize: 2,
@@ -414,7 +408,7 @@ const WhiteCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 180,
-        islegendary: false,
+    
 
     },
     {
@@ -426,8 +420,6 @@ const WhiteCards: Array<ICard> = [
         charges: 1,
         chargeCooldown: 125,
         manaCost: 300,
-        islegendary: true,
-
 
         squadSize: 1,
         healthPerUnit: 1300,
@@ -450,8 +442,6 @@ const WhiteCards: Array<ICard> = [
         charges: 1,
         chargeCooldown: 125,
         manaCost: 300,
-        islegendary: true,
-
 
         squadSize: 1,
         healthPerUnit: 680,
@@ -474,7 +464,7 @@ const WhiteCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 250,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -498,7 +488,7 @@ const WhiteCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -522,7 +512,7 @@ const WhiteCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 250,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -546,7 +536,7 @@ const WhiteCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 280,
-        islegendary: false,
+    
 
     }
 ];
@@ -561,7 +551,7 @@ const BlackCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
         squadSize: 1,
         healthPerUnit: 100,
@@ -584,7 +574,7 @@ const BlackCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
     },
     {
@@ -596,7 +586,7 @@ const BlackCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
     },
     {
@@ -608,7 +598,7 @@ const BlackCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -632,7 +622,7 @@ const BlackCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 2,
@@ -656,7 +646,7 @@ const BlackCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 2,
@@ -680,7 +670,7 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -704,7 +694,7 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 80,
-        islegendary: false,
+    
 
     },
     {
@@ -716,7 +706,7 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 2,
@@ -740,7 +730,7 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 130,
-        islegendary: false,
+    
 
     },
     {
@@ -752,7 +742,7 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 100,
-        islegendary: false,
+    
 
     },
     {
@@ -764,7 +754,7 @@ const BlackCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 160,
-        islegendary: false,
+    
 
     },
     {
@@ -776,7 +766,7 @@ const BlackCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -800,7 +790,7 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -824,7 +814,7 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -848,8 +838,6 @@ const BlackCards: Array<ICard> = [
         charges: 1,
         chargeCooldown: 125,
         manaCost: 300,
-        islegendary: true,
-
 
         squadSize: 1,
         healthPerUnit: 410,
@@ -872,7 +860,7 @@ const BlackCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -896,8 +884,6 @@ const BlackCards: Array<ICard> = [
         charges: 1,
         chargeCooldown: 125,
         manaCost: 300,
-        islegendary: true,
-
 
         squadSize: 1,
         healthPerUnit: 460,
@@ -920,7 +906,7 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 140,
-        islegendary: false,
+    
 
     },
 ];
@@ -935,7 +921,7 @@ const GreenCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 2,
@@ -959,7 +945,7 @@ const GreenCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 80,
-        islegendary: false,
+    
 
     },
     {
@@ -971,7 +957,7 @@ const GreenCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 70,
-        islegendary: false,
+    
 
     },
     {
@@ -983,7 +969,7 @@ const GreenCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1007,7 +993,7 @@ const GreenCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1031,7 +1017,7 @@ const GreenCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1055,7 +1041,7 @@ const GreenCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1079,7 +1065,7 @@ const GreenCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1103,7 +1089,7 @@ const GreenCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1127,7 +1113,7 @@ const GreenCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 160,
-        islegendary: false,
+    
 
     },
     {
@@ -1139,7 +1125,7 @@ const GreenCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1163,7 +1149,7 @@ const GreenCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1187,7 +1173,7 @@ const GreenCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1211,7 +1197,7 @@ const GreenCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 25,
         manaCost: 40,
-        islegendary: false,
+    
 
     },
     {
@@ -1223,8 +1209,7 @@ const GreenCards: Array<ICard> = [
         charges: 1,
         chargeCooldown: 125,
         manaCost: 200,
-        islegendary: true,
-
+        abilities : ["Legendary"]
     },
     {
         name: "Evolve: Oracle",
@@ -1235,7 +1220,7 @@ const GreenCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 37.5,
         manaCost: 130,
-        islegendary: false,
+    
 
     },
     {
@@ -1247,8 +1232,6 @@ const GreenCards: Array<ICard> = [
         charges: 1,
         chargeCooldown: 125,
         manaCost: 300,
-        islegendary: true,
-
 
         squadSize: 1,
         healthPerUnit: 1800,
@@ -1271,7 +1254,7 @@ const GreenCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1298,7 +1281,7 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1322,7 +1305,7 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 80,
-        islegendary: false,
+    
 
     },
     {
@@ -1334,7 +1317,7 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 80,
-        islegendary: false,
+    
 
     },
     {
@@ -1346,7 +1329,7 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1370,7 +1353,7 @@ const BlueCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1394,7 +1377,7 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 4,
@@ -1418,7 +1401,7 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 40,
-        islegendary: false,
+    
 
     },
     {
@@ -1430,7 +1413,7 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1454,8 +1437,6 @@ const BlueCards: Array<ICard> = [
         charges: 1,
         chargeCooldown: 62.5,
         manaCost: 200,
-        islegendary: true,
-
 
         squadSize: 1,
         healthPerUnit: 205,
@@ -1478,7 +1459,7 @@ const BlueCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 80,
-        islegendary: false,
+    
 
     },
     {
@@ -1490,7 +1471,7 @@ const BlueCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 2,
@@ -1514,7 +1495,7 @@ const BlueCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1538,7 +1519,7 @@ const BlueCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1562,7 +1543,7 @@ const BlueCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 230,
-        islegendary: false,
+    
 
     },
 
@@ -1575,7 +1556,7 @@ const BlueCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1599,7 +1580,7 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 37.5,
         manaCost: 130,
-        islegendary: false,
+    
 
     },
     {
@@ -1611,8 +1592,6 @@ const BlueCards: Array<ICard> = [
         charges: 1,
         chargeCooldown: 125,
         manaCost: 300,
-        islegendary: true,
-
 
         squadSize: 1,
         healthPerUnit: 990,
@@ -1635,7 +1614,7 @@ const BlueCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1659,7 +1638,7 @@ const BlueCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-        islegendary: false,
+    
 
 
         squadSize: 3,
@@ -1683,7 +1662,7 @@ const BlueCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 210,
-        islegendary: false,
+    
 
     }
 ];
@@ -1698,7 +1677,7 @@ const CrystalCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 4,
@@ -1722,7 +1701,7 @@ const CrystalCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 400,
-        islegendary: false,
+    
         abilities: ["Divine"]
     },
     {
@@ -1734,7 +1713,7 @@ const CrystalCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 80,
-        islegendary: false,
+    
 
     },
     {
@@ -1746,7 +1725,7 @@ const CrystalCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 100,
-        islegendary: false,
+    
 
     },
     {
@@ -1758,7 +1737,7 @@ const CrystalCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 2,
@@ -1775,14 +1754,14 @@ const CrystalCards: Array<ICard> = [
     },
     {
         name: "Crystal Shrine",
-        image: "ColorlessGolemLaneTowerLevel1",
+        image: "ColorlessSmallGolemTower",
         faction: ECardFaction.Crystal,
         type: "Building",
         tier: "I",
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1806,7 +1785,7 @@ const CrystalCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1830,7 +1809,7 @@ const CrystalCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 2,
@@ -1854,7 +1833,7 @@ const CrystalCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1878,7 +1857,7 @@ const CrystalCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1902,7 +1881,7 @@ const CrystalCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1926,7 +1905,7 @@ const CrystalCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 120,
-        islegendary: false,
+    
 
     },
     {
@@ -1938,7 +1917,7 @@ const CrystalCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1962,19 +1941,19 @@ const CrystalCards: Array<ICard> = [
         charges: 1,
         chargeCooldown: 125,
         manaCost: 300,
-        islegendary: true,
+        abilities : ["Legendary"]
 
     },
     {
         name: "Granite Chieftain",
-        image: "ColorlessBossGolem", //add image filename
+        image: "ColorlessBigMeleeGolem",
         faction: ECardFaction.Crystal,
         type: "Unit",
         tier: "III",
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -1991,15 +1970,13 @@ const CrystalCards: Array<ICard> = [
     },
     {
         name: "Granite Guardian",
-        image: "ColorlessBigMeleeGolem",
+        image: "ColorlessBossGolem",
         faction: ECardFaction.Crystal,
         type: "Unit",
         tier: "III",
         charges: 1,
         chargeCooldown: 125,
         manaCost: 300,
-        islegendary: true,
-
 
         squadSize: 1,
         healthPerUnit: 1900,
@@ -2022,7 +1999,7 @@ const CrystalCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-        islegendary: false,
+    
 
 
         squadSize: 1,
@@ -2046,7 +2023,7 @@ const CrystalCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-        islegendary: false,
+    
 
 
         squadSize: 1,

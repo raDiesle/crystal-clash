@@ -38,7 +38,7 @@ export const MentionCombobox = ({
             onRenderItem={(data) => {
                 {/* @ts-ignore */
                 }
-                return <div style={{display: "flex", justifyContent: "center"}} css={css``}>
+                return <div style={{display: "flex", justifyContent: "center"}} >
                     <img src={mentionImageUrlPath(data.item.text)} style={{width: "25px"}}/>
                     {/* @ts-ignore */}
                     <span css={css`paddingLeft: 5px; color: #5a8484;`}>{characterFileName(data.item.text)}</span>
