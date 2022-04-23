@@ -1,3 +1,19 @@
+interface Map<K,V> {
+    set<SK extends K>(key: SK, value: string): TKMap<K, V, SK>;
+}
+
+interface TKMap<K, V, DK> extends Map<K, V> {
+    set<SK extends K>(key: SK, value: string): TKMap<K, V, SK | DK>;
+    set(key: K, value: V): this;
+    set<SK extends K>(key: SK, value: string): TKMap<K, V, SK>;
+    get(key: DK): V;
+    get(key: K): V | undefined;
+}
+
+export type KnownKeyosOfTKMap<T> = T extends TKMap< infer K, infer V, infer DK> ? DK : never;
+
+
+
 export enum ECardFaction {
     "White" = "White",
     "Black" = "Black",

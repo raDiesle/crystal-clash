@@ -184,6 +184,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
         placeholder: 'Type…',
         style: {
             padding: '0',
+            minHeight: "500px"
         },
 
         readOnly: !isInEditMode && (currentUsername !== currentEditingUser)

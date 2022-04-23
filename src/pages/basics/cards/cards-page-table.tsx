@@ -29,6 +29,46 @@ import {FlatFiringAngleIcon} from "../../../components/icons/flat-fireing-angle"
 import {SurefireIcon} from "../../../components/icons/surefire-icon";
 import {LegendaryImg} from "../../../components/img-wrappers/legendary-img";
 import {MonumentalIcon} from "../../../components/icons/monumental-icon";
+import {ShieldsUpIcon} from "../../../components/icons/shields-up-icon";
+import {PredatorStunnedIcon} from "../../../components/icons/predator-stunned-icon";
+import {DeathcryLasttryIcon} from "../../../components/icons/deathcry-lasttry-icon";
+import {WuxiFingerholdIcon} from "../../../components/icons/wuxi-fingerhold-icon";
+import {PuryfyingPotionIcon} from "../../../components/icons/purifying-potion-icon";
+import {EnchantmentArmorIcon} from "../../../components/icons/enchantment-armor-icon";
+import {ArtilleryIcon} from "../../../components/icons/artillery-icon";
+import {LightOverchargeIcon} from "../../../components/icons/light-overcharge-icon";
+import {EnergyInfusionIcon} from "../../../components/icons/energy-infusion-icon";
+import {LightGrenadesIcon} from "../../../components/icons/light-grenades-icon";
+import {InnerfireBounce} from "../../../components/icons/innerfire-bounce-icon";
+import {FuryIcon} from "../../../components/icons/fury-icon";
+import {DevotionIcon} from "../../../components/icons/devotion-icon";
+import {InvokeSmolderingIntenseIcon} from "../../../components/icons/invoke-smoldering-intense-icon";
+import {WalloflightIcon} from "../../../components/icons/walloflight-icon";
+import {WarmingLightIcon} from "../../../components/icons/warming-light-icon";
+import {GuardianLightIcon} from "../../../components/icons/guardianlight-icon";
+import {LightwaveIcon} from "../../../components/icons/lightwave-icon";
+import {SteadyAimIcon} from "../../../components/icons/steadyaim-icon";
+import {BiggamehunterIcon} from "../../../components/icons/biggamehunter-icon";
+import {HomelandIcon} from "../../../components/icons/homeland-icon";
+import {FrostslimeIcon} from "../../../components/icons/frostslime-icon";
+import {DeathcryFrostexplosionIcon} from "../../../components/icons/deathcry-frostexplosion-icon";
+import {CleaveIcon} from "../../../components/icons/cleave-icon";
+import {SoulgathererIcon} from "../../../components/icons/soulgatherer-icon";
+import {FeastIcon} from "../../../components/icons/feast-icon";
+import {DeathcryEnergysupplyIcon} from "../../../components/icons/deathcry-energysupply-icon";
+import {PredatorFrozenIcon} from "../../../components/icons/predator-frozen-icon";
+import {UndyingIcon} from "../../../components/icons/undying-icon";
+import {InvokeInsidiousIcon} from "../../../components/icons/invoke-insidious-icon";
+import {EnchantmentGrievouswoundsIcon} from "../../../components/icons/enchantment-grievouswounds-icon";
+import {DeathcryBlastIcon} from "../../../components/icons/deathcry-blast-icon";
+import {ApexpredatorFrozenIcon} from "../../../components/icons/apexpredator-frozen-icon";
+import {FrostnovaIcon} from "../../../components/icons/frostnova-icon";
+import {SoulenhancerIcon} from "../../../components/icons/soulenhancer-icon";
+import {RitualSummonIcon} from "../../../components/icons/ritual-summon-icon";
+import {AbsorbIcon} from "../../../components/icons/absorb-icon";
+import {StatusAdaptionIcon} from "../../../components/icons/status-adaption-icon";
+import {StatusReflectorIcon} from "../../../components/icons/status-reflector-icon";
+import {VoidhunterIcon} from "../../../components/icons/voidhunter-icon";
 
 
 export function CardsPageTable() {
@@ -163,44 +203,67 @@ export function CardsPageTable() {
                             Cell: ({value = []}: CellProps<Array<ICard>>) => {
                                 const elements = value.map((value: TAbilities): {type: string, element : ReactElement } => {
 
-                                    const iconMappingConfig = {
+                                    const iconMappingConfig  = new Map<TAbilities, ReactElement>([
+                                        ["Siege", <SiegeImg/>] ,
+                                        ["Legendary", <LegendaryImg/>],
+                                        ["Divine", <DivineImg/>],
+                                        ["Splash Damage", <SplashDamageImg/>],
+                                        ["Doubleshot", <DoubleshotImg/>],
+                                        ["Flying", <FlyingImg/>],
+                                        ["Tripleshot", <DivergenceIcon/>] ,
+                                        ["Limited: Gadget", <LimitedGadgetIcon/>],
+                                        ["Dismantlement", <DismantlementIcon/>] ,
+                                        ["Energy Flow"  , <EnergyFlowIcon/>] ,
+                                        ["Flat Firing Angle"  , <FlatFiringAngleIcon/>] ,
+                                        ["Surefire"  , <SurefireIcon/>],
+                                        ["Monumental" , <MonumentalIcon/>] ,
+                                        ["Raise your shield!" , <ShieldsUpIcon />],
+                                        ["Predator: Stunned" , <PredatorStunnedIcon/>],
+                                        ["Deathcry: Last Try", <DeathcryLasttryIcon />],
+                                        ["Wuxi Finger Hold", <WuxiFingerholdIcon />],
+                                        ["Purifying Potion", <PuryfyingPotionIcon />],
+                                        ["Enchantment: Armor", <EnchantmentArmorIcon/>],
+                                        ["Artillery", <ArtilleryIcon/>],
+                                        ["Light Overcharge", <LightOverchargeIcon/>],
+                                        ["Energy Infusion", <EnergyInfusionIcon />],
+                                        ["Light Grenades", <LightGrenadesIcon/>],
+                                        ["Inner Fire: Bounce", <InnerfireBounce/>],
+                                        ["Fury", <FuryIcon/>],
+                                        ["Devotion Aura", <DevotionIcon/>],
+                                        ["Invoke: Smoldering Intensity", <InvokeSmolderingIntenseIcon/>],
+                                        ["Wall of Light", <WalloflightIcon/>],
+                                        ["Warming Light", <WarmingLightIcon />],
+                                        ["Guarding Light", <GuardianLightIcon />],
+                                        ["Light Wave", <LightwaveIcon/>],
+                                        ["Steady Aim", <SteadyAimIcon />],
+                                        ["Big Game Hunter", <BiggamehunterIcon />],
+                                        ["Homeland", <HomelandIcon />],
+                                        ["Frostslime", <FrostslimeIcon/>],
+                                        ["Deathcry: Frost Explosion", <DeathcryFrostexplosionIcon/>],
+                                        ["Soulgatherer", <SoulgathererIcon/>],
+                                        ["Feast", <FeastIcon/>],
+                                        ["Deathcry: Energy Supply", <DeathcryEnergysupplyIcon/>],
+                                        ["Predator: Frozen", <PredatorFrozenIcon />],
+                                        ["Undying", <UndyingIcon/>],
+                                        ["Invoke: Insidious", <InvokeInsidiousIcon />],
+                                        ["Enchantment: Grievous Wounds", <EnchantmentGrievouswoundsIcon/>],
+                                        ["Deathcry: Blast", <DeathcryBlastIcon />],
+                                        ["Apex Predator: Frozen", <ApexpredatorFrozenIcon/>],
+                                        ["Frostnova", <FrostnovaIcon/>],
+                                        ["Soulenhancer", <SoulenhancerIcon/>],
+                                        ["Ritual Summon", <RitualSummonIcon/>],
+                                        ["Absorb", <AbsorbIcon/>],
+                                        ["Status Adaption", <StatusAdaptionIcon/>],
+                                        ["Status Reflector", <StatusReflectorIcon />],
+                                        ["Voidhunter", <VoidhunterIcon/>]
+                                ]);
 
-                                        "Siege"  : <><SiegeImg/></> ,
-                                        "Legendary"  : <><LegendaryImg/></>
-                                     ,
-                                        "Divine"  : <><DivineImg/></>
-                                     ,
-                                        "Splash Damage"  : <><SplashDamageImg/></>
-                                     ,
+                                    const mappedElement = iconMappingConfig.get(value);
 
-                                        "Doubleshot"  : <><DoubleshotImg/></>
-                                     ,
-
-                                        "Flying"  : <><FlyingImg/></>
-                                     ,
-
-                                        "Tripleshot"  : <DivergenceIcon/> ,
-
-                                        "Limited: Gadget"  : <LimitedGadgetIcon/>
-                                     ,
-
-                                        "Dismantlement"  : <DismantlementIcon/> ,
-
-                                        "Energy Flow"  : <EnergyFlowIcon/> ,
-
-                                        "Flat Firing Angle"  : <FlatFiringAngleIcon/> ,
-
-                                        "Surefire"  : <SurefireIcon/>
-                                     ,
-                                  "Monumental"  : <MonumentalIcon/> ,
-                                    };
-
-                                    const mappedImage = Object.entries(iconMappingConfig).find(([key, image])=> (key === value));
-
-                                    if(typeof mappedImage !== "undefined"){
+                                    if(typeof mappedElement !== "undefined"){
                                         return {
                                             type : "IMAGE",
-                                            element : mappedImage[1]
+                                            element : mappedElement
                                         };
                                     }
 
