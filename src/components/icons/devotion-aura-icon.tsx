@@ -1,9 +1,9 @@
 import css from "./icon.module.scss";
 import {SvgIcon} from "@mui/material";
 
-export function DevotionIcon() {
+export function DevotionAuraIcon() {
 
-    return <span title="Devotion" className={css.container}>
+    return <span title="Devotion Aura" className={css.container}>
         <SvgIcon color="success" width={512} height={512} viewBox="0 0 512 512" fontSize={"small"}>
             <svg
                 xmlns="http://www.w3.org/2000/svg"

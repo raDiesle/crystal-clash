@@ -1,5 +1,4 @@
-import {Box, Container, Typography} from "@mui/material";
-import {CcBreadcrumbs} from "../header/cc-breadcrumbs";
+import {Box, Container} from "@mui/material";
 import * as React from "react";
 
 

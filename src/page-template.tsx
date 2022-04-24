@@ -6,7 +6,6 @@ import Container from '@mui/material/Container';
 
 import {CcAppBar} from "./topbar/cc-app-bar";
 import {CcRoutesConfig} from "./cc-routes-config";
-import {CcBreadcrumbs} from "./header/cc-breadcrumbs";
 
 function Copyright(props: any) {
     return (

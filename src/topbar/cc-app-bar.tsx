@@ -1,7 +1,6 @@
 import Toolbar from "@mui/material/Toolbar";
 import Grid from "@mui/material/Grid";
 import logo from "../game_logo.png";
-import Link from "@mui/material/Link";
 import LoginLogout from "./login-logout";
 import {IconButton} from "@mui/material";
 import FontAwesomeScalableIcon from "../font-awesome-scalable-icon";
@@ -14,8 +13,6 @@ import {faMailBulk} from "@fortawesome/free-solid-svg-icons/faMailBulk";
 import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
 import AppBar from "@mui/material/AppBar";
 import * as React from "react";
-import {TopMenuCenter} from "./top-menu-center";
-import {CcBreadcrumbs} from "../header/cc-breadcrumbs";
 
 export function CcAppBar() {
     return (

@@ -3,7 +3,7 @@ import {SvgIcon} from "@mui/material";
 
 export function InnerfireBounce() {
 
-    return <span title="Artillery" className={css.container}>
+    return <span title="Inner Fire: Bounce" className={css.container}>
         <SvgIcon color="success" width={512} height={512} viewBox="0 0 512 512" fontSize={"small"}>
             <svg
                 xmlns="http://www.w3.org/2000/svg"

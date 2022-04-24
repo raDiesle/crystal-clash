@@ -17,7 +17,7 @@ import {HistoryEditor} from "slate-history";
 import CardHeader from "@mui/material/CardHeader";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import {Alert, Box, Button, Fab, Snackbar, Stack, Typography} from "@mui/material";
+import {Alert, Box, Button, Fab, Snackbar, Stack} from "@mui/material";
 import {characterFileName, mentionImageUrlPath, mentionList} from "../pages/guides/mention-list";
 import {auth, db, dbErrorHandlerPromise, storageInstance} from "../cc-firestore";
 import firebase from "firebase/compat/app";
@@ -32,7 +32,7 @@ import {CcHeaderToolbar} from "./cc-header-toolbar";
 import css from "./editor.module.scss";
 import {LoginModal} from "../topbar/login-modal";
 import {boringPlatePlugins} from "./boring-plate-plugins";
-import {calculateExpiryTimestamp, MINUTES_TO_EXPIRE_EDITING_SESSION, TimerLeft} from "./timer-left";
+import {calculateExpiryTimestamp, TimerLeft} from "./timer-left";
 import {DateTime} from "luxon";
 
 const initialEditorValue: Descendant[] = [

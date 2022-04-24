@@ -1,4 +1,4 @@
-import {Box, Card, CardContent, Container, Grid, List, ListItemButton, ListItemText, Tab, Tabs} from "@mui/material";
+import {Box, Tab, Tabs} from "@mui/material";
 import * as React from "react";
 
 import gameplayHudScreenshot from "./game_hud.jpg";

@@ -1,17 +1,20 @@
-interface Map<K,V> {
+interface Map<K, V> {
     set<SK extends K>(key: SK, value: string): TKMap<K, V, SK>;
 }
 
 interface TKMap<K, V, DK> extends Map<K, V> {
     set<SK extends K>(key: SK, value: string): TKMap<K, V, SK | DK>;
+
     set(key: K, value: V): this;
+
     set<SK extends K>(key: SK, value: string): TKMap<K, V, SK>;
+
     get(key: DK): V;
+
     get(key: K): V | undefined;
 }
 
-export type KnownKeyosOfTKMap<T> = T extends TKMap< infer K, infer V, infer DK> ? DK : never;
-
+export type KnownKeyosOfTKMap<T> = T extends TKMap<infer K, infer V, infer DK> ? DK : never;
 
 
 export enum ECardFaction {
@@ -234,7 +237,7 @@ const WhiteCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 70,
-    
+
 
     },
     {
@@ -246,7 +249,7 @@ const WhiteCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 80,
-    
+
 
     },
     {
@@ -258,7 +261,6 @@ const WhiteCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 2,
@@ -282,7 +284,6 @@ const WhiteCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 1,
@@ -306,7 +307,6 @@ const WhiteCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 1,
@@ -330,7 +330,7 @@ const WhiteCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 90,
-    
+
 
     },
     {
@@ -342,7 +342,7 @@ const WhiteCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 130,
-    
+
     },
     {
         name: "Ballista",
@@ -353,7 +353,6 @@ const WhiteCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 1,
@@ -377,7 +376,6 @@ const WhiteCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -400,7 +398,6 @@ const WhiteCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-    
 
 
         squadSize: 2,
@@ -424,7 +421,7 @@ const WhiteCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 180,
-    
+
 
     },
     {
@@ -480,7 +477,6 @@ const WhiteCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 250,
-    
 
 
         squadSize: 1,
@@ -504,7 +500,6 @@ const WhiteCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -528,7 +523,6 @@ const WhiteCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 250,
-    
 
 
         squadSize: 1,
@@ -552,7 +546,7 @@ const WhiteCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 280,
-    
+
 
     }
 ];
@@ -567,7 +561,7 @@ const BlackCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
+
 
         squadSize: 1,
         healthPerUnit: 100,
@@ -590,7 +584,7 @@ const BlackCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
+
 
     },
     {
@@ -602,7 +596,7 @@ const BlackCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
+
 
     },
     {
@@ -614,7 +608,6 @@ const BlackCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 1,
@@ -638,7 +631,6 @@ const BlackCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 2,
@@ -662,7 +654,6 @@ const BlackCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 2,
@@ -686,7 +677,6 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -710,7 +700,7 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 80,
-    
+
 
     },
     {
@@ -722,7 +712,6 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 2,
@@ -746,7 +735,7 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 130,
-    
+
 
     },
     {
@@ -758,7 +747,7 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 100,
-    
+
 
     },
     {
@@ -770,7 +759,7 @@ const BlackCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 160,
-    
+
 
     },
     {
@@ -782,7 +771,6 @@ const BlackCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-    
 
 
         squadSize: 1,
@@ -806,7 +794,6 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -830,7 +817,6 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -876,7 +862,6 @@ const BlackCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-    
 
 
         squadSize: 1,
@@ -922,7 +907,7 @@ const BlackCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 140,
-    
+
 
     },
 ];
@@ -937,7 +922,6 @@ const GreenCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 2,
@@ -961,7 +945,7 @@ const GreenCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 80,
-    
+
 
     },
     {
@@ -973,7 +957,7 @@ const GreenCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 70,
-    
+
 
     },
     {
@@ -985,7 +969,6 @@ const GreenCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 1,
@@ -1009,7 +992,6 @@ const GreenCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 1,
@@ -1033,7 +1015,6 @@ const GreenCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 1,
@@ -1057,7 +1038,6 @@ const GreenCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 1,
@@ -1081,7 +1061,6 @@ const GreenCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -1105,7 +1084,6 @@ const GreenCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -1129,7 +1107,7 @@ const GreenCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 160,
-    
+
 
     },
     {
@@ -1141,7 +1119,6 @@ const GreenCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -1165,7 +1142,6 @@ const GreenCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -1189,7 +1165,6 @@ const GreenCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-    
 
 
         squadSize: 1,
@@ -1213,7 +1188,7 @@ const GreenCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 25,
         manaCost: 40,
-    
+
 
     },
     {
@@ -1225,7 +1200,7 @@ const GreenCards: Array<ICard> = [
         charges: 1,
         chargeCooldown: 125,
         manaCost: 200,
-        abilities : ["Legendary"]
+        abilities: ["Legendary"]
     },
     {
         name: "Evolve: Oracle",
@@ -1236,7 +1211,7 @@ const GreenCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 37.5,
         manaCost: 130,
-    
+
 
     },
     {
@@ -1270,7 +1245,6 @@ const GreenCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-    
 
 
         squadSize: 1,
@@ -1297,7 +1271,6 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 1,
@@ -1321,7 +1294,7 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 80,
-    
+
 
     },
     {
@@ -1333,7 +1306,7 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 80,
-    
+
 
     },
     {
@@ -1345,7 +1318,6 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 1,
@@ -1369,7 +1341,6 @@ const BlueCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -1393,7 +1364,6 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 4,
@@ -1417,7 +1387,7 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 40,
-    
+
 
     },
     {
@@ -1429,7 +1399,6 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 1,
@@ -1475,7 +1444,7 @@ const BlueCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 80,
-    
+
 
     },
     {
@@ -1487,7 +1456,6 @@ const BlueCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 2,
@@ -1511,7 +1479,6 @@ const BlueCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -1535,7 +1502,6 @@ const BlueCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -1559,7 +1525,7 @@ const BlueCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 230,
-    
+
 
     },
 
@@ -1572,7 +1538,6 @@ const BlueCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -1596,7 +1561,7 @@ const BlueCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 37.5,
         manaCost: 130,
-    
+
 
     },
     {
@@ -1630,7 +1595,6 @@ const BlueCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-    
 
 
         squadSize: 1,
@@ -1654,7 +1618,6 @@ const BlueCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-    
 
 
         squadSize: 3,
@@ -1678,7 +1641,7 @@ const BlueCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 210,
-    
+
 
     }
 ];
@@ -1693,7 +1656,6 @@ const CrystalCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 4,
@@ -1717,7 +1679,7 @@ const CrystalCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 400,
-    
+
         abilities: ["Divine"]
     },
     {
@@ -1729,7 +1691,7 @@ const CrystalCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 80,
-    
+
 
     },
     {
@@ -1741,7 +1703,7 @@ const CrystalCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 100,
-    
+
 
     },
     {
@@ -1753,7 +1715,6 @@ const CrystalCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 2,
@@ -1777,7 +1738,6 @@ const CrystalCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 1,
@@ -1801,7 +1761,6 @@ const CrystalCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -1825,7 +1784,6 @@ const CrystalCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 2,
@@ -1849,7 +1807,6 @@ const CrystalCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -1873,7 +1830,6 @@ const CrystalCards: Array<ICard> = [
         charges: 4,
         chargeCooldown: 25,
         manaCost: 100,
-    
 
 
         squadSize: 1,
@@ -1897,7 +1853,6 @@ const CrystalCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 150,
-    
 
 
         squadSize: 1,
@@ -1921,7 +1876,7 @@ const CrystalCards: Array<ICard> = [
         charges: 3,
         chargeCooldown: 37.5,
         manaCost: 120,
-    
+
 
     },
     {
@@ -1933,7 +1888,6 @@ const CrystalCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-    
 
 
         squadSize: 1,
@@ -1957,7 +1911,7 @@ const CrystalCards: Array<ICard> = [
         charges: 1,
         chargeCooldown: 125,
         manaCost: 300,
-        abilities : ["Legendary"]
+        abilities: ["Legendary"]
 
     },
     {
@@ -1969,7 +1923,6 @@ const CrystalCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-    
 
 
         squadSize: 1,
@@ -2015,7 +1968,6 @@ const CrystalCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-    
 
 
         squadSize: 1,
@@ -2039,7 +1991,6 @@ const CrystalCards: Array<ICard> = [
         charges: 2,
         chargeCooldown: 50,
         manaCost: 200,
-    
 
 
         squadSize: 1,

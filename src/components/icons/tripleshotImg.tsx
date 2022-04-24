@@ -1,7 +1,7 @@
 import {SvgIcon} from "@mui/material";
 import css from "./icon.module.scss";
 
-export function DivergenceIcon() {
+export function TripleshotImg() {
     return <span title="Tripleshot" className={css.container}>
         <SvgIcon color="success" width={512} height={512} viewBox="0 0 512 512" fontSize={"small"}>
             <path

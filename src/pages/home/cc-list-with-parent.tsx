@@ -1,4 +1,4 @@
-import {Collapse, List, ListItemButton, ListItemText} from "@mui/material";
+import {Collapse, ListItemButton, ListItemText} from "@mui/material";
 import {ExpandLess, ExpandMore} from "@mui/icons-material";
 import * as React from "react";
 
