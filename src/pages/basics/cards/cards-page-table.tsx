@@ -15,7 +15,7 @@ import {CardImg} from "../../../components/img-wrappers/card-img";
 import {FactionImg} from "../../../components/img-wrappers/faction-img";
 import {ArmorImg} from "../../../components/img-wrappers/armor-img";
 import {AttackTypeImg} from "../../../components/img-wrappers/attack-type-img";
-import {ABILITIES_CONFIG} from "./abilities-config";
+import {ABILITIES_TO_ICON_MAPPING} from "./abilities-to-icon-mapping";
 
 
 export function CardsPageTable() {
@@ -153,7 +153,7 @@ export function CardsPageTable() {
                             Cell: ({value = []}: CellProps<Array<ICard>>) => {
                                 const elements = value.map((value: TAbilities): { type: string, element: ReactElement } => {
 
-                                    const mappedElement = ABILITIES_CONFIG.get(value);
+                                    const mappedElement = ABILITIES_TO_ICON_MAPPING.get(value);
 
                                     if (typeof mappedElement !== "undefined") {
                                         return {

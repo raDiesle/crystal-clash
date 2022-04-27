@@ -1,5 +1,5 @@
 import {Autocomplete, Box, Checkbox, TextField, Typography} from "@mui/material";
-import {ABILITIES_CONFIG} from "../abilities-config";
+import {ABILITIES_TO_ICON_MAPPING} from "../abilities-to-icon-mapping";
 import {ReactElement} from "react";
 import CheckBoxOutlineBlankIcon from '@mui/icons-material/CheckBoxOutlineBlank';
 import CheckBoxIcon from '@mui/icons-material/CheckBox';
@@ -11,7 +11,7 @@ export interface IAbilitiesOption {
     image: ReactElement;
 }
 
-const abilitiesOptions: readonly IAbilitiesOption[] = Array.from(ABILITIES_CONFIG).map(([key, value]) => ({
+const abilitiesOptions: readonly IAbilitiesOption[] = Array.from(ABILITIES_TO_ICON_MAPPING).map(([key, value]) => ({
     code: key,
     label: key,
     image: value

@@ -5,11 +5,6 @@ export const CARD_DESCRIPTIONS = [
         "entext": "Refills energy of target ally. The amount depends on the targets stage.\\n  Stage I - %(energy_amount_stage_1_percentage)\\n  Stage II - %(energy_amount_stage_2_percentage)\\n  Stage III - %(energy_amount_stage_3_percentage)\\n  Legendary - %(energy_amount_legendary_percentage)"
     },
     {
-        "key": "Test",
-        "propspercentage": "%(myTest),%(another one)",
-        "entext": "%(myTest)  and %(another one)"
-    },
-    {
         "key": "cataclysm",
         "propsname": "§unitability_name_epic",
         "entext": "§unitability_name_epic. <span class=\"annihilated\">Annihilates</span> all units and buildings (except base buildings) in the target area. Can only be cast within the Nexus summoning zone."

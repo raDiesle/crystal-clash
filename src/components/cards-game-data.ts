@@ -1,3 +1,5 @@
+import {CARD_ABILITIES_NAME_KEY_MAP} from "./card-abilities-data";
+
 interface Map<K, V> {
     set<SK extends K>(key: SK, value: string): TKMap<K, V, SK>;
 }
@@ -91,17 +93,17 @@ export type TAbilities =
     | "Deathcry: Blast"
     | "Apex Predator: Frozen"
     | "Frostnova"
-    | "Soulenhancer"
+    | "Soul Enhancer"
     |
     "Ritual Summon"
     | "Absorb"
-    | "Status Adaption"
+    | "Status Adaptation"
     | "Status Reflector"
     | "Voidhunter"
     | "Void Rite"
     | "Unstable Negation"
     | "Invoke: Void"
-    | "Invoke: Ice Prison"
+    | "Invoke: Icy Prison"
     | "Icy Breath"
     | "Monarch of Frost"
     | "Soul Vortex"
@@ -116,7 +118,7 @@ export type TAbilities =
     | "Enchantment: Strength"
     | "Vivid Bounce"
     | "Summon Saplings"
-    | "Doot Root"
+    | "Dood Root"
     | "Hail of Stones"
     |
     "Deathcry: Spore Field"
@@ -147,7 +149,7 @@ export type TAbilities =
     |
     "Induction: Energy"
     | "Missile Launcher"
-    | "Spacial Echo"
+    | "Spatial Echo"
     | "Ammo Dispenser"
     | "Invoke: Orbital Drop"
     | "Heavily Armed"
@@ -178,8 +180,7 @@ interface Unit {
     attackType: EAttackType,
     attackRange: number,
     collisionRadius: number,
-    abilities: Array<TAbilities>
-
+    abilities: TAbilities[]
 }
 
 export interface ICard extends Partial<Unit> {
@@ -806,7 +807,7 @@ const BlackCards: Array<ICard> = [
         attackType: EAttackType.Melee,
         attackRange: 1,
         collisionRadius: 0.6,
-        abilities: ["Dismantlement", "Soulgatherer", "Soulenhancer", "Ritual Summon"],
+        abilities: ["Dismantlement", "Soulgatherer", "Soul Enhancer", "Ritual Summon"],
     },
     {
         name: "Mirror Slime",
@@ -829,7 +830,7 @@ const BlackCards: Array<ICard> = [
         attackType: EAttackType.Melee,
         attackRange: 1,
         collisionRadius: 0.7,
-        abilities: ["Absorb", "Status Adaption", "Status Reflector"],
+        abilities: ["Absorb", "Status Adaptation", "Status Reflector"],
     },
     {
         name: "Tyrus, Lord of Souls",
@@ -896,7 +897,7 @@ const BlackCards: Array<ICard> = [
         attackType: EAttackType.Ranged,
         attackRange: 7,
         collisionRadius: 1.2,
-        abilities: ["Legendary", "Invoke: Ice Prison", "Flying", "Icy Breath", "Monarch of Frost"],
+        abilities: ["Legendary", "Invoke: Icy Prison", "Flying", "Icy Breath", "Monarch of Frost"],
     },
     {
         name: "Void Miasma",
@@ -1096,7 +1097,7 @@ const GreenCards: Array<ICard> = [
         attackType: EAttackType.Ranged,
         attackRange: 3,
         collisionRadius: 0.85,
-        abilities: ["Energy Infusion", "Flat Firing Angle", "Doot Root"],
+        abilities: ["Energy Infusion", "Flat Firing Angle", "Dood Root"],
     },
     {
         name: "Pulse of the Forest",
@@ -1514,7 +1515,7 @@ const BlueCards: Array<ICard> = [
         attackType: EAttackType.Melee,
         attackRange: 1,
         collisionRadius: 0.5,
-        abilities: ["Flying", "Pacifist", "Spacial Echo"],
+        abilities: ["Flying", "Pacifist", "Spatial Echo"],
     },
     {
         name: "Factory Reset",
@@ -1530,7 +1531,7 @@ const BlueCards: Array<ICard> = [
     },
 
     {
-        name: "AmmoFactory",
+        name: "Ammo Factory",
         image: "BlueAmmoFactory",
         faction: ECardFaction.Blue,
         type: "Building",
@@ -2007,20 +2008,27 @@ const CrystalCards: Array<ICard> = [
     }
 ];
 
+
+
+
 export const Cards: Array<ICard> = [
     ...WhiteCards,
     ...BlackCards,
     ...GreenCards,
     ...BlueCards,
     ...CrystalCards
-].map(card => ({
-    ...card,
-    id: card.name,
+].map(card => {
+    return ({
+        ...card,
+        id: card.name,
 // @ts-ignore
-    totalDamage: (card.damagePerHit * card.squadSize),
-    // @ts-ignore
-    totalHealth: (card.healthPerUnit * card.squadSize),
-    // @ts-ignore
-    totalDps: (card.damagePerHit * card.squadSize) / card.attackSpeed
-}));
+        totalDamage: (card.damagePerHit * card.squadSize),
+        // @ts-ignore
+        totalHealth: (card.healthPerUnit * card.squadSize),
+        // @ts-ignore
+        totalDps: (card.damagePerHit * card.squadSize) / card.attackSpeed
+    })
+});
+
+
 

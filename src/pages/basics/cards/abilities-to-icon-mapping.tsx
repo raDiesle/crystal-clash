@@ -48,7 +48,7 @@ import {FrostnovaIcon} from "../../../components/icons/frostnova-icon";
 import {SoulenhancerIcon} from "../../../components/icons/soulenhancer-icon";
 import {RitualSummonIcon} from "../../../components/icons/ritual-summon-icon";
 import {AbsorbIcon} from "../../../components/icons/absorb-icon";
-import {StatusAdaptionIcon} from "../../../components/icons/status-adaption-icon";
+import {StatusAdaptationIcon} from "../../../components/icons/status-adaptation-icon";
 import {StatusReflectorIcon} from "../../../components/icons/status-reflector-icon";
 import {VoidhunterIcon} from "../../../components/icons/voidhunter-icon";
 import {VoidRiteIcon} from "../../../components/icons/void-rite-icon";
@@ -66,7 +66,7 @@ import {PacifistIcon} from "../../../components/icons/pacifist-icon";
 import {EnchancementStrengthIcon} from "../../../components/icons/enchancement-strength-icon";
 import {VividBounceIcon} from "../../../components/icons/vivid-bounce-icon";
 import {SummonSaplingsIcon} from "../../../components/icons/summon-saplings-icon";
-import {DootRootIcon} from "../../../components/icons/doot-root-icon";
+import {DoodRootIcon} from "../../../components/icons/dood-root-icon";
 import {HailOfStonesIcon} from "../../../components/icons/hail-of-stones-icon";
 import {DeathcrySporefieldIcon} from "../../../components/icons/deathcry-sporefield-icon";
 import {SaplingAbsorptionIcon} from "../../../components/icons/sapling-absorption-icon";
@@ -92,7 +92,7 @@ import {ShieldOverloadIcon} from "../../../components/icons/shield-overload-icon
 import {WarpStrikeIcon} from "../../../components/icons/warp-strike-icon";
 import {InductionEnergyIcon} from "../../../components/icons/induction-energy-icon";
 import {MissileLauncherIcon} from "../../../components/icons/missile-launcher-icon";
-import {SpacialEchoIcon} from "../../../components/icons/spacial-echo-icon";
+import {SpatialEchoIcon} from "../../../components/icons/spatial-echo-icon";
 import {AmmoDispenserIcon} from "../../../components/icons/ammo-dispenser-icon";
 import {InvokeOrbitalDropIcon} from "../../../components/icons/invoke-orbital-drop-icon";
 import {HeavilyArmedIcon} from "../../../components/icons/heavily-armed-icon";
@@ -110,7 +110,7 @@ import {InvokeAsteroidIcon} from "../../../components/icons/invoke-asteroid-icon
 import {SiegeIcon} from "../../../components/icons/siege-icon";
 import {CleaveIcon} from "../../../components/icons/cleave-icon";
 
-export const ABILITIES_CONFIG = new Map<TAbilities, ReactElement>([
+export const ABILITIES_TO_ICON_MAPPING = new Map<TAbilities, ReactElement>([
     ["Siege", <SiegeIcon/>],
     ["Legendary", <LegendaryImg/>],
     ["Divine", <DivineImg/>],
@@ -157,16 +157,16 @@ export const ABILITIES_CONFIG = new Map<TAbilities, ReactElement>([
     ["Deathcry: Blast", <DeathcryBlastIcon/>],
     ["Apex Predator: Frozen", <ApexpredatorFrozenIcon/>],
     ["Frostnova", <FrostnovaIcon/>],
-    ["Soulenhancer", <SoulenhancerIcon/>],
+    ["Soul Enhancer", <SoulenhancerIcon/>],
     ["Ritual Summon", <RitualSummonIcon/>],
     ["Absorb", <AbsorbIcon/>],
-    ["Status Adaption", <StatusAdaptionIcon/>],
+    ["Status Adaptation", <StatusAdaptationIcon/>],
     ["Status Reflector", <StatusReflectorIcon/>],
     ["Voidhunter", <VoidhunterIcon/>],
     ["Void Rite", <VoidRiteIcon/>],
     ["Unstable Negation", <UnstableNegationIcon/>],
     ["Invoke: Void", <InvokeVoidIcon/>],
-    ["Invoke: Ice Prison", <InvokeIceprisonIcon/>],
+    ["Invoke: Icy Prison", <InvokeIceprisonIcon/>],
     ["Icy Breath", <IcyBreathIcon/>],
     ["Monarch of Frost", <MonarchOfFrostIcon/>],
     ["Soul Vortex", <SoulVortexIcon/>],
@@ -178,7 +178,7 @@ export const ABILITIES_CONFIG = new Map<TAbilities, ReactElement>([
     ["Enchantment: Strength", <EnchancementStrengthIcon/>],
     ["Vivid Bounce", <VividBounceIcon/>],
     ["Summon Saplings", <SummonSaplingsIcon/>],
-    ["Doot Root", <DootRootIcon/>],
+    ["Dood Root", <DoodRootIcon/>],
     ["Hail of Stones", <HailOfStonesIcon/>],
     ["Deathcry: Spore Field", <DeathcrySporefieldIcon/>],
     ["Sapling Absorption", <SaplingAbsorptionIcon/>],
@@ -204,7 +204,7 @@ export const ABILITIES_CONFIG = new Map<TAbilities, ReactElement>([
     ["Warp Strike", <WarpStrikeIcon/>],
     ["Induction: Energy", <InductionEnergyIcon/>],
     ["Missile Launcher", <MissileLauncherIcon/>],
-    ["Spacial Echo", <SpacialEchoIcon/>],
+    ["Spatial Echo", <SpatialEchoIcon/>],
     ["Ammo Dispenser", <AmmoDispenserIcon/>],
     ["Invoke: Orbital Drop", <InvokeOrbitalDropIcon/>],
     ["Heavily Armed", <HeavilyArmedIcon/>],
