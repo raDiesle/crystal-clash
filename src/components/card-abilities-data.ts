@@ -1,6 +1,6 @@
 import {TAbilities} from "./cards-game-data";
 
-export const CARD_ABILITIES : ({en: string, key: string})[] = [
+export const CARD_ABILITIES: ({ en: string, key: string })[] = [
     {
         "key": "annihilated",
         "en": "<span class=\"keyword annihilated\">Annihilated</span> units are removed from the game instantly and don't trigger any effects."
@@ -103,19 +103,19 @@ export interface IUnitAbilityHint {
     en: string;
 }
 
-export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
+export const UNIT_ABILITY_HINT: IUnitAbilityHint[] = [
     {
         "key": "activearmor",
         "propspercentage": {
-            damage_amount : 10,
-            self_damage_amount : 5
+            damage_amount: 10,
+            self_damage_amount: 5
         },
         "en": "Whenever this unit gets damaged it shoots a projectile at a random enemy dealing %(damage_amount) damage. If a projectile has been shot this unit receives additionally %(self_damage_amount) damage."
     },
     {
         "key": "ammo",
         "propspercentage": {
-            energy_cost : 1
+            energy_cost: 1
         },
         "en": "Consumes %(energy_cost) energy per attack."
     },
@@ -128,7 +128,7 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
     },
     {
         "key": "ammo2",
-        "propspercentage":  {
+        "propspercentage": {
             energy_cost: 0
         },
         "en": "Consumes %(energy_cost) energy per attack."
@@ -136,22 +136,22 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
     {
         "key": "ammotransfer",
         "propspercentage": {
-            energy_amount : 0,
-            cooldown : 0
+            energy_amount: 0,
+            cooldown: 0
         },
         "en": "Transfers %(energy_amount) energy to another nearby allied target. (%(cooldown) seconds cooldown)"
     },
     {
         "key": "ancientwisdom",
         "propspercentage": {
-            health_bonus :0
-        } ,
+            health_bonus: 0
+        },
         "en": "Whenever this unit gains an <span class=\"keyword enchantment\">enchantment</span>, its health is permanently increased by %(health_bonus)."
     },
     {
         "key": "antiair",
         "propspercentage": {
-            primary_damage_amount_percentage : 0
+            primary_damage_amount_percentage: 0
         },
         "en": "Deals %(primary_damage_amount_percentage) damage to flying or monumental targets."
     },
@@ -163,11 +163,11 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
         "key": "barkboost",
         "propspercentage": {
             health_amount: 0,
-            absorb_cap :0,
-            cooldown : 0
+            absorb_cap: 0,
+            cooldown: 0
         },
         "propsname": {
-            card_name_sapling_plural : "",
+            card_name_sapling_plural: "",
         },
         "en": "Absorbs nearby <span class=\"keyword sapling\">§card_name_sapling_plural</span>. Absorbed §card_name_sapling_plural increase this unit´s health by %(health_amount). Can absorb up to %(absorb_cap) <span class=\"keyword sapling\">§card_name_sapling_plural</span>. (%(cooldown) seconds cooldown)                    "
     },
@@ -178,7 +178,7 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
     {
         "key": "breachingcharge",
         "propspercentage": {
-            damage_amount : 0,
+            damage_amount: 0,
             damage_amount_per_energy: 0
         },
         "en": "If this unit gets near to an enemy building it explodes dealing %(damage_amount) (plus %(damage_amount_per_energy) for each carried energy) splash siege damage around it."
@@ -206,7 +206,7 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
     {
         "key": "crystalspeed",
         "propspercentage": {
-            attack_speed_bonus_percentage : 0,
+            attack_speed_bonus_percentage: 0,
             cooldown: 0
         },
         "en": "Increases the attack speed of nearby allied units by %(attack_speed_bonus_percentage). (%(cooldown) seconds cooldown) When the ally moves out of range or this unit is incapacitated the effect ends."
@@ -214,7 +214,7 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
     {
         "key": "dampingshield",
         "propspercentage": {
-            damage_reduction_percentage : 0
+            damage_reduction_percentage: 0
         },
         "en": "This unit gets only %(damage_reduction_percentage) damage from splash damage sources."
     },
@@ -226,7 +226,7 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
         "key": "deathrattleblast",
         "propspercentage": {
             energy_cost: 0,
-            damage_amount : 0,
+            damage_amount: 0,
         },
         "en": "Whenever this unit dies, it launches a projectile for each %(energy_cost) energy it has at a random nearby enemy building dealing %(damage_amount) siege damage."
     },
@@ -249,7 +249,7 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
     {
         "key": "debutasteroid",
         "propspercentage": {
-            damage_amount : 0
+            damage_amount: 0
         },
         "en": "When this unit enters the battlefield, it deals %(damage_amount) splash damage to all enemies in the impact zone. "
     },
@@ -272,14 +272,14 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
     {
         "key": "debutrupture",
         "propspercentage": {
-            damage_amount : 0,
+            damage_amount: 0,
         },
         "en": "Enters the battlefield moving underground, untargetable for the enemy. If an enemy unit comes into range, this unit breaks free dealing %(damage_amount) splash damage to nearby enemy units."
     },
     {
         "key": "debutsoulvortex",
         "propspercentage": {
-            energy_amount : 0
+            energy_amount: 0
         },
         "en": "When this unit enters the battlefield, all nearby units are <span class=\"keyword banished\">banished</span>. Tyrus generates %(energy_amount) energy per affected unit."
     },
@@ -370,7 +370,7 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
     {
         "key": "enchantmentstrength",
         "propspercentage": {
-            energy_cost : 0,
+            energy_cost: 0,
             health_bonus: 0,
             damage_bonus: 0,
             damage_bonus_surefire: 0
@@ -393,8 +393,8 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
     {
         "key": "energyregeneration",
         "propspercentage": {
-            energy_amount : 42,
-            cooldown : 6
+            energy_amount: 42,
+            cooldown: 6
         },
         "en": "Gains %(energy_amount) energy. (%(cooldown) seconds cooldown)"
     },
@@ -512,7 +512,7 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
     {
         "key": "inductionrepair",
         "propspercentage": {
-            heal_amount_percentage :0
+            heal_amount_percentage: 0
         },
         "en": "Whenever an allied spell is cast nearby this unit heals %(heal_amount_percentage) of its maximum health."
     },
@@ -560,7 +560,7 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
     {
         "key": "lightovercharge",
         "propspercentage": {
-            target_count : 0,
+            target_count: 0,
             heal_amount: 0
         },
         "en": "The projectile of this unit heals up to %(target_count) allied units it passes over for %(heal_amount) health."
@@ -607,15 +607,15 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
     {
         "key": "missilelauncher",
         "propspercentage": {
-            energy_cost:0,
-            cooldown:0
+            energy_cost: 0,
+            cooldown: 0
         },
         "en": "Consumes %(energy_cost) energy to launch a <span class=\"keyword missile\">missile</span> at a random enemy target. (%(cooldown) seconds cooldown)"
     },
     {
         "key": "monarchoffrost",
         "propspercentage": {
-            damage_amount :0,
+            damage_amount: 0,
             heal_amount_percentage: 0
         },
         "en": "Continuously drains %(damage_amount) health per second from nearby <span class=\"keyword frozen\">frozen</span> enemies, regenerating itself for %(heal_amount_percentage) of the amount."
@@ -707,7 +707,7 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
             self_damage_amount: 0
         },
         "propsname": {
-            surefire : "",
+            surefire: "",
             card_name_shielddrone: ""
         },
         "en": "Nearby allied units reflect ranged attacks (except from base buildings and units with §surefire). After being hit by such an attack it reflects back to the attacker dealing %(reflected_damage_percentage) of its damage. Each reflection deals %(self_damage_amount) damage to §card_name_shielddrone."
@@ -876,11 +876,11 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
     {
         "key": "splinter",
         "propspercentage": {
-            damage_threshold:0,
+            damage_threshold: 0,
             cooldown: 0
         },
         "propsname": {
-            card_name_smallmeleegolem : ""
+            card_name_smallmeleegolem: ""
         },
         "en": "Whenever this unit receives %(damage_threshold) damage by a single attack a <span class=\"cardname\">§card_name_smallmeleegolem</span> is spawned. (%(cooldown) seconds cooldown)"
     },
@@ -927,15 +927,15 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
         "key": "supreme",
         "propspercentage": {
             module_gain: 0,
-            module_cap:0,
-            health_amount:0,
+            module_cap: 0,
+            health_amount: 0,
             armor_level_unarmored: 0,
-            armor_level_light:0,
-            armor_level_medium:0,
-            armor_level_heavy:0
+            armor_level_light: 0,
+            armor_level_medium: 0,
+            armor_level_heavy: 0
         },
         "propsname": {
-            armortype_atunarmored : "",
+            armortype_atunarmored: "",
             armortype_atlight: "",
             armortype_atmedium: "",
             armortype_atheavy: ""
@@ -949,9 +949,9 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
     {
         "key": "teleportstrike",
         "propspercentage": {
-            energy_cost : 0,
+            energy_cost: 0,
             damage_amount: 0,
-            cooldown:0
+            cooldown: 0
         },
         "en": "Consumes %(energy_cost) energy to teleport to a nearby random enemy target dealing %(damage_amount) damage to it.  (%(cooldown) seconds cooldown)"
     },
@@ -991,16 +991,16 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
         "key": "wavegun",
         "propspercentage": {
             energy_cost: 0,
-            health_threshold:0,
-            damage_amount:0
+            health_threshold: 0,
+            damage_amount: 0
         },
         "en": "Consumes %(energy_cost) energy to fire a massive shot at an enemy target with at least %(health_threshold) health in a huge range dealing %(damage_amount) damage and <span class=\"keyword stunned\">stunning</span> the target."
     },
     {
         "key": "wipe",
         "propspercentage": {
-            health_threshold:0,
-            damage_reduction_percentage:0
+            health_threshold: 0,
+            damage_reduction_percentage: 0
         },
         "en": "Whenever this unit attacks a target with less than %(health_threshold) maximum health, it attacks all units in front of it instead (reduced damage by %(damage_reduction_percentage))."
     },
@@ -1008,7 +1008,7 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [
 ];
 
 
-export const CARD_ABILITIES_NAME_KEY_MAP : ({key: string, en: TAbilities})[] |any[] = [
+export const CARD_ABILITIES_NAME_KEY_MAP: ({ key: string, en: TAbilities })[] | any[] = [
     {
         "key": "activearmor",
         "en": "Active Armor"

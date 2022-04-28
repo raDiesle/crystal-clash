@@ -1,5 +1,3 @@
-import {CARD_ABILITIES_NAME_KEY_MAP} from "./card-abilities-data";
-
 interface Map<K, V> {
     set<SK extends K>(key: SK, value: string): TKMap<K, V, SK>;
 }
@@ -2007,8 +2005,6 @@ const CrystalCards: Array<ICard> = [
         abilities: ["Flying", "Tripleshot"],
     }
 ];
-
-
 
 
 export const Cards: Array<ICard> = [

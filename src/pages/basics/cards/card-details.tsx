@@ -6,7 +6,6 @@ import {Cards, TAbilities} from "../../../components/cards-game-data";
 import {imgPathCardFn} from "../../../components/img-wrappers/img-utils";
 import {CARD_ABILITIES, CARD_ABILITIES_NAME_KEY_MAP, UNIT_ABILITY_HINT} from "../../../components/card-abilities-data";
 import reactStringReplace from "react-string-replace";
-import {CARD_DESCRIPTIONS} from "../../../components/cards-description-data";
 import template from "lodash.template";
 import {assert} from "../../../components/typescript-utils";
 
@@ -16,28 +15,28 @@ interface IAbilitiesKeyObject {
     enName: TAbilities;
     description: string;
     propspercentage?: any;
-    propsname? : any;
+    propsname?: any;
 
 }
 
-const getAbilitiesKeyObject = (abilities : TAbilities[]) : IAbilitiesKeyObject[] => {
-        return abilities.map(abilityName => {
-            const {key : matchedKey} = CARD_ABILITIES_NAME_KEY_MAP.find(abilityToMap => abilityToMap.en === abilityName);
+const getAbilitiesKeyObject = (abilities: TAbilities[]): IAbilitiesKeyObject[] => {
+    return abilities.map(abilityName => {
+        const {key: matchedKey} = CARD_ABILITIES_NAME_KEY_MAP.find(abilityToMap => abilityToMap.en === abilityName);
 
-            const matchedAbilityHint = UNIT_ABILITY_HINT.find(({key}) => key === matchedKey);
-            assert(matchedAbilityHint);
-            const {en, propspercentage, propsname} = matchedAbilityHint;
-            return {
-                key : matchedKey,
-                enName : abilityName,
-                propspercentage,
-                propsname,
-                description: en
-            };
-        });
+        const matchedAbilityHint = UNIT_ABILITY_HINT.find(({key}) => key === matchedKey);
+        assert(matchedAbilityHint);
+        const {en, propspercentage, propsname} = matchedAbilityHint;
+        return {
+            key: matchedKey,
+            enName: abilityName,
+            propspercentage,
+            propsname,
+            description: en
+        };
+    });
 }
 
-const getCurrentCardData = (cardName : string) => Cards.find(({name}) => name === cardName);
+const getCurrentCardData = (cardName: string) => Cards.find(({name}) => name === cardName);
 
 
 const CARD_ABILITIES_PREPARED = CARD_ABILITIES.map(({key, en}) => {
@@ -51,17 +50,17 @@ const CARD_ABILITIES_PREPARED = CARD_ABILITIES.map(({key, en}) => {
     }
 });
 
-const getCompleteCardData = (cardName : string) => {
+const getCompleteCardData = (cardName: string) => {
     const cardData = getCurrentCardData(cardName);
     // @ts-ignore
-    const abilitiesKeyObject = getAbilitiesKeyObject(cardData.abilities );
+    const abilitiesKeyObject = getAbilitiesKeyObject(cardData.abilities);
 
 
     const abilitiesJsx = abilitiesKeyObject.map((abilitiesKeyObject: IAbilitiesKeyObject) => {
 
         const compile = template(abilitiesKeyObject.description, {interpolate: /%\(([a-z_]+?)\)/g})
         const compiledResult = compile(abilitiesKeyObject.propspercentage);
-debugger; // /{{([\s\S]+?)}}
+        debugger; // /{{([\s\S]+?)}}
 
         // @ts-ignore
         const matches = compiledResult.match(/keyword\s([a-z]*)/gi);
@@ -78,17 +77,19 @@ debugger; // /{{([\s\S]+?)}}
 
         const inferredCardAbilityJsx = matchesNormalized.map(cardAbilityKey => {
             /* @ts-ignore */
-            const mappedCardAbility: ({en: string, key: string, classKey: string}) = CARD_ABILITIES_PREPARED.find(({classKey}) => (classKey === cardAbilityKey));
+            const mappedCardAbility: ({ en: string, key: string, classKey: string }) = CARD_ABILITIES_PREPARED.find(({classKey}) => (classKey === cardAbilityKey));
             const theJsx = reactStringReplace(mappedCardAbility.en, /\<span.*?\>(.*?)\<\/span\>/ig, ((match, i) => {
                 return <span style={{color: "#c5717f", fontWeight: "bold"}}>{match}</span>;
             }));
             return <div>{theJsx}</div>;
         });
 
-        return <div><div style={{fontWeight: "bold", paddingTop: "10px"}}>- {abilitiesKeyObject.enName} -</div> <span>{descriptionJsx}</span>
-                <div style={{paddingTop: "30px"}}>
-                    {inferredCardAbilityJsx.map(jsx => jsx)}
-                </div>
+        return <div>
+            <div style={{fontWeight: "bold", paddingTop: "10px"}}>- {abilitiesKeyObject.enName} -</div>
+            <span>{descriptionJsx}</span>
+            <div style={{paddingTop: "30px"}}>
+                {inferredCardAbilityJsx.map(jsx => jsx)}
+            </div>
         </div>;
     });
 

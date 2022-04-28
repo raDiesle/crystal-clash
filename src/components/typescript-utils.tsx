@@ -1,1 +1,2 @@
-export function assert(value: unknown): asserts value {}
+export function assert(value: unknown): asserts value {
+}
