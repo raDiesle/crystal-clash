@@ -1,7 +1,12 @@
 export const CARD_DESCRIPTIONS = [
     {
         "key": "ammorefill",
-        "propspercentage": {energy_amount_stage_1_percentage: 0 ,energy_amount_stage_2_percentage: 0 ,energy_amount_stage_3_percentage: 0 ,energy_amount_legendary_percentage: 0},
+        "propspercentage": {
+            energy_amount_stage_1_percentage: 0,
+            energy_amount_stage_2_percentage: 0,
+            energy_amount_stage_3_percentage: 0,
+            energy_amount_legendary_percentage: 0
+        },
         "entext": "Refills energy of target ally. The amount depends on the targets stage.\\n  Stage I - %(energy_amount_stage_1_percentage)\\n  Stage II - %(energy_amount_stage_2_percentage)\\n  Stage III - %(energy_amount_stage_3_percentage)\\n  Legendary - %(energy_amount_legendary_percentage)"
     },
     {
@@ -13,17 +18,17 @@ export const CARD_DESCRIPTIONS = [
     },
     {
         "key": "earthquake",
-        "propspercentage": {wave_cooldown: 0 ,wave_count: 0 ,damage_amount: 0},
+        "propspercentage": {wave_cooldown: 0, wave_count: 0, damage_amount: 0},
         "entext": "Shakes the earth every %(wave_cooldown) seconds for %(wave_count) waves each dealing %(damage_amount) siege splash damage to all enemies in target area. All enemy units are <span class=\"stunned\">stunned</span> each wave."
     },
     {
         "key": "EchoesOfTheFuture",
-        "propspercentage": {duration: 0 },
+        "propspercentage": {duration: 0},
         "entext": "Doubles your income for the next %(duration) seconds. Afterwards you don't get any income for %(duration) seconds."
     },
     {
         "key": "energyrift",
-        "propspercentage": {damage_amount: 0 ,duration: 0},
+        "propspercentage": {damage_amount: 0, duration: 0},
         "entext": "Creates an energy rift over an allied building, which shoots at enemy targets dealing %(damage_amount) damage per hit. Lasts for %(duration) seconds or until the building is destroyed."
     },
     {
@@ -44,7 +49,7 @@ export const CARD_DESCRIPTIONS = [
         "key": "evolvethistle",
         "propspercentage": {target_count: 0},
         "propsname": {
-            card_name_sapling_plural : "",
+            card_name_sapling_plural: "",
         },
         "entext": "Evolves up to %(target_count) allied <span class=\"keyword sapling\">§card_name_sapling_plural</span> into Thistles."
     },
@@ -69,7 +74,7 @@ export const CARD_DESCRIPTIONS = [
     },
     {
         "key": "frostspear",
-        "propspercentage": {shard_count: 0 ,damage_amount: 0},
+        "propspercentage": {shard_count: 0, damage_amount: 0},
         "entext": "<span class=\"keyword frozen\">Freezes</span> target enemy (halved duration for base buildings). Afterwards it shoots %(shard_count) ice shards at random nearby enemies dealing %(damage_amount) damage each."
     },
     {
@@ -78,12 +83,12 @@ export const CARD_DESCRIPTIONS = [
     },
     {
         "key": "hailofarrows",
-        "propspercentage": {initial_wave_count: 0 ,damage_amount: 0},
+        "propspercentage": {initial_wave_count: 0, damage_amount: 0},
         "entext": "Fires %(initial_wave_count) waves of arrows each dealing %(damage_amount) damage to all enemies in target area. An additional wave of arrows is fired for each nearby Archer."
     },
     {
         "key": "healinggarden",
-        "propspercentage": {energy_amount: 0 ,energy_cooldown: 0 ,charge_amount: 0},
+        "propspercentage": {energy_amount: 0, energy_cooldown: 0, charge_amount: 0},
         "entext": "Creates a <span class=\"keyword domain\">domain</span>. Allies in the target area gain %(energy_amount) energy every %(energy_cooldown) seconds (does not stack). Allied units entering the <span class=\"keyword domain\">domain</span> receive <span class=\"keyword enchantment\">Enchantment</span>: Health (Has %(charge_amount) charges. <span class=\"keyword domain\">Domains</span> disappear when no charges are left)."
     },
     {
@@ -97,20 +102,26 @@ export const CARD_DESCRIPTIONS = [
     },
     {
         "key": "lightpulse",
-        "propspercentage": {target_count_stun: 0 ,target_count_blind: 0},
+        "propspercentage": {target_count_stun: 0, target_count_blind: 0},
         "entext": "<span class=\"keyword stunned\">Stuns</span> (small range, up to %(target_count_stun) targets) and <span class=\"keyword blinded\">blinds</span> (great range, up to %(target_count_blind) targets) enemy units in target area."
     },
     {
         "key": "ontheedge",
-        "propspercentage": {range_reduction: 0 ,charge_amount: 0},
+        "propspercentage": {range_reduction: 0, charge_amount: 0},
         "propsname": {
-            unitability_name_enchantmentgrievouswounds : "",
+            unitability_name_enchantmentgrievouswounds: "",
         },
         "entext": "Creates a <span class=\"keyword domain\">domain</span>. Enemies in the target area have their auto attack range reduced by %(range_reduction). Allied units entering the <span class=\"keyword domain\">domain</span> receive <span class=\"keyword enchantment\">§unitability_name_enchantmentgrievouswounds</span> (Has %(charge_amount) charges. <span class=\"keyword domain\">Domains</span> disappear when no charges are left)."
     },
     {
         "key": "orbitalstrike",
-        "propspercentage": {primary_damage_amount: 0 ,primary_damage_cooldown: 0 ,splash_damage_amount: 0 ,splash_damage_cooldown: 0 ,duration: 0},
+        "propspercentage": {
+            primary_damage_amount: 0,
+            primary_damage_cooldown: 0,
+            splash_damage_amount: 0,
+            splash_damage_cooldown: 0,
+            duration: 0
+        },
         "entext": "Target enemy (except base buildings) gets burned by an orbital laser dealing %(primary_damage_amount) damage every %(primary_damage_cooldown) seconds. While the laser is active, surrounding enemies are hit randomly by orbital bombardment dealing %(splash_damage_amount) splash damage every %(splash_damage_cooldown) seconds. The laser is active for %(duration) seconds or until the target dies."
     },
     {
@@ -129,17 +140,26 @@ export const CARD_DESCRIPTIONS = [
     },
     {
         "key": "relocate",
-        "propspercentage": {target_count: 0 ,cooldown: 0 ,heal_stage_1: 0 ,energy_stage_1: 0 ,heal_stage_2: 0 ,energy_stage_2: 0 ,heal_stage_3: 0 ,energy_stage_3: 0},
+        "propspercentage": {
+            target_count: 0,
+            cooldown: 0,
+            heal_stage_1: 0,
+            energy_stage_1: 0,
+            heal_stage_2: 0,
+            energy_stage_2: 0,
+            heal_stage_3: 0,
+            energy_stage_3: 0
+        },
         "entext": "Teleports up to %(target_count) allies to another target location. Recently teleported targets can't be teleported for %(cooldown) seconds. Buildings are prioritized, healed and replenished after reappearing based on their stage.\\n  Stage I - %(heal_stage_1) health and %(energy_stage_1) energy\\n  Stage II - %(heal_stage_2) health and %(energy_stage_2) energy\\n  Stage III - %(heal_stage_3) health and %(energy_stage_3) energy"
     },
     {
         "key": "ripoutsoul",
-        "propspercentage": {target_count: 0 ,damage_amount_percentage: 0},
+        "propspercentage": {target_count: 0, damage_amount_percentage: 0},
         "entext": "<span class=\"keyword banished\">Banishes</span> up to %(target_count) units in target area and deals damage equal %(damage_amount_percentage) of their maximum health."
     },
     {
         "key": "saplingcharge",
-        "propspercentage": {initial_sapling_amount: 0 ,wave_sapling_amount: 0 ,wave_count: 0},
+        "propspercentage": {initial_sapling_amount: 0, wave_sapling_amount: 0, wave_count: 0},
         "propsname": {
             card_name_sapling_plural: "",
         },
@@ -147,7 +167,7 @@ export const CARD_DESCRIPTIONS = [
     },
     {
         "key": "shatterice",
-        "propspercentage": {damage_amount: 0 ,damage_amount_buildings: 0},
+        "propspercentage": {damage_amount: 0, damage_amount_buildings: 0},
         "entext": "Deals %(damage_amount) damage to all <span class=\"keyword frozen\">frozen</span> enemies in target area (%(damage_amount_buildings) to Buildings)."
     },
     {
@@ -157,20 +177,20 @@ export const CARD_DESCRIPTIONS = [
     },
     {
         "key": "solarflare",
-        "propspercentage": {primary_heal_amount: 0 ,splash_heal_amount: 0 ,duration: 0},
+        "propspercentage": {primary_heal_amount: 0, splash_heal_amount: 0, duration: 0},
         "entext": "Heals target allied unit by %(primary_heal_amount) and creates an aura that heals other nearby units by %(splash_heal_amount) (%(duration) seconds duration). Can <span class=\"keyword overheal\">overheal</span>."
     },
     {
         "key": "StoneCircle",
-        "propspercentage": {damage_reduction_percentage: 0 ,charge_amount: 0},
+        "propspercentage": {damage_reduction_percentage: 0, charge_amount: 0},
         "propsname": {
-            unitability_name_enchantmentstonefist : "",
+            unitability_name_enchantmentstonefist: "",
         },
         "entext": "Creates a <span class=\"keyword domain\">domain</span>. Allies in the target area receive only %(damage_reduction_percentage) damage from spells and abilities. Allied melee units entering the <span class=\"keyword domain\">domain</span> receive <span class=\"keyword enchantment\">§unitability_name_enchantmentstonefist</span> (Has %(charge_amount) charges. <span class=\"keyword domain\">Domains</span> disappear when no charges are left)."
     },
     {
         "key": "surgeoflight",
-        "propspercentage": {heal_amount: 0 ,counter_gained_amount: 0 ,damage_amount: 0},
+        "propspercentage": {heal_amount: 0, counter_gained_amount: 0, damage_amount: 0},
         "entext": "If the target unit is an ally, it is healed for %(heal_amount) (can <span class=\"keyword overheal\">overheal</span>) and this spell gains %(counter_gained_amount) light counter.\\nIf the target unit is an enemy, it receives damage equal to the light counters times %(damage_amount) consuming all light counters."
     }
 ];
@@ -184,7 +204,7 @@ const CARD_Short_Descriptions = [
     {
         "key": "cataclysm",
         "propsname": {
-            unitability_name_epic : "",
+            unitability_name_epic: "",
         },
         "entext": "§unitability_name_epic. Annihilates all units and buildings in the target area."
     },
@@ -210,7 +230,7 @@ const CARD_Short_Descriptions = [
         "key": "evolveoracle",
         "propsname": {
             card_name_sapling: "",
-            card_name_oracle : ""
+            card_name_oracle: ""
         },
         "entext": "Evolves an allied §card_name_sapling into an §card_name_oracle. "
     },
@@ -316,7 +336,7 @@ const CARD_Short_Descriptions = [
     {
         "key": "StoneCircle",
         "propsname": {
-            unitability_name_enchantmentstonefist : "",
+            unitability_name_enchantmentstonefist: "",
         },
         "entext": "Creates a domain that lower spell and ability damage and gives allies §unitability_name_enchantmentstonefist."
     },
