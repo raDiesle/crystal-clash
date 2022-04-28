@@ -8,6 +8,7 @@ import {CARD_ABILITIES, UNIT_ABILITY_HINT} from "../../../components/card-abilit
 import reactStringReplace from "react-string-replace";
 import template from "lodash.template";
 import {assert} from "../../../components/typescript-utils";
+import React from "react";
 
 
 interface IAbilitiesKeyObject {
@@ -19,7 +20,7 @@ interface IAbilitiesKeyObject {
 
 }
 
-const getAbilitiesKeyObject = (abilities: TAbilities[]): IAbilitiesKeyObject[] => {
+const getAbilitiesKeyObject = (abilities: TAbilities[] = []): IAbilitiesKeyObject[] => {
     return abilities.map(abilityKeyEn => {
         const matchedAbilityHint = UNIT_ABILITY_HINT.find(({keyEn}) => keyEn === abilityKeyEn);
         assert(matchedAbilityHint);
@@ -53,7 +54,6 @@ const getCompleteCardData = (cardName: string) => {
     // @ts-ignore
     const abilitiesKeyObject = getAbilitiesKeyObject(cardData.abilities);
 
-
     const abilitiesJsx = abilitiesKeyObject.map((abilitiesKeyObject: IAbilitiesKeyObject) => {
 
         const compile = template(abilitiesKeyObject.description, {interpolate: /%\(([a-z_]+?)\)/g})
@@ -65,11 +65,10 @@ const getCompleteCardData = (cardName: string) => {
         const matchesNormalized = Array.isArray(matches) ? matches.map(match => match.replace("keyword ", "")) : []
 
         const descriptionJsxKeyword = reactStringReplace(compiledResult, /\<span.*?\>(.*?)\<\/span\>/ig, ((match, i) => {
-
-            return <span style={{color: "#c5717f", fontWeight: "bold"}}>{match}</span>;
+            return <span key={match} style={{color: "#c5717f", fontWeight: "bold"}}>{match}</span>;
         }));
-        const descriptionJsx = reactStringReplace(descriptionJsxKeyword, /(\\n)/ig, ((match, i) => {
-            return <br/>;
+        const descriptionJsx = reactStringReplace(descriptionJsxKeyword, /(\\n)/ig, ((match, pos, offset) => {
+            return <br key={`${abilitiesKeyObject.key}_br_${pos}_${offset}`}/>;
         }));
 
 
@@ -77,16 +76,16 @@ const getCompleteCardData = (cardName: string) => {
             /* @ts-ignore */
             const mappedCardAbility: ({ en: string, key: string, classKey: string }) = CARD_ABILITIES_PREPARED.find(({classKey}) => (classKey === cardAbilityKey));
             const theJsx = reactStringReplace(mappedCardAbility.en, /\<span.*?\>(.*?)\<\/span\>/ig, ((match, i) => {
-                return <span style={{color: "#c5717f", fontWeight: "bold"}}>{match}</span>;
+                return <span key={match} style={{color: "#c5717f", fontWeight: "bold"}}>{match}</span>;
             }));
-            return <div>{theJsx}</div>;
+            return <div key={cardAbilityKey}>{theJsx}</div>;
         });
 
-        return <div>
+        return <div key={abilitiesKeyObject.key}>
             <div style={{fontWeight: "bold", paddingTop: "10px"}}>- {abilitiesKeyObject.keyEn} -</div>
             <span>{descriptionJsx}</span>
             <div style={{paddingTop: "30px"}}>
-                {inferredCardAbilityJsx.map(jsx => jsx)}
+                {inferredCardAbilityJsx.map((jsx, pos) => <React.Fragment key={"ability" + pos }>{jsx}</React.Fragment>)}
             </div>
         </div>;
     });
@@ -115,7 +114,6 @@ export function CardDetails() {
             <Card>
                 <CardContent>
                     <img src={imgPathCardFn(image)} alt={image}/>
-
                     {getCurrentCardData.abilitiesJsx}
                 </CardContent>
 
