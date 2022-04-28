@@ -4,7 +4,7 @@ import {Editor} from "../../../editor/editor";
 import {useParams} from "react-router-dom";
 import {Cards, TAbilities} from "../../../components/cards-game-data";
 import {imgPathCardFn} from "../../../components/img-wrappers/img-utils";
-import {CARD_ABILITIES, CARD_ABILITIES_NAME_KEY_MAP, UNIT_ABILITY_HINT} from "../../../components/card-abilities-data";
+import {CARD_ABILITIES, UNIT_ABILITY_HINT} from "../../../components/card-abilities-data";
 import reactStringReplace from "react-string-replace";
 import template from "lodash.template";
 import {assert} from "../../../components/typescript-utils";
@@ -12,7 +12,7 @@ import {assert} from "../../../components/typescript-utils";
 
 interface IAbilitiesKeyObject {
     key: string;
-    enName: TAbilities;
+    keyEn: TAbilities;
     description: string;
     propspercentage?: any;
     propsname?: any;
@@ -20,15 +20,13 @@ interface IAbilitiesKeyObject {
 }
 
 const getAbilitiesKeyObject = (abilities: TAbilities[]): IAbilitiesKeyObject[] => {
-    return abilities.map(abilityName => {
-        const {key: matchedKey} = CARD_ABILITIES_NAME_KEY_MAP.find(abilityToMap => abilityToMap.en === abilityName);
-
-        const matchedAbilityHint = UNIT_ABILITY_HINT.find(({key}) => key === matchedKey);
+    return abilities.map(abilityKeyEn => {
+        const matchedAbilityHint = UNIT_ABILITY_HINT.find(({keyEn}) => keyEn === abilityKeyEn);
         assert(matchedAbilityHint);
-        const {en, propspercentage, propsname} = matchedAbilityHint;
+        const {key, en, propspercentage, propsname} = matchedAbilityHint;
         return {
-            key: matchedKey,
-            enName: abilityName,
+            key,
+            keyEn : abilityKeyEn,
             propspercentage,
             propsname,
             description: en
@@ -60,7 +58,7 @@ const getCompleteCardData = (cardName: string) => {
 
         const compile = template(abilitiesKeyObject.description, {interpolate: /%\(([a-z_]+?)\)/g})
         const compiledResult = compile(abilitiesKeyObject.propspercentage);
-        debugger; // /{{([\s\S]+?)}}
+        // /{{([\s\S]+?)}}
 
         // @ts-ignore
         const matches = compiledResult.match(/keyword\s([a-z]*)/gi);
@@ -85,7 +83,7 @@ const getCompleteCardData = (cardName: string) => {
         });
 
         return <div>
-            <div style={{fontWeight: "bold", paddingTop: "10px"}}>- {abilitiesKeyObject.enName} -</div>
+            <div style={{fontWeight: "bold", paddingTop: "10px"}}>- {abilitiesKeyObject.keyEn} -</div>
             <span>{descriptionJsx}</span>
             <div style={{paddingTop: "30px"}}>
                 {inferredCardAbilityJsx.map(jsx => jsx)}
