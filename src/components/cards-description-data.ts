@@ -1,13 +1,13 @@
 
 
-export interface ICardDescription {
-    key: string,
+export interface ICardDescriptionRaw {
+    key: string;
     propspercentage? : {[paramKey: string] : number};
     propsname? : {[paramKey: string] : string};
     en: string;
 }
 
-export const CARD_DESCRIPTIONS : ICardDescription[] = [
+export const CARD_DESCRIPTIONS : ICardDescriptionRaw[] = [
     {
         "key": "ammorefill",
         "propspercentage": {
@@ -204,7 +204,7 @@ export const CARD_DESCRIPTIONS : ICardDescription[] = [
     }
 ];
 
-export const CARD_Short_Descriptions : ICardDescription[] = [
+export const CARD_Short_Descriptions : ICardDescriptionRaw[] = [
 
     {
         "key": "ammorefill",

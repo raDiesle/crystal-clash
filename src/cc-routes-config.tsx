@@ -4,9 +4,6 @@ import {GameMenu} from "./pages/basics/game-menu/game-menu";
 import {HowToPlay} from "./pages/guides/how-to-play";
 import * as React from "react";
 import {GameplayHud} from "./pages/basics/gameplay-hud/gameplay-hud";
-import {GameModesPage} from "./pages/basics/game-menu/game-modes/game-modes-page";
-import {ShopPage} from "./pages/basics/game-menu/shop/shop-page";
-import {UserMenuPage} from "./pages/basics/game-menu/user-menu/user-menu-page";
 import {GettingStarted} from "./pages/guides/getting-started";
 import {HowToBuildDeck} from "./pages/guides/how-to-build-deck";
 import {SpendResources} from "./pages/guides/spend-resources";
@@ -23,7 +20,7 @@ import {CardDetails} from "./pages/basics/cards/card-details";
 import {TutorialVideos} from "./pages/community/tutorial-videos";
 import {Artgallery} from "./pages/community/artgallery";
 import {Meme} from "./pages/community/meme";
-import { Tierlist } from "./pages/community/tierlist";
+import {Tierlist} from "./pages/community/tierlist";
 
 export enum ROUTES {
     "/" = "/",

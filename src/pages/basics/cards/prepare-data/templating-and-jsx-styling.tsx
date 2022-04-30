@@ -1,21 +1,20 @@
 import reactStringReplace from "react-string-replace";
 import React from "react";
 import {TAbilities} from "../../../../components/cards-game-data";
-import {templateCompilePercentages, TtemplateParams} from "./templating";
+import {templateCompilePercentages, templateCompileTextNames, TtemplateParams} from "./templating";
 import {newLineToBrJsx} from "./jsx-styling";
-
-
 
 
 export interface IAbilitiesKeyObject {
     key: string;
-    keyEn?: TAbilities;
+    keyEn?: TAbilities | string;
     en: string;
     propspercentage?: { [key: string]: number };
     propsname?: { [key: string]: string };
 }
 
 export interface IAbilitiesKeyObjectStrict extends IAbilitiesKeyObject {
+    en: string;
     propspercentage: { [key: string]: number };
     propsname: { [key: string]: string };
 }
@@ -33,12 +32,14 @@ enum SPECIAL_STYLING_FLAGS {
     "#ENERGY_" = "#ENERGY_"
 }
 
-export const generateTemplatingAndJsxVisualTransformations = (abilitiesKeyObject : IAbilitiesKeyObjectStrict[]) => {
+export const generateTemplatingAndJsxVisualTransformations = (abilitiesKeyObject : IAbilitiesKeyObject[]) => {
 
-    return abilitiesKeyObject.map((abilitiesKeyObject: IAbilitiesKeyObjectStrict) => {
+    const abilitiesJsx = abilitiesKeyObject.map((abilitiesKeyObject: IAbilitiesKeyObject) => {
 
-        const propspercentageWithSymbol: TtemplateParams = Object.keys(abilitiesKeyObject.propspercentage).reduce((accumulator, key) => {
-            const currentValue = abilitiesKeyObject.propspercentage[key];
+        const {key: abilityKey, en, propspercentage = {}, propsname = {}, keyEn= "###"} = abilitiesKeyObject;
+
+        const propspercentageWithSymbol: TtemplateParams = Object.keys(propspercentage).reduce((accumulator, key) => {
+            const currentValue = propspercentage[key];
 
             const specialStylingFlagTransformationConfig: ITransformationConfig[] = [
                 {
@@ -65,9 +66,10 @@ export const generateTemplatingAndJsxVisualTransformations = (abilitiesKeyObject
             return {...accumulator, [key]: valueToProceed};
         }, {});
 
-        const compiledResult = templateCompilePercentages(abilitiesKeyObject.en, propspercentageWithSymbol);
+        const compiledResultPercentage = templateCompilePercentages(en, propspercentageWithSymbol);
+        const compiledResultPandName = templateCompileTextNames(compiledResultPercentage, propsname);
 
-        const specialStylingJsx = reactStringReplace(compiledResult, /(#[A-Z]+_[\d]+)/ig, ((match, i) => {
+        const specialStylingJsx = reactStringReplace(compiledResultPandName, /(#[A-Z]+_[\d]+)/ig, ((match, i) => {
             // @ts-ignore
             const matchedFlag = match.match(/#[A-Z]+_/ig)[0];
             const valueWithNoFlag = match.replace(/#[A-Z]+_/ig, "");
@@ -78,7 +80,7 @@ export const generateTemplatingAndJsxVisualTransformations = (abilitiesKeyObject
                     style={{color: "red", fontWeight: "bold"}}>{valueWithNoFlag}</span>,
                 [SPECIAL_STYLING_FLAGS["#ENERGY_"]]: <span
                     style={{color: "yellow", fontWeight: "bold"}}>{valueWithNoFlag}</span>
-            }
+            };
             if (matchedFlag) {
                 return <React.Fragment
                     key={match}>{matchedFlagRenderingConfig[matchedFlag as SPECIAL_STYLING_FLAGS]}</React.Fragment>;
@@ -86,16 +88,20 @@ export const generateTemplatingAndJsxVisualTransformations = (abilitiesKeyObject
             return <span key={match} style={{color: "grey", fontWeight: "bold"}}>{match}</span>;
         }));
 
-        const abilityExplanationJsxKeyword = reactStringReplace(specialStylingJsx, /\<span.*?\>(.*?)\<\/span\>/ig, ((match, i) => {
+        const abilityExplanationJsxKeyword = reactStringReplace(specialStylingJsx, /<span.*?>(.*?)<\/span>/ig, ((match, i) => {
             return <span key={match} style={{color: "#c5717f", fontWeight: "bold"}}>{match}</span>;
         }));
         const abilityExplanationJsx = newLineToBrJsx(abilityExplanationJsxKeyword, abilitiesKeyObject.key);
 
         return <div>
-            <div key={abilitiesKeyObject.key}>
-                <div style={{fontWeight: "bold", paddingTop: "10px"}}>- {abilitiesKeyObject.keyEn} -</div>
+            <div key={abilityKey}>
+                <div style={{fontWeight: "bold", paddingTop: "10px"}}>- {keyEn} -</div>
                 <span>{abilityExplanationJsx}</span>
             </div>
         </div>;
     });
+
+    return <>
+        {abilitiesJsx}
+    </>
 };

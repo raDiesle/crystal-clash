@@ -4,7 +4,6 @@ import Link from '@mui/material/Link';
 import {useNavigate} from "react-router-dom";
 import {Box} from "@mui/material";
 import {ArrowBack} from "@mui/icons-material";
-import {ROUTES} from "../cc-routes-config";
 
 export function NavigateHistoryBack() {
     const navigate = useNavigate();

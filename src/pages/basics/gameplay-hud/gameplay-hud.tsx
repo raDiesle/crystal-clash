@@ -36,7 +36,7 @@ export function GameplayHud() {
 
 
                 <Box px={3}>
-                    <img src={gameplayHudScreenshot} style={{width: "100%"}}/>
+                    <img src={gameplayHudScreenshot} style={{width: "100%"}} alt={"hud"}/>
                 </Box>
             </Box>
         </>

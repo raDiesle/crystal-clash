@@ -14,7 +14,7 @@ export type SearchInputs = {
 
 // @ts-ignore
 export function CardFilterForm({onSubmit}) {
-    const {register, control, getValues, handleSubmit, trigger, watch, formState: {errors}} = useForm<SearchInputs>({
+    const {control, watch} = useForm<SearchInputs>({
         mode: "onChange",
         reValidateMode: "onChange",
         defaultValues: {
@@ -30,7 +30,7 @@ export function CardFilterForm({onSubmit}) {
             onSubmit(formData);
         });
         return () => subscription.unsubscribe();
-    }, [watch]);
+    }, [watch, onSubmit]);
 
 
     return <form onSubmit={() => {

@@ -22,7 +22,7 @@ export function ReactTable({
         getTableBodyProps,
         headerGroups,
         rows,
-        totalColumnsWidth,
+//        totalColumnsWidth,
         prepareRow
     } = useTable(
         {

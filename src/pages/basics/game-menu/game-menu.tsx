@@ -8,23 +8,15 @@ import {LeaderboardsPage} from "./leaderboards/leaderboardsPage";
 import {UserMenuPage} from "./user-menu/user-menu-page";
 import {NavigateToHome} from "../../../header/navigate-to-home";
 import {ShopPage} from "./shop/shop-page";
-import {Link, useLocation, useParams} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import {ROUTES} from "../../../cc-routes-config";
 
 
 export function GameMenu() {
-     let location = useLocation();
-    let urlParams = useParams();
+     const location = useLocation();
 
     const gameMenuRoutes: ROUTES[]  = [ROUTES["/game-menu/gamemodes"], ROUTES["/game-menu/deckbuilder"], ROUTES["/game-menu/card-vendor"], ROUTES["/game-menu/leaderboards"], ROUTES["/game-menu/shop"], ROUTES["/game-menu/user-menu"]];
 
-    let fullRoute = `${ROUTES["/game-menu"]}/${urlParams["*"]}`;
-    const initialSelectedTab = // @ts-ignore
-        urlParams["*"] !== "/"
-            // @ts-ignore
-            ? fullRoute
-            : false;
-    debugger;
     const [value, setValue] = React.useState(gameMenuRoutes.findIndex((route) => route === location.pathname));
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {

@@ -6,16 +6,21 @@ import {imgPathCardFn} from "../../../components/img-wrappers/img-utils";
 import {UNIT_ABILITY_HINT} from "../../../components/card-abilities-data";
 import {assert} from "../../../components/typescript-utils";
 import React from "react";
-import {CARD_DESCRIPTIONS, CARD_Short_Descriptions, ICardDescription} from "../../../components/cards-description-data";
+import {
+    CARD_DESCRIPTIONS,
+    CARD_Short_Descriptions,
+    ICardDescriptionRaw
+} from "../../../components/cards-description-data";
 import {NavigateHistoryBack} from "../../../header/navigate-history-back";
-import {generateInferredAbilitiesExplanationsToJsx} from "./prepare-data/inferred-abilities";
+import {
+    findInferredSingleAbilityKeys,
+    generateInferredAbilitiesExplanationsToJsx,
+    generateInferredAbilityKeys
+} from "./prepare-data/inferred-abilities";
 import {
     generateTemplatingAndJsxVisualTransformations,
     IAbilitiesKeyObjectStrict
 } from "./prepare-data/templating-and-jsx-styling";
-import {templateCompilePercentages, templateCompileTextNames} from "./prepare-data/templating";
-import {newLineToBrJsx} from "./prepare-data/jsx-styling";
-
 
 const getAbilitiesKeyObject = (abilities: TAbilities[] = []): IAbilitiesKeyObjectStrict[] => {
     return abilities.map(abilityKeyEn => {
@@ -32,10 +37,14 @@ const getAbilitiesKeyObject = (abilities: TAbilities[] = []): IAbilitiesKeyObjec
     });
 }
 
-interface IRawCardData extends ICard {
+interface ICardDescription extends ICardDescriptionRaw{
+    keyEn: string;
+    description?: ICardDescriptionRaw;
+    descriptionShort?: ICardDescriptionRaw;
+}
+
+interface IRawCardData extends ICard, Partial<ICardDescription> {
     key: string;
-    description: ICardDescription;
-    descriptionShort: ICardDescription;
 }
 
 const getCurrentRawCardData = (cardName: string): IRawCardData => {
@@ -43,68 +52,46 @@ const getCurrentRawCardData = (cardName: string): IRawCardData => {
     assert(currentCardData);
     const calculatedCardKey = ["Blue", "Green", "White", "Black", "Colorless"].reduce((previousValue, currentValue) => previousValue.replace(currentValue.toLowerCase(), ""), currentCardData.image.toLowerCase());
 
-    const cardDataShortDescription = CARD_Short_Descriptions.find(({key}) => key === calculatedCardKey) || "";
-    assert(cardDataShortDescription);
 
-    const cardDataDescription = CARD_DESCRIPTIONS.find(({key}) => key === calculatedCardKey) || "";
-    assert(cardDataDescription);
+    const cardDataDescription = CARD_DESCRIPTIONS.find(({key}) => key === calculatedCardKey) || undefined;
+    const description = typeof cardDataDescription !== "undefined" ? {
+        ...cardDataDescription,
+        keyEn: "Description",
+    } : cardDataDescription;
+
+    const cardDataShortDescription = CARD_Short_Descriptions.find(({key}) => key === calculatedCardKey) || undefined;
+    const descriptionShort = typeof cardDataShortDescription !== "undefined" ? {
+        ...cardDataShortDescription,
+        keyEn: "Description",
+    } : cardDataShortDescription;
 
     return {
         ...currentCardData,
         key: calculatedCardKey,
-        description: cardDataDescription,
-        descriptionShort: cardDataShortDescription
+        description,
+        descriptionShort
     };
 }
 
 
-const getDescriptionsJsx = (cardData: IRawCardData) => {
-
-    const compiledResultPercentage = templateCompilePercentages(cardData.description.en, cardData.description.propspercentage);
-    const compiledResultPandName = templateCompileTextNames(compiledResultPercentage, cardData.description.propsname);
-    const descriptionJsxNewLine = newLineToBrJsx(compiledResultPandName, "description_long");
-
-    return {
-        short: <>.</>,
-        long: <div>{descriptionJsxNewLine}</div>
-    }
-};
-
-
 const getCompleteCardData = (cardName: string) => {
     const cardData = getCurrentRawCardData(cardName);
+    const cardDescriptionsJsx = typeof cardData.description !== "undefined" ? generateTemplatingAndJsxVisualTransformations([cardData.description]) : <></>;
 
-    const cardDescriptionsJsx = getDescriptionsJsx(cardData);
-
-    // @ts-ignore
     const abilitiesKeyObject = getAbilitiesKeyObject(cardData.abilities);
 
     const abilityExplanationsAndDirectAbilitiesJsx = generateTemplatingAndJsxVisualTransformations(abilitiesKeyObject);
 
-
-    const getInferredAbilityKeys = (en : string) : string[] =>  {
-
-        // @ts-ignore
-        const foundInferredAbilities = en.match(/keyword\s([a-z]*)/gi);
-        const foundInferredAbilitiesNormalized = Array.isArray(foundInferredAbilities) ? foundInferredAbilities.map(match => match.replace("keyword ", "")) : []
-
-        const removedDuplicatesOfInferred = [...Array.from(new Set(foundInferredAbilitiesNormalized))];
-
-        // const abilitiesJsx = abilityExplanationsAndDirectAbilitiesJsx.map(object => object.abilityExplanationsAndDirectAbilitiesJsx);
-
-        return removedDuplicatesOfInferred;
-    }
-
-    const allInferredAbilityKeys = abilitiesKeyObject.reduce((previous : string[], current) => [...previous, ...getInferredAbilityKeys(current.en)], []);
-
-    const allAbilityKeysNoDuplicates: string[] = [...Array.from(new Set(allInferredAbilityKeys))];
+    const allAbilityKeysNoDuplicatesOfDescription: string[] = typeof cardData.description !== "undefined" ? [...Array.from(new Set(findInferredSingleAbilityKeys(cardData.description.en)))] : [];
+    const allAbilityKeysNoDuplicates: string[] = [...Array.from(new Set([...generateInferredAbilityKeys(abilitiesKeyObject), ...allAbilityKeysNoDuplicatesOfDescription]))];
+    const inferredExplanatonsJsx = allAbilityKeysNoDuplicates.length > 0 ? generateInferredAbilitiesExplanationsToJsx(allAbilityKeysNoDuplicates) : <></>;
 
     return {
         ...cardData,
         cardDescriptionsJsx,
         abilitiesKeyObject,
         abilitiesJsx : abilityExplanationsAndDirectAbilitiesJsx,
-        inferredAbilitiesExplanationsJsx: generateInferredAbilitiesExplanationsToJsx(allAbilityKeysNoDuplicates)
+        inferredAbilitiesExplanationsJsx: inferredExplanatonsJsx
     };
 }
 
@@ -124,7 +111,7 @@ export function CardDetails() {
             <Card>
                 <CardContent>
                     <img src={imgPathCardFn(image)} alt={image}/>
-                    {getCurrentCardData.cardDescriptionsJsx.long}
+                    {getCurrentCardData.cardDescriptionsJsx}
                     {getCurrentCardData.abilitiesJsx}
                     {getCurrentCardData.inferredAbilitiesExplanationsJsx}
                 </CardContent>

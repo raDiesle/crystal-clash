@@ -14,9 +14,6 @@ interface TKMap<K, V, DK> extends Map<K, V> {
     get(key: K): V | undefined;
 }
 
-export type KnownKeyosOfTKMap<T> = T extends TKMap<infer K, infer V, infer DK> ? DK : never;
-
-
 export enum ECardFaction {
     "White" = "White",
     "Black" = "Black",

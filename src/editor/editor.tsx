@@ -79,7 +79,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
     const [userStartedCurrentEditingSince, setUserStartedCurrentEditingUserSince] = useState("");
 
     const [isInEditMode, setIsInEditMode] = useState(false);
-    const [history, setHistory] = useState([]);
+    /** TODO history */
     const [isLoadedFromServer, setIsLoadedFromServer] = useState(false);
 
 
@@ -89,13 +89,13 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
     const dbRefLatest = useMemo(() => db.collection(categoryPath).doc(String(editorPath)), [categoryPath, editorPath]);
 
 
-    const unregisterAnyoneIsEditing = () => {
+    const unregisterAnyoneIsEditing = useMemo(() => {
         dbRefLatest.set({
             currentEditingUser: "",
             userStartedCurrentEditingSince: ""
         }, {merge: true}).then(() => {
         }).catch(dbErrorHandlerPromise);
-    }
+    });
 
     const listenUserAuth = (setCurrentUsername) => {
         return auth.onAuthStateChanged((user) => {
@@ -109,7 +109,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
         return () => listen();
     }, []);
 
-
+    // eslint-disable react-hooks/exhaustive-deps
     useEffect(() => {
         if (isInEditMode) {
             return;
@@ -146,7 +146,8 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
         })
         //.catch(dbErrorHandlerPromise);
         return unsubscribe;
-    }, [isInEditMode]);
+
+    }, [isInEditMode, dbRefLatest, unregisterAnyoneIsEditing]);
 
 
     const onSave = () => {
@@ -217,7 +218,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
                                     paddingLeft: "5px"
                                 }}
                             >
-                                <img src={mentionImageUrlPath(filename)} style={{width: "25px"}}/>
+                                <img src={mentionImageUrlPath(filename)} style={{width: "25px"}} alt={filename}/>
                                 <span>{characterFileName(filename)}</span>
                             </div>
                         );
