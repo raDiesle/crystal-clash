@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Box, Tab, Tabs} from "@mui/material";
 import {a11yProps, TabPanel} from "../../components/tab-panel";
-import {CcBreadcrumbs} from "../../header/cc-breadcrumbs";
+import {NavigateToHome} from "../../header/navigate-to-home";
 import {Play2v2} from "./play-2v2";
 import {PlayGolemChallenge} from "./play-golem-challenge";
 import {PlayCoopChallenge} from "./play-coop-challenge";
@@ -24,7 +24,7 @@ export function HowToPlay() {
             </Tabs>
         </Box>
 
-        <CcBreadcrumbs/>
+        <NavigateToHome/>
 
         <TabPanel value={value} index={0}>
             <Play2v2/>

@@ -13,8 +13,12 @@ import {faMailBulk} from "@fortawesome/free-solid-svg-icons/faMailBulk";
 import {faGithub} from "@fortawesome/free-brands-svg-icons/faGithub";
 import AppBar from "@mui/material/AppBar";
 import * as React from "react";
+import {ROUTES} from "../cc-routes-config";
+import {useNavigate} from "react-router-dom";
+import css from "./cc-app-bar.module.scss";
 
 export function CcAppBar() {
+    const navigate = useNavigate();
     return (
         <AppBar
             position="static"
@@ -27,7 +31,7 @@ export function CcAppBar() {
         >
             <Toolbar sx={{flexWrap: 'wrap'}}>
                 <Grid container>
-                    <img src={logo} alt="logo" style={{width: "142px"}}/>
+                    <img src={logo} alt="logo" className={css.ccimage} onClick={() => navigate(ROUTES["/"])}/>
 
                     <nav style={{width: "calc(100% - 150px)"}}>
 

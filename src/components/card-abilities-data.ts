@@ -437,7 +437,9 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [{
 }, {
     "key": "growsaplings",
     "propspercentage": {"energy_cost": 5, "sapling_count": 4},
-    "propsname": "§card_name_sapling_plural",
+    "propsname": {
+        card_name_sapling_plural : "Saplings",
+    },
     "en": "Consumes %(energy_cost) energy to summon %(sapling_count) <span class='keyword sapling'>§card_name_sapling_plural</span>.",
     "keyEn": "Harvest Saplings",
     "usedByCards": ["Sapling Bush"]

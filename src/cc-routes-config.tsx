@@ -28,9 +28,12 @@ export enum ROUTES {
     "/" = "/",
     "/game-menu" = "/game-menu",
     "/game-menu/gamemodes" = "/game-menu/gamemodes",
-    "/gameplay-hud" = "/gameplay-hud",
+    "/game-menu/deckbuilder" = "/game-menu/deckbuilder",
+    "/game-menu/card-vendor" = "/game-menu/card-vendor",
+    "/game-menu/leaderboards" = "/game-menu/leaderboards",
     "/game-menu/shop" = "/game-menu/shop",
     "/game-menu/user-menu" = "/game-menu/user-menu",
+    "/gameplay-hud" = "/gameplay-hud",
     "/cards" = "/cards",
     "/card-details/" = "/card-details/",
     "/guides" = "/guides",
@@ -55,16 +58,16 @@ export function CcRoutesConfig() {
     return <Routes>
         <Route path={ROUTES["/"]} element={<Home/>}/>
 
-        <Route path={ROUTES["/game-menu"]} element={<GameMenu/>}/>
 
         <Route path={ROUTES["/cards"]} element={<CardsPageTable/>}/>
 
         <Route path={`${ROUTES["/card-details/"]}:cardName`} element={<CardDetails/>}/>
 
-        <Route path={ROUTES["/game-menu/gamemodes"]} element={<GameModesPage/>}/>
+        <Route path={ROUTES["/game-menu"]+ "*"} element={<GameMenu/>}/>
 
-        <Route path={ROUTES["/game-menu/shop"]} element={<ShopPage/>}/>
-        <Route path={ROUTES["/game-menu/user-menu"]} element={<UserMenuPage/>}/>
+        {/*<Route path={ROUTES["/game-menu/gamemodes"]} element={<GameModesPage/>}/>*/}
+        {/*<Route path={ROUTES["/game-menu/shop"]} element={<ShopPage/>}/>*/}
+        {/*<Route path={ROUTES["/game-menu/user-menu"]} element={<UserMenuPage/>}/>*/}
 
         <Route path={ROUTES["/gameplay-hud"]} element={<GameplayHud/>}/>
 

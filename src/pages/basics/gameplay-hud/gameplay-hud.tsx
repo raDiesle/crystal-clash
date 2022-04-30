@@ -4,7 +4,7 @@ import * as React from "react";
 import gameplayHudScreenshot from "./game_hud.jpg";
 
 import {Editor} from "../../../editor/editor";
-import {CcBreadcrumbs} from "../../../header/cc-breadcrumbs";
+import {NavigateToHome} from "../../../header/navigate-to-home";
 import {a11yProps, TabPanel} from "../../../components/tab-panel";
 
 export function GameplayHud() {
@@ -24,7 +24,7 @@ export function GameplayHud() {
                     </Tabs>
                 </Box>
 
-                <CcBreadcrumbs/>
+                <NavigateToHome/>
 
 
                 <TabPanel value={value} index={0}>

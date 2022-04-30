@@ -6,14 +6,29 @@ import {DeckbuilderPage} from "./deckbuilder/deckbuilderPage";
 import {CardVendorPage} from "./card-vendor/card-vendor-page";
 import {LeaderboardsPage} from "./leaderboards/leaderboardsPage";
 import {UserMenuPage} from "./user-menu/user-menu-page";
-import {CcBreadcrumbs} from "../../../header/cc-breadcrumbs";
+import {NavigateToHome} from "../../../header/navigate-to-home";
 import {ShopPage} from "./shop/shop-page";
+import {Link, useLocation, useParams} from "react-router-dom";
+import {ROUTES} from "../../../cc-routes-config";
 
 
 export function GameMenu() {
-    const [value, setValue] = React.useState(0);
+     let location = useLocation();
+    let urlParams = useParams();
+
+    const gameMenuRoutes: ROUTES[]  = [ROUTES["/game-menu/gamemodes"], ROUTES["/game-menu/deckbuilder"], ROUTES["/game-menu/card-vendor"], ROUTES["/game-menu/leaderboards"], ROUTES["/game-menu/shop"], ROUTES["/game-menu/user-menu"]];
+
+    let fullRoute = `${ROUTES["/game-menu"]}/${urlParams["*"]}`;
+    const initialSelectedTab = // @ts-ignore
+        urlParams["*"] !== "/"
+            // @ts-ignore
+            ? fullRoute
+            : false;
+    debugger;
+    const [value, setValue] = React.useState(gameMenuRoutes.findIndex((route) => route === location.pathname));
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        // @ts-ignore
         setValue(newValue);
     };
     return (
@@ -23,16 +38,34 @@ export function GameMenu() {
                     <Box sx={{width: '100%'}}>
                         <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                                <Tab label="Play: Game Modes" {...a11yProps(0)}/>
-                                <Tab label="Deckbuilder" {...a11yProps(1)}/>
-                                <Tab label="Card Vendor" {...a11yProps(2)}/>
-                                <Tab label="Leaderboards" {...a11yProps(3)}/>
-                                <Tab label="Shop" {...a11yProps(4)}/>
-                                <Tab label="User Menu" {...a11yProps(5)}/>
+                                <Tab label="Play: Game Modes" {...a11yProps(0)}
+                                     component={Link}
+                                     to={gameMenuRoutes[0]}
+                                />
+                                <Tab label="Deckbuilder" {...a11yProps(1)}
+                                     component={Link}
+                                     to={gameMenuRoutes[1]}
+                                />
+                                <Tab label="Card Vendor" {...a11yProps(2)}
+                                     component={Link}
+                                     to={gameMenuRoutes[2]}
+                                />
+                                <Tab label="Leaderboards" {...a11yProps(3)}
+                                     component={Link}
+                                     to={gameMenuRoutes[3]}
+                                />
+                                <Tab label="Shop" {...a11yProps(4)}
+                                     component={Link}
+                                     to={gameMenuRoutes[4]}
+                                />
+                                <Tab label="User Menu" {...a11yProps(5)}
+                                     component={Link}
+                                     to={gameMenuRoutes[5]}
+                                />
                             </Tabs>
                         </Box>
 
-                        <CcBreadcrumbs/>
+                        <NavigateToHome/>
 
                         <TabPanel value={value} index={0}>
                             <GameModesPage/>

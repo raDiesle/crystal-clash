@@ -1,9 +1,9 @@
 import {Editor} from "../../editor/editor";
 import {Container} from "@mui/material";
-import {CcBreadcrumbs} from "../../header/cc-breadcrumbs";
+import {NavigateToHome} from "../../header/navigate-to-home";
 
 export function UnitTypes() {
     return <>
-        <CcBreadcrumbs/>
+        <NavigateToHome/>
         <Container><Editor pageTitle="Unit Types" categoryPath="wiki" editorPath="unit-types"/></Container></>
 }

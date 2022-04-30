@@ -1,9 +1,9 @@
-import {CcBreadcrumbs} from "../../header/cc-breadcrumbs";
+import {NavigateToHome} from "../../header/navigate-to-home";
 import {Container} from "@mui/material";
 import {Editor} from "../../editor/editor";
 
 export function Meme() {
     return <>
-        <CcBreadcrumbs/>
+        <NavigateToHome/>
         <Container><Editor pageTitle="Meme" categoryPath="wiki" editorPath="meme"/></Container></>
 }

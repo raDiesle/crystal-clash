@@ -16,6 +16,7 @@ import {FactionImg} from "../../../components/img-wrappers/faction-img";
 import {ArmorImg} from "../../../components/img-wrappers/armor-img";
 import {AttackTypeImg} from "../../../components/img-wrappers/attack-type-img";
 import {ABILITIES_TO_ICON_MAPPING} from "./abilities-to-icon-mapping";
+import {NavigateToHome} from "../../../header/navigate-to-home";
 
 
 export function CardsPageTable() {
@@ -62,6 +63,7 @@ export function CardsPageTable() {
 
     // @ts-ignore
     return <>
+        <NavigateToHome/>
         <Card>
             <CardContent>
                 <CardFilterForm onSubmit={onSubmit}/>

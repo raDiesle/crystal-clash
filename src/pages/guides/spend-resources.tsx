@@ -1,9 +1,9 @@
 import {Editor} from "../../editor/editor";
 import {Container} from "@mui/material";
-import {CcBreadcrumbs} from "../../header/cc-breadcrumbs";
+import {NavigateToHome} from "../../header/navigate-to-home";
 
 export function SpendResources() {
     return <>
-        <CcBreadcrumbs/><Container><Editor pageTitle="How to spend resources" categoryPath="wiki"
-                                           editorPath="spendresources"/></Container></>
+        <NavigateToHome/><Container><Editor pageTitle="How to spend resources" categoryPath="wiki"
+                                            editorPath="spendresources"/></Container></>
 }

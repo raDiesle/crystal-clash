@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import * as React from "react";
 import {Grid, List, ListItemButton, ListItemText} from "@mui/material";
 import {useNavigate} from "react-router-dom";
+import {ROUTES} from "../../cc-routes-config";
 
 export function MenuBasics() {
     const navigate = useNavigate();
@@ -34,7 +35,7 @@ export function MenuBasics() {
                         <ListItemButton>
                             <ListItemText primary="Cards" onClick={() => navigate("/cards")}/>
                         </ListItemButton>
-                        <ListItemButton onClick={() => navigate("/game-menu")}>
+                        <ListItemButton onClick={() => navigate(ROUTES["/game-menu/gamemodes"])}>
                             <ListItemText primary="Game Menu"/>
                         </ListItemButton>
                         <ListItemButton>

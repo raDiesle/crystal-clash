@@ -183,7 +183,7 @@ interface Unit {
 
 export interface ICard extends Partial<Unit> {
     name: string,
-    image?: string,
+    image: string,
     faction: ECardFaction,
     // level : CardLevelType,
     type: CardType,
@@ -199,11 +199,9 @@ export interface ICard extends Partial<Unit> {
     spellTargetCount?: number,
     statusApplied?: Array<Status>,
     domain?: boolean,
-    description?: string,
 }
 
 const WhiteCards: Array<ICard> = [
-
     {
         name: "Footmen",
         image: "WhiteFootman",
@@ -225,7 +223,6 @@ const WhiteCards: Array<ICard> = [
         attackRange: 1,
         collisionRadius: 0.55,
         abilities: ["Raise your shield!"],
-
     },
     {
         name: "Light Pulse",
@@ -873,7 +870,7 @@ const BlackCards: Array<ICard> = [
         attackType: EAttackType.Melee,
         attackRange: 1,
         collisionRadius: 0.9,
-        abilities: ["Dismantlement", "Soulgatherer", "Soul Vortex", "Energy Flow"],
+        abilities: ["Dismantlement", "Soulgatherer", "Soul Vortex", "Deathcry: Energy Supply"],
     },
     {
         name: "Vecra, Monarch of Frost",

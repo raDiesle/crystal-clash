@@ -1,9 +1,9 @@
 import {Editor} from "../../editor/editor";
 import {Container} from "@mui/material";
-import {CcBreadcrumbs} from "../../header/cc-breadcrumbs";
+import {NavigateToHome} from "../../header/navigate-to-home";
 
 export function Legions() {
     return <>
-        <CcBreadcrumbs/>
+        <NavigateToHome/>
         <Container><Editor pageTitle="Legions" categoryPath="wiki" editorPath="legions"/></Container></>
 }

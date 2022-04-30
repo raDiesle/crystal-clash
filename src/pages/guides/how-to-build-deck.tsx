@@ -1,10 +1,10 @@
 import {Editor} from "../../editor/editor";
 import {Container} from "@mui/material";
-import {CcBreadcrumbs} from "../../header/cc-breadcrumbs";
+import {NavigateToHome} from "../../header/navigate-to-home";
 
 export function HowToBuildDeck() {
     return <>
-        <CcBreadcrumbs/>
+        <NavigateToHome/>
         <Container><Editor pageTitle="How to build deck" categoryPath="wiki"
                            editorPath="howtobuilddeck"/></Container></>
 }
