@@ -56,6 +56,11 @@ export function MenuCommunity() {
                                 }}>
                                     <ListItemText primary="Meme"/>
                                 </ListItemButton>
+                                <ListItemButton onClick={() => {
+                                    navigate(ROUTES["/community/card-tierlist"])
+                                }}>
+                                    <ListItemText primary="Card Tierlist"/>
+                                </ListItemButton>
                             </List>
 
                         </List>

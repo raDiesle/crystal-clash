@@ -23,6 +23,7 @@ import {CardDetails} from "./pages/basics/cards/card-details";
 import {TutorialVideos} from "./pages/community/tutorial-videos";
 import {Artgallery} from "./pages/community/artgallery";
 import {Meme} from "./pages/community/meme";
+import { Tierlist } from "./pages/community/tierlist";
 
 export enum ROUTES {
     "/" = "/",
@@ -51,7 +52,8 @@ export enum ROUTES {
     "/community/tutorials" = "/community/tutorials",
     "/community/replays" = "/community/replays",
     "/community/artgallery" = "/community/artgallery",
-    "/community/meme" = "/community/meme"
+    "/community/meme" = "/community/meme",
+    "/community/card-tierlist" = "/community/card-tierlist"
 };
 
 export function CcRoutesConfig() {
@@ -90,7 +92,7 @@ export function CcRoutesConfig() {
 
         <Route path={ROUTES["/community/artgallery"]} element={<Artgallery/>}/>
         <Route path={ROUTES["/community/meme"]} element={<Meme/>}/>
-
+        <Route path={ROUTES["/community/card-tierlist"]} element={<Tierlist/>}/>
 
     </Routes>
 }
