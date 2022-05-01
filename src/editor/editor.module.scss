@@ -10,6 +10,17 @@
       }
     }
 
+    .slate-HeadingToolbar{
+      position: sticky;
+      top:0;
+      z-index: 1;
+      overflow: auto;
+      background-color: #282e39;
+      margin: 0;
+      padding-bottom: 0;
+      padding-left: 0;
+    }
+
     .slate-p, .slate-li, [data-slate-node="text"] {
       font-size: 14px;
     }

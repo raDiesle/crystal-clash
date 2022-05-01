@@ -48,6 +48,13 @@ export const themeOptions: ThemeOptions = {
                 }
             }
         },
+        MuiCard : {
+            styleOverrides : {
+                  root : {
+                      overflow: "visible"
+                  }
+            }
+        },
         MuiCardHeader: {
             styleOverrides: {
                 root: {
@@ -130,10 +137,10 @@ export const themeOptions: ThemeOptions = {
         MuiListItemButton: {
             styleOverrides: {
 
-
                 root: {
                     paddingTop: "2px",
                     paddingBottom: "2px",
+                    color: "#fbe629",
 
                     "&:hover": {
                         //  backgroundColor: "#3c5b5e",

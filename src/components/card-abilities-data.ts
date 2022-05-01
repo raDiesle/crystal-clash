@@ -747,7 +747,7 @@ export const UNIT_ABILITY_HINT : IUnitAbilityHint[] = [{
 }, {
     "key": "soulgatherersummonfrostgoyle",
     "propspercentage": {"energy_cost": 8, "time_to_live": 17},
-    "propsname": "§card_name_frostgoyle",
+    "propsname": { card_name_frostgoyle : "Frostgoyle"},
     "en": "Consumes %(energy_cost) energy to summon a §card_name_frostgoyle. It dies after %(time_to_live) seconds.",
     "keyEn": "Ritual Summon",
     "usedByCards": ["Frostgoyle Fountain"]

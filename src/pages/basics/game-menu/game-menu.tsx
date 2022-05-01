@@ -10,12 +10,13 @@ import {NavigateToHome} from "../../../header/navigate-to-home";
 import {ShopPage} from "./shop/shop-page";
 import {Link, useLocation} from "react-router-dom";
 import {ROUTES} from "../../../cc-routes-config";
+import {QuestsPage} from "./quests/quests-page";
 
 
 export function GameMenu() {
-     const location = useLocation();
+    const location = useLocation();
 
-    const gameMenuRoutes: ROUTES[]  = [ROUTES["/game-menu/gamemodes"], ROUTES["/game-menu/deckbuilder"], ROUTES["/game-menu/card-vendor"], ROUTES["/game-menu/leaderboards"], ROUTES["/game-menu/shop"], ROUTES["/game-menu/user-menu"]];
+    const gameMenuRoutes: ROUTES[] = [ROUTES["/game-menu/gamemodes"], ROUTES["/game-menu/deckbuilder"], ROUTES["/game-menu/card-vendor"], ROUTES["/game-menu/leaderboards"], ROUTES["/game-menu/shop"], ROUTES["/game-menu/user-menu"], ROUTES["/game-menu/quests"]];
 
     const [value, setValue] = React.useState(gameMenuRoutes.findIndex((route) => route === location.pathname));
 
@@ -76,6 +77,9 @@ export function GameMenu() {
                         </TabPanel>
                         <TabPanel value={value} index={5}>
                             <UserMenuPage/>
+                        </TabPanel>
+                        <TabPanel value={value} index={5}>
+                            <QuestsPage/>
                         </TabPanel>
                     </Box>
                 </>

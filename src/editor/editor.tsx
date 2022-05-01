@@ -89,13 +89,13 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
     const dbRefLatest = useMemo(() => db.collection(categoryPath).doc(String(editorPath)), [categoryPath, editorPath]);
 
 
-    const unregisterAnyoneIsEditing = useMemo(() => {
-        dbRefLatest.set({
+    const unregisterAnyoneIsEditing =() => {
+        return dbRefLatest.set({
             currentEditingUser: "",
             userStartedCurrentEditingSince: ""
         }, {merge: true}).then(() => {
         }).catch(dbErrorHandlerPromise);
-    });
+    };
 
     const listenUserAuth = (setCurrentUsername) => {
         return auth.onAuthStateChanged((user) => {
@@ -147,7 +147,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
         //.catch(dbErrorHandlerPromise);
         return unsubscribe;
 
-    }, [isInEditMode, dbRefLatest, unregisterAnyoneIsEditing]);
+    }, [isInEditMode]);
 
 
     const onSave = () => {
@@ -265,6 +265,18 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
     const [isLoginModalShown, setIsLoginModalShown] = useState(false);
 
 
+    const saveButtons = (isInEditMode || currentUsername === currentEditingUser) ?
+        <Stack spacing={2} direction="row" sx={{borderRight: "2px solid white"}} pr={1}>
+            <Button variant="contained" size={"small"} onClick={onSave}>Save</Button>
+            <Button variant="outlined" size={"small"} onClick={() => {
+
+                setIsInEditMode(false);
+
+                unregisterAnyoneIsEditing();
+
+            }}>Cancel</Button>
+        </Stack> : null;
+
     return (<>
         <Box sx={{pt: 1, pb: 1}}>
             <Card>
@@ -320,7 +332,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
                                                         expiryDate={userStartedCurrentEditingSince}/>  or press "Cancel"</span>}
                                             </Alert>
                                         </Box>
-                                        <CcHeaderToolbar/>
+                                        <CcHeaderToolbar saveButtons={ saveButtons} />
                                     </>
                                 }
 
@@ -333,17 +345,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
                         </div>
                     )}
 
-                    {(isInEditMode || currentUsername === currentEditingUser) &&
-                        <Stack spacing={2} direction="row" pt={2}>
-                            <Button variant="contained" onClick={onSave}>Save</Button>
-                            <Button variant="outlined" onClick={() => {
 
-                                setIsInEditMode(false);
-
-                                unregisterAnyoneIsEditing();
-
-                            }}>Cancel</Button>
-                        </Stack>}
                 </CardContent>
             </Card>
 

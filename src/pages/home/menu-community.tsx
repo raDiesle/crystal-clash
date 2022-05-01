@@ -1,22 +1,25 @@
 import CardHeader from "@mui/material/CardHeader";
 import * as React from "react";
-import {Box, Card, CardContent, Grid, List, ListItemButton, ListItemText} from "@mui/material";
+import {Box, Card, CardContent, List, ListItemButton, ListItemText} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {ROUTES} from "../../cc-routes-config";
 
+import css from "./menu.module.scss"
+
 export function MenuCommunity() {
     const navigate = useNavigate();
-    return (
-        <Grid
-            item
-            xs={3}
-        >
-            <Card>
+    return (<Card sx={{minHeight: "100%"}}>
                 <CardHeader
                     title={"Community"}
                     titleTypographyProps={{align: 'center'}}
                 />
                 <CardContent>
+                    <Box
+                        className={css.description}
+                    >
+                       Collection of external links and contents for Crystal Clash
+                    </Box>
+
                     <Box
                         sx={{
                             display: 'flex',
@@ -66,7 +69,5 @@ export function MenuCommunity() {
                         </List>
                     </Box>
                 </CardContent>
-            </Card>
-        </Grid>
-    )
+            </Card>);
 }

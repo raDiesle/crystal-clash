@@ -103,6 +103,7 @@ export function CardDetails() {
 
     // @ts-ignore
     const image: string = Cards.find(({name}) => name === cardName).image;
+
     return <>
         <NavigateHistoryBack/>
         {/* @ts-ignore */}

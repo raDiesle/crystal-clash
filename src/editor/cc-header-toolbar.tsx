@@ -77,6 +77,7 @@ import {
     Superscript
 } from "@mui/icons-material";
 import * as React from "react";
+import {Button, Stack} from "@mui/material";
 
 
 const AlignToolbarButtons = () => {
@@ -213,8 +214,10 @@ export const BasicToolbarButtons = () => {
 };
 
 
-export function CcHeaderToolbar() {
+// @ts-ignore
+export function CcHeaderToolbar({saveButtons}) {
     return <HeadingToolbar>
+        {saveButtons}
         <BasicToolbarButtons/>
         <ListToolbarButtons/>
         <IndentToolbarButtons/>

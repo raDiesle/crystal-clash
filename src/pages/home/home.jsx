@@ -25,14 +25,27 @@ export function Home() {
             </Container>
 
             <Container maxWidth="xl" component="main">
-                <Grid container spacing={5}>
+                <Grid container spacing={5} flexWrap={"wrap"}>
+                    <Grid
+                        item
+                        xs
+                    >
+                        <MenuBasics/>
+                    </Grid>
 
-                    <MenuBasics/>
+                    <Grid
+                        item
+                        xs
+                    >
+                        <MenuGuides/>
+                    </Grid>
 
-                    <MenuGuides/>
-
-                    <MenuCommunity/>
-
+                    <Grid
+                        item
+                        xs
+                    >
+                        <MenuCommunity/>
+                    </Grid>
                 </Grid>
             </Container>
         </>
