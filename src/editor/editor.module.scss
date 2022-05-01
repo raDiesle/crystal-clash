@@ -26,20 +26,36 @@
     }
 
     .slate-h1 {
-      margin: 15px 0 0 0;
-      font-size: 20px;
-      font-weight: normal;
-      color: #fbe629;
+        margin: 12px 0 0 0;
+      & [data-slate-node=text] {
+        font-size: 18px;
+        font-weight: bold;
+        color: #fbe629;
+      }
+    }
+
+    .slate-h2 {
+      margin: 8px 0 0 0;
+      & [data-slate-node=text] {
+        font-size: 15px;
+        color: #fbe629
+      }
     }
 
     .slate-h3 {
-      font-size: 16px;
-      color: #fbe629
+      margin: 1px 0 0 0;
+      & [data-slate-node=text] {
+        font-size: 12px;
+        color: #fbe629
+      }
     }
 
-    .slate-h3 {
-      font-size: 14px;
-      color: #fbe629
+    .slate-h4 {
+      margin: 1px 0 0 0;
+      & [data-slate-node=text] {
+        font-size: 11px;
+        color: #fbe629
+      }
     }
 
     .slate-a, .slate-a:visited {

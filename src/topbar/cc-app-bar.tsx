@@ -43,8 +43,6 @@ export function CcAppBar() {
                             </div>
                             <div>
                                 <Grid component={"ul"} container>
-                                    <LoginLogout/>
-
                                     <li className="icon steam"><a
                                         href="https://store.steampowered.com/app/1839660/Crystal_Clash/"
                                         target="_blank" rel="noreferrer">
@@ -88,6 +86,8 @@ export function CcAppBar() {
                                             <FontAwesomeScalableIcon icon={faGithub}/>
                                         </IconButton>
                                     </a></li>
+
+                                    <LoginLogout/>
                                 </Grid>
                             </div>
                         </Grid>

@@ -23,8 +23,6 @@ export function MenuCommunity() {
                     <Box
                         sx={{
                             display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'baseline',
                             mb: 2,
                         }}
                     >

@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './app.css';
 import {PageTemplate} from "./page-template";
 import {createTheme, ThemeOptions, ThemeProvider} from "@mui/material/styles";
 import {BrowserRouter} from 'react-router-dom';
@@ -106,14 +106,14 @@ export const themeOptions: ThemeOptions = {
             styleOverrides: {
 
                 contained: {
-                    backgroundColor: "#3c5b5e",
+                    backgroundColor: "rgb(184, 253, 255)",
                     color: "#282e39",
                     '&:hover': {
                         color: "rgb(90, 132, 132)"
                     }
                 },
                 outlined: {
-                    color: "rgb(90, 132, 132)",
+                    color: "rgb(184, 253, 255)",
                     borderColor: "rgb(90, 132, 132)",
                     '&:hover': {
                         color: "#fff",
@@ -152,6 +152,13 @@ export const themeOptions: ThemeOptions = {
             defaultProps: {
                 sx: {
                     color: "#70b7b7"
+                }
+            }
+        },
+        MuiFab : {
+            styleOverrides : {
+                root : {
+                   boxShadow: "0px 3px 5px -1px rgb(255 255 255 / 20%), 0px 6px 10px 0px rgb(255 255 255 / 14%), 0px 1px 18px 0px rgb(255 255 255 / 15%)"
                 }
             }
         },

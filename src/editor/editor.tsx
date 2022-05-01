@@ -277,30 +277,33 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
             }}>Cancel</Button>
         </Stack> : null;
 
+    const editModeIcon =    !(isInEditMode || currentEditingUser === currentUsername) && (!currentEditingUser || currentEditingUser !== currentUsername) ?
+        <Fab color="primary" aria-label="edit" size="small" onClick={() => {
+            if (!currentUsername) {
+                setIsLoginModalShown(true);
+                return;
+            }
+            setIsInEditMode(true);
+
+            dbRefLatest.set({
+                currentEditingUser: currentUsername,
+                userStartedCurrentEditingSince: calculateExpiryTimestamp()
+            }, {merge: true}).then(() => {
+
+            })
+                .catch(dbErrorHandlerPromise);
+        }}>
+            <EditIcon/>
+        </Fab> : null;
+
     return (<>
         <Box sx={{pt: 1, pb: 1}}>
             <Card>
                 <CardHeader title={
                     <Box justifyContent={"space-between"} display={"flex"} alignItems={"center"}>
                         <div>{pageTitle}</div>
-                        {!(isInEditMode || currentEditingUser === currentUsername) && (!currentEditingUser || currentEditingUser !== currentUsername) &&
-                            <Fab color="primary" aria-label="edit" size="small" onClick={() => {
-                                if (!currentUsername) {
-                                    setIsLoginModalShown(true);
-                                    return;
-                                }
-                                setIsInEditMode(true);
-
-                                dbRefLatest.set({
-                                    currentEditingUser: currentUsername,
-                                    userStartedCurrentEditingSince: calculateExpiryTimestamp()
-                                }, {merge: true}).then(() => {
-
-                                })
-                                    .catch(dbErrorHandlerPromise);
-                            }}>
-                                <EditIcon/>
-                            </Fab>}</Box>}>
+                        {editModeIcon}
+                     </Box>}>
                 </CardHeader>
 
                 <CardContent>

@@ -1,13 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {faSignInAlt} from "@fortawesome/free-solid-svg-icons/faSignInAlt";
-import {faSignOutAlt} from "@fortawesome/free-solid-svg-icons/faSignOutAlt";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 import {auth as authInstance} from "../cc-firestore";
-
-import css from "./login-logout.module.scss";
 import {LoginModal} from "./login-modal";
-
+import {Fab} from "@mui/material";
+import LoginIcon from '@mui/icons-material/Login';
+import LogoutIcon from '@mui/icons-material/Logout';
 
 export default function LoginLogout() {
     const [isLoginModalShown, setIsLoginModalShown] = useState(false);
@@ -35,18 +32,19 @@ export default function LoginLogout() {
     return (
         <>
             {isSignedIn === true ? (
-                <div>
-                    <button className={css.SignInLinkStyle} onClick={logout}>
-                        <FontAwesomeIcon icon={faSignOutAlt}/>
-                    </button>
-                </div>
+                <Fab color="primary" aria-label="edit" size="small" onClick={() => {
+                    logout()
+                }}>
+                    <LoginIcon/>
+                </Fab>
             ) : (
                 <>
-                    <div>
-                        <button className={css.SignInLinkStyle} onClick={() => setIsLoginModalShown(true)}>
-                            Login <FontAwesomeIcon icon={faSignInAlt}/>
-                        </button>
-                    </div>
+                    <Fab color="primary" aria-label="edit" size="small" onClick={() => {
+                        setIsLoginModalShown(true)
+                    }}>
+                        <LogoutIcon/>
+                    </Fab>
+
                     <LoginModal {...{isLoginModalShown, setIsLoginModalShown}}/>
                 </>
             )}
