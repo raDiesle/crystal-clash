@@ -175,6 +175,48 @@ export const themeOptions: ThemeOptions = {
                     },
                 }
             }
+        },
+        MuiTextField: {
+            styleOverrides: {
+                root: {
+                    '& label': {
+                        color: '#70b7b7',
+                    },
+                    '& label.Mui-focused': {
+                        color: '#fff',
+                    },
+                    '& .MuiInput-underline:after': {
+                        borderBottomColor: '#3E68A8',
+                    },
+                    '& .MuiOutlinedInput-root': {
+                        '& fieldset': {
+                            borderColor: '#70b7b7',
+                        },
+                        '&:hover fieldset': {
+                            borderColor: '#3E68A8',
+                            borderWidth: '0.15rem',
+                        },
+                        '&.Mui-focused fieldset': {
+                            borderColor: '#fff',
+                        },
+                    },
+                },
+            },
+        },
+        /* below doesnt work */
+        MuiOutlinedInput : {
+
+            styleOverrides: {
+
+                root: {
+                    sx : ({
+                        backgroundColor : "red",
+                        '& fieldset.MuiOutlinedInput-notchedOutline': {
+                            borderColor: 'green !important',
+                        },
+                       })
+                },
+            },
         }
     }
 };

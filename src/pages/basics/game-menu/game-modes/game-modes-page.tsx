@@ -1,8 +1,9 @@
 import {Editor} from "../../../../editor/editor";
+import {DefaultPageContainer} from "../../../../components/default-page-container";
 
 
 export function GameModesPage() {
-    return <>
-        <Editor pageTitle="Play: Game Modes" categoryPath="wiki" editorPath="gamemodes"/>
-    </>
+    return <DefaultPageContainer>
+        <Editor pageTitle="Game Modes" categoryPath="wiki" editorPath="gamemodes"/>
+    </DefaultPageContainer>
 }

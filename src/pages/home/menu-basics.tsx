@@ -3,10 +3,9 @@ import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/material/Box";
 import * as React from "react";
-import {Grid, List, ListItemButton, ListItemText} from "@mui/material";
+import {List, ListItemButton, ListItemText} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 import {ROUTES} from "../../cc-routes-config";
-import {CcListWithParent} from "./cc-list-with-parent";
 import css from "./menu.module.scss";
 
 export function MenuBasics() {

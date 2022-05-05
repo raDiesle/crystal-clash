@@ -1,5 +1,6 @@
 import {Editor} from "../../../../editor/editor";
+import {DefaultPageContainer} from "../../../../components/default-page-container";
 
 export function UserMenuPage() {
-    return <Editor pageTitle="User Menu & Frienslist" categoryPath="wiki" editorPath="usermenu"/>;
+    return <DefaultPageContainer><Editor pageTitle="User Menu & Frienslist" categoryPath="wiki" editorPath="usermenu"/></DefaultPageContainer>;
 }

@@ -205,7 +205,8 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
                     };
 
                     const renderLabel = (element) => {
-                        const filename = element.value;
+                        const url = element.value;
+                        const name = characterFileName(element.value);
                         return (
                             <div
                                 title={element.url}
@@ -215,18 +216,16 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
                                     cursor: "pointer",
                                     color: "black",
                                     lineHeight: "25px",
-                                    paddingLeft: "5px"
                                 }}
                             >
-                                <img src={mentionImageUrlPath(filename)} style={{width: "25px"}} alt={filename}/>
-                                <span>{characterFileName(filename)}</span>
+                                <img src={mentionImageUrlPath(url)} style={{width: "25px"}} alt={name} title={name}/>
                             </div>
                         );
                     };
 
                     return {
                         onClick: onMentionClicked,
-                        renderLabel: renderLabel,
+                        renderLabel: renderLabel
                     };
                 },
                 options: {
@@ -235,7 +234,8 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
                         return {
                             id: item.key,
                             value: item.text,
-                            url: item.data.url,
+                            url: item.data.filename,
+                            filename: item.data.filename,
                         };
                     },
                 },
@@ -342,7 +342,7 @@ export function Editor({pageTitle, categoryPath, editorPath}) {
                                 <MentionCombobox items={mentionList.map((filename, index) => ({
                                     key: index,
                                     text: filename,
-                                    data: {filename}
+                                    data: {filename, url: filename}
                                 }))} pluginKey="@"/>
                             </Plate>
                         </div>

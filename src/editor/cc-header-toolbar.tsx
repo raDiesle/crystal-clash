@@ -166,12 +166,12 @@ const BasicMarkToolbarButtons = () => {
 
 const TableToolbarButtons = () => (
     <>
-        <TableToolbarButton icon={<BorderAll/>} transform={insertTable}/>
-        <TableToolbarButton icon={<BorderClear/>} transform={deleteTable}/>
-        <TableToolbarButton icon={<BorderBottom/>} transform={addRow}/>
-        <TableToolbarButton icon={<BorderTop/>} transform={deleteRow}/>
-        <TableToolbarButton icon={<BorderLeft/>} transform={addColumn}/>
-        <TableToolbarButton icon={<BorderRight/>} transform={deleteColumn}/>
+        <TableToolbarButton icon={<BorderAll/>} transform={insertTable} title="Border All"/>
+        <TableToolbarButton icon={<BorderClear/>} transform={deleteTable} title="Border Clear"/>
+        <TableToolbarButton icon={<BorderBottom/>} transform={addRow} title="Border Bottom"/>
+        <TableToolbarButton icon={<BorderTop/>} transform={deleteRow} title="Border Top"/>
+        <TableToolbarButton icon={<BorderLeft/>} transform={addColumn} title="Border Left"/>
+        <TableToolbarButton icon={<BorderRight/>} transform={deleteColumn} title="Border Right"/>
     </>
 );
 

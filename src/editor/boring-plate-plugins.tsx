@@ -17,10 +17,15 @@ import {
     createParagraphPlugin,
     createStrikethroughPlugin,
     createTablePlugin,
-    createUnderlinePlugin
+    createUnderlinePlugin,
+    createSoftBreakPlugin,
+    createExitBreakPlugin,
 } from '@udecode/plate'
 
 export const boringPlatePlugins = [
+    createSoftBreakPlugin(),
+    createExitBreakPlugin(),
+
     // elements
     createParagraphPlugin({isInline: false}),      // paragraph element
     createBlockquotePlugin(),     // blockquote element

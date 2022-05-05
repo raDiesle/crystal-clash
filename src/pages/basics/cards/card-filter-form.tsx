@@ -35,7 +35,7 @@ export function CardFilterForm({onSubmit}) {
 
     return <form onSubmit={() => {
     }}>
-        <Grid container columnGap={2} alignItems={"center"}>
+        <Grid container columnGap={2} rowGap={2} alignItems={"center"}>
             <Grid item>
                 <Controller
                     control={control}
@@ -44,11 +44,12 @@ export function CardFilterForm({onSubmit}) {
 
                         <ToggleButtonGroup
                             {...field}
+                            sx={{width: 300,     height: "40px"}}
                             onChange={(e, value) => {
                                 field.onChange(value);
                             }}
                         >
-                            {Object.values(ECardFaction).map(faction => <ToggleButton key={faction} value={faction}
+                            {Object.values(ECardFaction).map(faction => <ToggleButton key={faction} value={faction}  sx={{width: "100%"}}
                                                                                       aria-label={faction}>
                                 <FactionImg faction={faction}/>
                             </ToggleButton>)
@@ -77,7 +78,7 @@ export function CardFilterForm({onSubmit}) {
                         control={control}
                         name="searchAll"
                         render={({field}) => (
-                            <TextField {...field} label="Search in all columns" variant="outlined" size={"small"}/>
+                            <TextField {...field} label="Search in all columns" variant="outlined" size={"small"}  sx={{width: 276}}/>
                         )}
                     />
                 </Box>

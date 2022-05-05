@@ -20,7 +20,7 @@ export function Home() {
                     color="text.primary"
                     gutterBottom
                 >
-                    Crystal Clash Manager
+                    Crystal Clash Wiki
                 </Typography>
             </Container>
 
@@ -28,21 +28,24 @@ export function Home() {
                 <Grid container spacing={5} flexWrap={"wrap"}>
                     <Grid
                         item
-                        xs
+                        xs={12}
+                        md={4}
                     >
                         <MenuBasics/>
                     </Grid>
 
                     <Grid
                         item
-                        xs
+                        xs={12}
+                        md={4}
                     >
                         <MenuGuides/>
                     </Grid>
 
                     <Grid
                         item
-                        xs
+                        xs={12}
+                        md={4}
                     >
                         <MenuCommunity/>
                     </Grid>

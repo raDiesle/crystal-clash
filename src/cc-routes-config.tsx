@@ -21,6 +21,13 @@ import {TutorialVideos} from "./pages/community/tutorial-videos";
 import {Artgallery} from "./pages/community/artgallery";
 import {Meme} from "./pages/community/meme";
 import {Tierlist} from "./pages/community/tierlist";
+import {GameModesPage} from "./pages/basics/game-menu/game-modes/game-modes-page";
+import {DeckbuilderPage} from "./pages/basics/game-menu/deckbuilder/deckbuilderPage";
+import {CardVendorPage} from "./pages/basics/game-menu/card-vendor/card-vendor-page";
+import {LeaderboardsPage} from "./pages/basics/game-menu/leaderboards/leaderboardsPage";
+import {ShopPage} from "./pages/basics/game-menu/shop/shop-page";
+import {UserMenuPage} from "./pages/basics/game-menu/user-menu/user-menu-page";
+import {QuestsPage} from "./pages/basics/game-menu/quests/quests-page";
 
 export enum ROUTES {
     "/" = "/",
@@ -64,12 +71,16 @@ export function CcRoutesConfig() {
 
         <Route path={`${ROUTES["/card-details/"]}:cardName`} element={<CardDetails/>}/>
 
-        <Route path={ROUTES["/game-menu"]+ "*"} element={<GameMenu/>}/>
+        {/*<Route path={ROUTES["/game-menu"]+ "*"} element={<GameMenu/>}/>*/}
 
+        <Route path={ROUTES["/game-menu/gamemodes"]} element={<GameModesPage/>}/>
+        <Route path={ROUTES["/game-menu/deckbuilder"]} element={<DeckbuilderPage/>}/>
+        <Route path={ROUTES["/game-menu/card-vendor"]} element={<CardVendorPage/>}/>
+        <Route path={ROUTES["/game-menu/leaderboards"]} element={<LeaderboardsPage/>}/>
+        <Route path={ROUTES["/game-menu/shop"]} element={<ShopPage/>}/>
+        <Route path={ROUTES["/game-menu/user-menu"]} element={<UserMenuPage/>}/>
+        <Route path={ROUTES["/game-menu/quests"]} element={<QuestsPage/>}/>
 
-        {/*<Route path={ROUTES["/game-menu/gamemodes"]} element={<GameModesPage/>}/>*/}
-        {/*<Route path={ROUTES["/game-menu/shop"]} element={<ShopPage/>}/>*/}
-        {/*<Route path={ROUTES["/game-menu/user-menu"]} element={<UserMenuPage/>}/>*/}
 
         <Route path={ROUTES["/gameplay-hud"]} element={<GameplayHud/>}/>
 

@@ -1,6 +1,5 @@
 import {Cards, ICard} from "../../../components/cards-game-data";
 import {Box, Card, CardContent} from "@mui/material";
-import {useNavigate} from "react-router-dom";
 import {useState} from "react";
 import {CardFilterForm, SearchInputs} from "./card-filter-form";
 import {NavigateToHome} from "../../../header/navigate-to-home";

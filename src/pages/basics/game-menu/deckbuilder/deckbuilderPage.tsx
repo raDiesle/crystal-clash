@@ -1,5 +1,6 @@
 import {Editor} from "../../../../editor/editor";
+import {DefaultPageContainer} from "../../../../components/default-page-container";
 
 export function DeckbuilderPage() {
-    return <Editor pageTitle="Deckbuilder" categoryPath="wiki" editorPath="deckbuilder"/>;
+    return <DefaultPageContainer><Editor pageTitle="Deckbuilder" categoryPath="wiki" editorPath="deckbuilder"/></DefaultPageContainer>;
 }

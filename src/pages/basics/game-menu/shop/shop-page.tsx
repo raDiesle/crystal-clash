@@ -1,6 +1,7 @@
 import {Editor} from "../../../../editor/editor";
+import {DefaultPageContainer} from "../../../../components/default-page-container";
 
 export function ShopPage() {
-    return <Editor pageTitle="Shop" categoryPath="wiki" editorPath="shop"/>;
+    return <DefaultPageContainer><Editor pageTitle="Shop" categoryPath="wiki" editorPath="shop"/></DefaultPageContainer>;
 
 }

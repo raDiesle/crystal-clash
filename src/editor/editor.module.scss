@@ -10,6 +10,72 @@
       }
     }
 
+
+    .slate-mention_input {
+      background-color: unset;
+    }
+
+    .slate-\@ {
+      background-color: unset;
+      padding-left: 0;
+    }
+
+    .slate-ImageElement-caption{
+      font-size: 12px;
+    }
+    div[data-slate-editor="true"][contenteditable="false"] {
+      .slate-ImageElement-img {
+        cursor: unset;
+      }
+
+    }
+
+
+    .slate-TableCellElement-content, .slate-td, .slate-tr, .slate-TableElement-tbody {
+      background-color: rgba(65, 70, 80, 0.8);
+    }
+
+    div[data-slate-editor="true"][contenteditable="false"] {
+      .slate-TableCellElement-content, .slate-td, .slate-tr, .slate-TableElement-tbody {
+        background-color: unset;
+      }
+    }
+
+    .slate-TableElement-tbody{
+      vertical-align: top;
+    }
+
+    .slate-TableCellElement-handle {
+      background-color: white;
+    }
+
+    div[data-slate-editor="true"][contenteditable="false"] {
+      .slate-TableCellElement-handle {
+        background-color: unset;
+      }
+
+      div[style*="cursor: col-resize"] {
+        cursor: unset !important;
+      }
+
+      .slate-ImageElement-handleLeft, .slate-ImageElement-handleRight{
+        cursor: unset;
+        display:none;
+      }
+    }
+
+    .slate-TableElement-tr:not(:first-child) {
+      .slate-TableCellElement-content {
+        padding-left: 0;
+      }
+    }
+
+
+
+    .slate-TableCellElement-content {
+      padding: 0 15px;
+    }
+
     .slate-HeadingToolbar{
       position: sticky;
       top:0;

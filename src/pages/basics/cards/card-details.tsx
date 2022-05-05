@@ -1,4 +1,4 @@
-import {Card, CardContent, Container} from "@mui/material";
+import {Box, Card, CardContent, Container} from "@mui/material";
 import {Editor} from "../../../editor/editor";
 import {useParams} from "react-router-dom";
 import {Cards, ICard, TAbilities} from "../../../components/cards-game-data";
@@ -111,10 +111,15 @@ export function CardDetails() {
 
             <Card>
                 <CardContent>
-                    <img src={imgPathCardFn(image)} alt={image}/>
-                    {getCurrentCardData.cardDescriptionsJsx}
-                    {getCurrentCardData.abilitiesJsx}
-                    {getCurrentCardData.inferredAbilitiesExplanationsJsx}
+                    <Box display={"flex"} columnGap={3} flexWrap={"wrap"}>
+
+                        <Box alignItems={"center"} display={"flex"}><img src={imgPathCardFn(image)} alt={image}/></Box>
+                        <Box>
+                            {getCurrentCardData.cardDescriptionsJsx}
+                            {getCurrentCardData.abilitiesJsx}
+                            {getCurrentCardData.inferredAbilitiesExplanationsJsx}
+                        </Box>
+                    </Box>
                 </CardContent>
 
             </Card>
